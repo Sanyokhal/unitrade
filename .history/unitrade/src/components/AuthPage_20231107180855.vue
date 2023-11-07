@@ -32,6 +32,7 @@
             </svg>
           </div>
           <span class="gsi-material-button-contents">Авторизуватися</span>
+          <span style="display: none">Авторизуватися</span>
         </div>
       </button>
     </div>
@@ -89,8 +90,8 @@ html, body {
   padding: 0 12px;
   position: relative;
   text-align: left;
-  -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
-  transition: background-color .218s, border-color .218s, box-shadow .218s;
+  /* -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
+  transition: background-color .218s, border-color .218s, box-shadow .218s; */
   vertical-align: middle;
   white-space: nowrap;
   width: 450px;

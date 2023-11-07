@@ -32,6 +32,7 @@
             </svg>
           </div>
           <span class="gsi-material-button-contents">Авторизуватися</span>
+          <span style="display: none">Авторизуватися</span>
         </div>
       </button>
     </div>

@@ -1,6 +1,7 @@
 <template>
   <div class="page">
-    <div class="outside-button">
+    <div class="outside-button"> 
+
       <button class="gsi-material-button">
         <div class="gsi-material-button-state"></div>
         <div class="gsi-material-button-content-wrapper">
@@ -32,6 +33,7 @@
             </svg>
           </div>
           <span class="gsi-material-button-contents">Авторизуватися</span>
+          <span style="display: none">Авторизуватися</span>
         </div>
       </button>
     </div>
@@ -42,29 +44,25 @@
 </script>
 
 <style lang="css">
-.page{
+.page {
   background-color: #ffddd2;
-  display: flex;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   justify-content: center;
+  justify-items: center;
+  align-content: center;
   align-items: center;
-}
-html, body {
-  max-width: 100vw;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
+  text-align: center;
 }
 .outside-button{
-  background-color: white;
+  background-color: #EDF6F9;
+  /* padding: 30px; */
   width: 576px;
   height: 198px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 5px 5px 15px silver, -5px -5px 15px white;
-  border-radius: 20px;
 }
+
+
+
 
 .gsi-material-button {
   -moz-user-select: none;
@@ -73,34 +71,36 @@ html, body {
   -webkit-appearance: none;
   background-color: WHITE;
   background-image: none;
-  /* border: 1px solid #747775; */
-  -webkit-border-radius: 10px;
+  border: 1px solid #747775;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
   -webkit-box-sizing: border-box;
-  border-radius: 10px;
   box-sizing: border-box;
   color: #1f1f1f;
   cursor: pointer;
   font-family: 'Roboto', arial, sans-serif;
-  font-size: 22px;
-  height: 70px;
+  font-size: 14px;
+  height: 40px;
   letter-spacing: 0.25px;
   outline: none;
   overflow: hidden;
   padding: 0 12px;
   position: relative;
-  text-align: left;
+  text-align: center;
   -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
   transition: background-color .218s, border-color .218s, box-shadow .218s;
   vertical-align: middle;
   white-space: nowrap;
-  width: 450px;
-  box-shadow: 0px 0px 30px #c6b0a8;
+  width: auto;
+  max-width: 400px;
+  min-width: min-content;
 }
 
 .gsi-material-button .gsi-material-button-icon {
-  height: 50px;
+  height: 20px;
   margin-right: 12px;
-  width: 50px;
+  min-width: 20px;
+  width: 20px;
 }
 
 .gsi-material-button .gsi-material-button-content-wrapper {
@@ -121,7 +121,7 @@ html, body {
   -webkit-flex-grow: 1;
   flex-grow: 1;
   font-family: 'Roboto', arial, sans-serif;
-  font-weight: 300;
+  font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
   vertical-align: top;
@@ -152,7 +152,7 @@ html, body {
   opacity: 38%;
 }
 
-.gsi-material-button:not(:disabled):active .gsi-material-button-state,
+.gsi-material-button:not(:disabled):active .gsi-material-button-state, 
 .gsi-material-button:not(:disabled):focus .gsi-material-button-state {
   background-color: #303030;
   opacity: 12%;
