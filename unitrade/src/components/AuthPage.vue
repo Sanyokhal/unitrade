@@ -41,7 +41,7 @@
 <script>
 </script>
 
-<style lang="css">
+<style lang="scss">
 .page{
   background-color: #ffddd2;
   display: flex;
