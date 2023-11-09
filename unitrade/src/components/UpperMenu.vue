@@ -1,7 +1,3 @@
-Запитання:
-1) як зробити, щоб в якийсь з select->option був за замовчуванням
-
-
 <template>
   <header>
     <div class="header-left-wrapper">
@@ -48,14 +44,16 @@
         </li>
       </ul>
       <button class="header-right-wrapper add-button">+</button>
-      <button class="header-right-wrapper profile-button">
-        Профіль
-        <img
-          src=""
-          alt="P"
-          class="header-right-wrapper profile-button-picture"
-        />
-      </button>
+      <router-link to="/auth">
+        <button class="header-right-wrapper profile-button">
+          Профіль
+          <img
+            src=""
+            alt="P"
+            class="header-right-wrapper profile-button-picture"
+          />
+        </button>
+      </router-link>
     </div>
   </header>
 </template>

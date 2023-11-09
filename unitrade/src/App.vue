@@ -1,15 +1,12 @@
 <template>
   <div>
-    <upper-menu/>
   </div>
 </template>
 
 <script>
-import UpperMenu from './components/UpperMenu.vue'
 export default {
   name: 'App',
   components: {
-    UpperMenu,
   }
 }
 </script>
