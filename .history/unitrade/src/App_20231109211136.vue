@@ -1,4 +1,14 @@
 <template>
+<<<<<<< HEAD
+  <img alt="Vue logo" src="./assets/logo.png">
+</template>
+
+<script>
+
+export default {
+  name: 'App',
+
+=======
   <div>
   </div>
 </template>
@@ -8,6 +18,7 @@ export default {
   name: 'App',
   components: {
   }
+>>>>>>> andriy_dev
 }
 </script>
 
