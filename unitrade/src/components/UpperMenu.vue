@@ -30,7 +30,7 @@
             'header-right-wrapper toggle-li-active': toggle == 'adversitement',
           }"
         >
-          Оголошення
+          <router-link to="/"> Оголошення </router-link>
         </li>
         |
         <li
@@ -40,11 +40,11 @@
             'header-right-wrapper toggle-li-active': toggle == 'job',
           }"
         >
-          Робота
+          <router-link to="/"> Робота </router-link>
         </li>
       </ul>
       <button class="header-right-wrapper add-button">+</button>
-      <router-link to="/auth" style="text-decoration:none;">
+      <router-link to="/me" style="text-decoration: none">
         <button class="header-right-wrapper profile-button">
           Профіль
           <img
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -67,8 +67,8 @@ export default {
       toggle: "advertisement",
     };
   },
-  computed:{
-    ...mapGetters(['user'])
+  computed: {
+    ...mapGetters(["user"]),
   },
   watch: {
     dormitoryNumber() {
@@ -82,12 +82,11 @@ export default {
 </script>
 
 <style lang="scss">
-body{
-  background-color: #83C5BE;
+body {
+  background-color: #83c5be;
 }
 header {
-  position: fixed;
-  left: 10vw;
+  margin: 0 auto;
   width: 80vw;
   height: 10vh;
   display: flex;
@@ -95,7 +94,7 @@ header {
   justify-content: center;
   background-color: #edf6f9;
   justify-content: space-between;
-  border-radius:  0 0 10px 10px;
+  border-radius: 0 0 10px 10px;
 }
 .select {
   cursor: pointer;
@@ -111,7 +110,7 @@ header {
   height: 7vh;
   width: 7vh;
 }
-.header-left-wrapper{
+.header-left-wrapper {
   margin-left: 1vw;
   gap: 25px;
   display: flex;
@@ -153,7 +152,7 @@ header {
   border-radius: 10px;
   box-shadow: 0 0 15px #7f9799;
 }
-.profile-button{
+.profile-button {
   cursor: pointer;
   height: 7vh;
   gap: 25px;
@@ -162,7 +161,7 @@ header {
   border: none;
   text-decoration: none;
 }
-.profile-button-img{
+.profile-button-img {
   height: 5vh;
   width: 5vh;
   border-radius: 50%;
