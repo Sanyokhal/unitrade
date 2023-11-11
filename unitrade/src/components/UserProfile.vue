@@ -33,13 +33,18 @@
 * {
     box-sizing: border-box;
 }
+
+button {
+  padding: 5px;
+}
+
 .avatar {
   width: 40px;
   height: 40px;
 }
 
 .user-profile {
-  width: 100%;
+  width: 80%;
   max-width: 1152px;
   display: flex;
   flex-direction: column;
@@ -47,6 +52,7 @@
   margin: 0 auto;
 
   background: #EDF6F9;
+  margin-top: 100px;
 }
 
 .user-profile {
@@ -60,7 +66,7 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #006D77;
-  padding: 0 10px;
+  padding: 10px 10px;
 }
 
 .user-info {
