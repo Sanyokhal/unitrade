@@ -44,13 +44,13 @@
         </li>
       </ul>
       <button class="header-right-wrapper add-button">+</button>
-      <router-link to="/auth">
+      <router-link to="/auth" style="text-decoration:none;">
         <button class="header-right-wrapper profile-button">
           Профіль
           <img
-            src=""
-            alt="P"
-            class="header-right-wrapper profile-button-picture"
+            :src="user.avatarUrl"
+            alt="Avatar"
+            class="header-right-wrapper profile-button-img"
           />
         </button>
       </router-link>
@@ -59,12 +59,16 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default {
   data() {
     return {
       dormitoryNumber: 1,
       toggle: "advertisement",
     };
+  },
+  computed:{
+    ...mapGetters(['user'])
   },
   watch: {
     dormitoryNumber() {
@@ -92,9 +96,6 @@ header {
   background-color: #edf6f9;
   justify-content: space-between;
   border-radius:  0 0 10px 10px;
-}
-.logo{
-  border-radius: 50%;
 }
 .select {
   cursor: pointer;
@@ -159,5 +160,11 @@ header {
   border-radius: 10px;
   background-color: #ffddd2;
   border: none;
+  text-decoration: none;
+}
+.profile-button-img{
+  height: 5vh;
+  width: 5vh;
+  border-radius: 50%;
 }
 </style>
