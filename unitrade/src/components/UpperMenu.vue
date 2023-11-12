@@ -1,59 +1,61 @@
 <template>
   <header>
-    <div class="header-left-wrapper">
-      <img class="header-left-wrapper logo" src="" alt="Логотип" />
-      <select
-        name="dormitoryNumber"
-        class="header-left-wrapper select"
-        v-model="dormitoryNumber"
-        :required="true"
-      >
-        <option
-          value="1"
-          class="header-left-wrapper select-option"
-          :dormitoryNumber="true"
+    <div class="header-content">
+      <div class="header-left-wrapper">
+        <img class="header-left-wrapper logo" src="" alt="Логотип" />
+        <select
+          name="dormitoryNumber"
+          class="header-left-wrapper select"
+          v-model="dormitoryNumber"
+          :required="true"
         >
-          №1
-        </option>
-        <option value="2" class="header-left-wrapper select-option">№2</option>
-        <option value="3" class="header-left-wrapper select-option">№3</option>
-        <option value="4" class="header-left-wrapper select-option">№4</option>
-        <option value="5" class="header-left-wrapper select-option">№5</option>
-      </select>
-    </div>
-    <div class="header-right-wrapper">
-      <ul class="header-right-wrapper toggle">
-        <li
-          class="header-right-wrapper toggle-li"
-          @click="toggle = 'adversitement'"
-          :class="{
-            'header-right-wrapper toggle-li-active': toggle == 'adversitement',
-          }"
-        >
-          <router-link to="/"> Оголошення </router-link>
-        </li>
-        |
-        <li
-          class="header-right-wrapper toggle-li"
-          @click="toggle = 'job'"
-          :class="{
-            'header-right-wrapper toggle-li-active': toggle == 'job',
-          }"
-        >
-          <router-link to="/"> Робота </router-link>
-        </li>
-      </ul>
-      <button class="header-right-wrapper add-button">+</button>
-      <router-link to="/me" style="text-decoration: none">
-        <button class="header-right-wrapper profile-button">
-          Профіль
-          <img
-            :src="user.avatarUrl"
-            alt="Avatar"
-            class="header-right-wrapper profile-button-img"
-          />
-        </button>
-      </router-link>
+          <option
+            value="1"
+            class="header-left-wrapper select-option"
+            :dormitoryNumber="true"
+          >
+            №1
+          </option>
+          <option value="2" class="header-left-wrapper select-option">№2</option>
+          <option value="3" class="header-left-wrapper select-option">№3</option>
+          <option value="4" class="header-left-wrapper select-option">№4</option>
+          <option value="5" class="header-left-wrapper select-option">№5</option>
+        </select>
+      </div>
+      <div class="header-right-wrapper">
+        <ul class="header-right-wrapper toggle">
+          <li
+            class="header-right-wrapper toggle-li"
+            @click="toggle = 'adversitement'"
+            :class="{
+              'header-right-wrapper toggle-li-active': toggle == 'adversitement',
+            }"
+          >
+            <router-link to="/" class="toggle-li"> Оголошення </router-link>
+          </li>
+          |
+          <li
+            class="header-right-wrapper toggle-li"
+            @click="toggle = 'job'"
+            :class="{
+              'header-right-wrapper toggle-li-active': toggle == 'job',
+            }"
+          >
+            <router-link to="/" class="toggle-li"> Робота </router-link>
+          </li>
+        </ul>
+        <button class="header-right-wrapper add-button">+</button>
+        <router-link to="/me" style="text-decoration: none">
+          <button class="header-right-wrapper profile-button">
+            Профіль
+            <img
+              :src="user.avatarUrl"
+              alt="Avatar"
+              class="header-right-wrapper profile-button-img"
+            />
+          </button>
+        </router-link>
+      </div>
     </div>
   </header>
 </template>
@@ -82,88 +84,95 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/assets/main_colors.scss";
 body {
-  background-color: #83c5be;
+  background-color: $light-blue-main;
 }
 header {
+  max-width: 100%;
+  width: 100%;
+  max-height: 80px;
+  background-color: $light-main;
+  justify-content: space-between;
+  border-radius: 0 0 $default-border-radius $default-border-radius;
+}
+.header-content{
+  width:100%;
+  max-width: 1280px;
   margin: 0 auto;
-  width: 80vw;
-  height: 10vh;
+  display:flex;
+  align-items: center;
+  // justify-content: center; 
+  padding:5px;
+  justify-content: space-between; 
+}
+.header-left-wrapper {
+  gap: 25px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: #edf6f9;
-  justify-content: space-between;
-  border-radius: 0 0 10px 10px;
 }
 .select {
   cursor: pointer;
-  padding: 1vh;
-  border-radius: 10px;
+  // padding: 1vh;
+  border-radius: $default-border-radius;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   border: none;
   font-weight: 700;
-  background-color: #ffddd2;
-  box-shadow: 0 0 15px #7f9799;
-  height: 7vh;
-  width: 7vh;
+  background-color: $light-blue-main;
+  height: 50px;
+  width: 50px;
 }
-.header-left-wrapper {
-  margin-left: 1vw;
-  gap: 25px;
-  display: flex;
-  align-items: center;
+.select-option{
+  padding: auto;
 }
 .header-right-wrapper {
   display: flex;
   gap: 25px;
   font-size: 24px;
   align-items: center;
-  margin-right: 1vw;
 }
 .toggle {
   display: flex;
   align-items: center;
   list-style: none;
-  margin-right: 40px;
-  color: #7f9799;
-  font-size: 14px;
 }
 .toggle-li {
-  color: gray;
+  font-size: 16px;
+  text-decoration: none;
+  color: black;
   cursor: pointer;
-  margin: 0 5px;
 }
 .toggle-li-active {
   font-weight: 700;
-  color: black;
 }
 .add-button {
   cursor: pointer;
   justify-content: center;
   align-content: center;
   font-size: 28px;
-  height: 7vh;
-  width: 7vh;
-  background-color: #e29578;
+  height: 50px;
+  width: 50px;
+  background-color: $light-blue-main;
   border: none;
-  border-radius: 10px;
-  box-shadow: 0 0 15px #7f9799;
+  border-radius: $default-border-radius;
 }
 .profile-button {
+  padding: 10px;
+  font-size: 15px;
   cursor: pointer;
-  height: 7vh;
+  height: 50px;
   gap: 25px;
-  border-radius: 10px;
-  background-color: #ffddd2;
+  border-radius: $default-border-radius;
+  background-color: $light-blue-main;
   border: none;
   text-decoration: none;
 }
 .profile-button-img {
-  height: 5vh;
-  width: 5vh;
-  border-radius: 50%;
+  font-size: 15px;
+  height: 40px;
+  width: 40px;
+  border-radius: $default-border-radius;
 }
 </style>
