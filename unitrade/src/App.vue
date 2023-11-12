@@ -3,7 +3,7 @@
     <button @click="changeIsLoggedIn" class="temporary">
       auth: {{ JSON.stringify($store.getters.isLoggedIn) }}
     </button>
-    <Header v-if="isLoggedIn" />
+    <Header v-if="isLoggedIn"/>
     <RouterView></RouterView>
   </div>
 </template>
@@ -23,8 +23,8 @@ export default {
   },
   methods: {
     changeIsLoggedIn() {
-      this.$store.commit('changeIsLoggedIn'); 
-      
+      this.$store.commit('changeIsLoggedIn');
+
       this.isLoggedIn ? this.$router.push('/') : this.$router.push('/auth');
     }
   }
@@ -51,10 +51,30 @@ export default {
   padding: 0;
   background-color: #83c5be;
 }
+
 * {
   margin: 0;
   padding: 0;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    transition: background-color ease-out .3s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    transition: background-color ease-out .3s;
+  }
 }
+
 body {
   background-color: $light-blue-main;
 }
