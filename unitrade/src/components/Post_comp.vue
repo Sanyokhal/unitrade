@@ -1,5 +1,5 @@
 <template>
-  <div class="post">
+  <div class="post" @click="openPost()">
     <img :src="post.img_url" alt="Фото поста">
     <span class="post-name">{{ post.name }}</span>
     <span class="post-price"><b>{{ post.price }}₴</b></span>
@@ -11,7 +11,12 @@ export default {
   name: "Post_comp",
   props: {
     post: Object
-  }
+  },
+  methods:{
+    openPost(){
+      this.$router.push({ name: 'post', params: { id: this.post.id } })
+    }
+  },
 }
 </script>
 

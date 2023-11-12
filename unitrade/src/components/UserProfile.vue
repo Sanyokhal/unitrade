@@ -50,7 +50,6 @@ button {
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-
   background: #EDF6F9;
   margin-top: 100px;
 }

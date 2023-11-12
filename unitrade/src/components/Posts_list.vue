@@ -19,78 +19,85 @@
     <div class="posts_list">
       <Post_comp :post="post" v-for="post in posts" :key="post.id"/>
     </div>
+    <div class="page-selector">
+      <font-awesome-icon icon="arrow-left" :class="{'hidden-page':page_index == 0}" @click="subPage()"
+                         class="page-toggle"/>
+      <span>{{ page_index + 1 }}</span>
+      <font-awesome-icon icon="arrow-right" :class="{'hidden-page':!has_next_page}" @click="addPage()"
+                         class="page-toggle"/>
+    </div>
   </div>
 </template>
 
 <script>
 import Post_comp from "@/components/Post_comp";
+import debounce from "lodash.debounce";
+import {posts} from "@/temp_data";
 
 export default {
   name: "Posts_list",
   components: {Post_comp},
+  methods: {
+    fetch() {
+      alert("Симуляція fetch запиту");
+    },
+    subPage() {
+      if (this.page_index > 0) {
+        this.page_index -= 1;
+      }
+    },
+    addPage() {
+      if (this.has_next_page) {
+        this.page_index += 1;
+      }
+    }
+  },
   data() {
     return {
-      posts: [
-        {
-          id: 1,
-          name: "Сковорода Б/У",
-          img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
-          price: 200
-        },
-        {
-          id: 2,
-          name: "Чайник емальований",
-          img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
-
-          price: 200
-        },
-        {
-          id: 3,
-          name: "Тумбочка IKEA",
-          img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
-          price: 200
-        },
-        {
-          id: 4,
-          name: "Макарони Barilla",
-          img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
-          price: 200
-        },
-        {
-          id: 5,
-          name: "Сковорода Б/У",
-          img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
-          price: 200
-        },
-        {
-          id: 6,
-          name: "Чайник емальований",
-          img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
-          price: 200
-        },
-        {
-          id: 7,
-          name: "Тумбочка IKEA",
-          img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
-          price: 200
-        },
-        {
-          id: 8,
-          name: "Макарони Barilla",
-          img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
-          price: 200
-        }
-      ],
+      page_index: 0,
+      posts: [],
       search: undefined,
       category: 0,
       is_free: false,
+      has_next_page: true,
     }
+  },
+  watch: {
+    search() {
+      this.debouncedFetch();
+    },
+    category() {
+      this.fetch();
+    },
+    is_free() {
+      this.fetch();
+    }
+  },
+  mounted() {
+    this.debouncedFetch = debounce(() => {
+      this.fetch();
+    }, 300)
+    this.posts = posts;
   }
 }
 </script>
 
 <style lang="scss" scoped>
 @import "../assets/main_colors";
+
+.hidden-page {
+  opacity: 0 !important;
+  transition: opacity ease-out .2s;
+  cursor: default !important;
+}
+
+.page-toggle {
+  transition: opacity ease-out .2s;
+}
+
+.page-toggle:hover {
+  cursor: pointer;
+}
 
 .container {
   gap: 20px;
@@ -214,6 +221,22 @@ export default {
     grid-template-rows:repeat(auto-fit, 300px);
     grid-gap: 20px;
     justify-content: space-evenly;
+  }
+
+  .page-selector {
+    margin-bottom: 50px;
+    width: 30vw;
+    display: flex;
+    flex-direction: row;
+    background: $light-main;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    border-radius: 10px;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 4px 4px 10px $default-shadow-color;
   }
 }
 </style>

@@ -91,7 +91,6 @@ header {
   height: 10vh;
   display: flex;
   align-items: center;
-  justify-content: center;
   background-color: #edf6f9;
   justify-content: space-between;
   border-radius: 0 0 10px 10px;
