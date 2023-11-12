@@ -4,6 +4,7 @@ import PostsList from "@/components/Posts_list.vue";
 import UserProfile from "@/components/UserProfile.vue";
 
 import store from "@/store";
+import PostPage from "@/components/PostPage.vue";
 
 const routes = [
   {
@@ -30,6 +31,14 @@ const routes = [
       forLoggedIn: false,
     },
   },
+  {
+    path:"/post/:id?",
+    name:"post",
+    component: PostPage,
+    meta: {
+      forLoggedIn: true,
+    },
+  }
 ];
 
 const router = createRouter({

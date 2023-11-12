@@ -110,6 +110,9 @@ header {
   gap: 25px;
   display: flex;
   align-items: center;
+  background-color: #edf6f9;
+  justify-content: space-between;
+  border-radius: 0 0 10px 10px;
 }
 .select {
   cursor: pointer;
