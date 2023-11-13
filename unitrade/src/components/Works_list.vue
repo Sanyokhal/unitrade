@@ -1,25 +1,23 @@
 <template>
   <div class="container">
     <div class="menu">
-      <span class="menu-tag">Оголошення</span>
+      <span class="menu-tag">Робота</span>
       <div class="menu-options">
         <input type="text" placeholder="Пошук" v-model="search" class="search-bar">
-        <select name="" id="" class="product-category" v-model="category" >
-          <option value="0">Всі</option>
-          <option value="1">Меблі</option>
-          <option value="2">Одяг</option>
-          <option value="3">Їжа</option>
-        </select>
-        <select class="product-price" v-model="is_free">
-          <option value="true">Даром</option>
-          <option value="false">Не даром</option>
-        </select>
+        <button class="all" :class="{'selected-gender':gender === 'all'}" @click="gender = 'all'"><span>Для всіх</span>
+        </button>
+        <button class="woman" :class="{'selected-gender':gender === 'woman'}" @click="gender = 'woman'">
+          <span>Жінкам</span></button>
+        <button class="man" :class="{'selected-gender':gender === 'man'}" @click="gender = 'man'"><span>Чоловікам</span>
+        </button>
       </div>
     </div>
-    <div class="posts_list">
-      <Post_comp :post="post" v-for="post in posts" :key="post.id"/>
+    <div class="works_list">
+      <Work_comp :work="work" v-for="work in works_list" :key="work.id"/>
     </div>
     <div class="page-selector">
+      <font-awesome-icon icon="arrow-left" :class="{'hidden-page':page_index == 0}" @click="subPage()"
+                         class="page-toggle"/>
       <span>{{ page_index + 1 }}</span>
       <font-awesome-icon icon="arrow-right" :class="{'hidden-page':!has_next_page}" @click="addPage()"
                          class="page-toggle"/>
@@ -28,13 +26,13 @@
 </template>
 
 <script>
-import Post_comp from "@/components/Post_comp";
 import debounce from "lodash.debounce";
-import {posts} from "@/temp_data";
+import {works} from "@/temp_data";
+import Work_comp from "@/components/Work_comp.vue";
 
 export default {
-  name: "Posts_list",
-  components: {Post_comp},
+  name: "Works_list",
+  components: {Work_comp},
   methods: {
     fetch() {
       alert("Симуляція fetch запиту");
@@ -53,10 +51,9 @@ export default {
   data() {
     return {
       page_index: 0,
-      posts: [],
+      works_list: [],
+      gender: 'all',
       search: undefined,
-      category: 0,
-      is_free: false,
       has_next_page: true,
     }
   },
@@ -64,18 +61,15 @@ export default {
     search() {
       this.debouncedFetch();
     },
-    category() {
+    gender() {
       this.fetch();
     },
-    is_free() {
-      this.fetch();
-    }
   },
   mounted() {
     this.debouncedFetch = debounce(() => {
       this.fetch();
     }, 300)
-    this.posts = posts;
+    this.works_list = works;
   }
 }
 </script>
@@ -98,21 +92,19 @@ export default {
 }
 
 .container {
+  box-shadow: 0px 0px 10px $default-shadow-color;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 75vw;
-  overflow: hidden;
-  margin-top: 40px;
   margin-left: 12.5vw;
-  justify-content: space-between;;
+  justify-content: space-between;
+  margin-top: 40px;
   background: $light-main;
-  border-top-left-radius: $default-border-radius;
-  border-top-right-radius: $default-border-radius;
+  border-radius: $default-border-radius;
+  overflow: hidden;
 
   .menu {
-    border-top-left-radius: $default-border-radius;
-    border-top-right-radius: $default-border-radius;
     width: 100%;
     height: 60px;
     align-items: center;
@@ -161,53 +153,43 @@ export default {
         transition: all ease-out .3s;
       }
 
-      .product-category {
-        width: 150px;
+      button {
         padding-left: 10px;
-        height: 30px;
-        font-family: 'Montserrat', sans-serif;
-        max-width: 150px;
-        font-weight: 500;
-        background-color: $new-design-blue;
-        border-radius: $default-border-radius;
+        padding-right: 10px;
+        border-radius: 2px;
         border: none;
-        transition: box-shadow ease-out .3s;
-      }
-
-      .product-category:focus-visible {
-        outline: none;
-      }
-
-      .product-category:hover {
-        cursor: pointer;
-      }
-
-      .product-price {
-        font-family: 'Montserrat', sans-serif;
-        max-width: 120px;
-        padding-left: 10px;
-        width: 120px;
         height: 30px;
-        line-height: 30px;
-        background-color: $new-design-blue;
-        border-radius: $default-border-radius;
-        font-weight: 500;
-        border: none;
-        text-align: center;
-        transition: box-shadow ease-out .3s;
+        background-color: $new-design-dull-blue;
+        transition: all ease-out .3s;
+
+        span {
+          transition: all ease-out .3s;
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 500;
+        }
       }
 
-      .product-price:hover {
+      button:hover {
         cursor: pointer;
+        background-color: $new-design-blue;
+        transition: all ease-out .3s;
       }
 
-      .product-price:focus-visible {
-        outline: none;
+      .selected-gender {
+        padding-left: 25px;
+        padding-right: 25px;
+        transition: all ease-out .3s;
+        background-color: $new-design-blue;
+
+        span {
+          font-weight: bold;
+          transition: all ease-out .3s;
+        }
       }
     }
   }
 
-  .posts_list {
+  .works_list {
     padding-top: 20px;
     max-width: 75vw;
     width: 75vw;

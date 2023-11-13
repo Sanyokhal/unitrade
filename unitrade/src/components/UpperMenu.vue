@@ -2,17 +2,17 @@
   <header>
     <div class="header-content">
       <div class="header-left-wrapper">
-        <img class="header-left-wrapper logo" src="" alt="Логотип" />
+        <img class="header-left-wrapper logo" src="" alt="Логотип"/>
         <select
-          name="dormitoryNumber"
-          class="header-left-wrapper select"
-          v-model="dormitoryNumber"
-          :required="true"
+            name="dormitoryNumber"
+            class="header-left-wrapper select"
+            v-model="dormitoryNumber"
+            :required="true"
         >
           <option
-            value="1"
-            class="header-left-wrapper select-option"
-            :dormitoryNumber="true"
+              value="1"
+              class="header-left-wrapper select-option"
+              :dormitoryNumber="true"
           >
             №1
           </option>
@@ -25,33 +25,33 @@
       <div class="header-right-wrapper">
         <ul class="header-right-wrapper toggle">
           <li
-            class="header-right-wrapper toggle-li"
-            @click="toggle = 'adversitement'"
-            :class="{
+              class="header-right-wrapper toggle-li"
+              @click="toggle = 'adversitement'"
+              :class="{
               'header-right-wrapper toggle-li-active': toggle == 'adversitement',
             }"
           >
-            <router-link to="/" class="toggle-li"> Оголошення </router-link>
+            <router-link to="/" class="toggle-li"> Оголошення</router-link>
           </li>
           |
           <li
-            class="header-right-wrapper toggle-li"
-            @click="toggle = 'job'"
-            :class="{
+              class="header-right-wrapper toggle-li"
+              @click="toggle = 'job'"
+              :class="{
               'header-right-wrapper toggle-li-active': toggle == 'job',
             }"
           >
-            <router-link to="/" class="toggle-li"> Робота </router-link>
+            <router-link to="/works" class="toggle-li"> Робота</router-link>
           </li>
         </ul>
-        <button class="header-right-wrapper add-button">+</button>
+        <button class="header-right-wrapper add-button"><font-awesome-icon icon="plus" /></button>
         <router-link to="/me" style="text-decoration: none">
           <button class="header-right-wrapper profile-button">
             Профіль
             <img
-              :src="user.avatarUrl"
-              alt="Avatar"
-              class="header-right-wrapper profile-button-img"
+                :src="user.avatarUrl"
+                alt="Avatar"
+                class="header-right-wrapper profile-button-img"
             />
           </button>
         </router-link>
@@ -61,7 +61,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
+
 export default {
   data() {
     return {
@@ -85,9 +86,11 @@ export default {
 
 <style lang="scss">
 @import "@/assets/main_colors.scss";
+
 body {
   background-color: $light-blue-main;
 }
+
 header {
   max-width: 100%;
   width: 100%;
@@ -96,16 +99,18 @@ header {
   justify-content: space-between;
   border-radius: 0 0 $default-border-radius $default-border-radius;
 }
-.header-content{
-  width:100%;
+
+.header-content {
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
-  display:flex;
+  display: flex;
   align-items: center;
   // justify-content: center; 
-  padding:5px;
-  justify-content: space-between; 
+  padding: 5px;
+  justify-content: space-between;
 }
+
 .header-left-wrapper {
   gap: 25px;
   display: flex;
@@ -114,6 +119,7 @@ header {
   justify-content: space-between;
   border-radius: 0 0 10px 10px;
 }
+
 .select {
   cursor: pointer;
   // padding: 1vh;
@@ -122,45 +128,60 @@ header {
   -moz-appearance: none;
   appearance: none;
   border: none;
+  text-align: center;
   font-weight: 700;
   background-color: $light-blue-main;
   height: 50px;
   width: 50px;
+  font-family: "Montserrat", sans-serif;
 }
-.select-option{
+
+.select:focus-visible {
+  outline: none;
+}
+
+.select-option {
   padding: auto;
 }
+
 .header-right-wrapper {
   display: flex;
   gap: 25px;
   font-size: 24px;
   align-items: center;
 }
+
 .toggle {
   display: flex;
   align-items: center;
   list-style: none;
 }
+
 .toggle-li {
   font-size: 16px;
+  transition: font-weight ease .2s;
   text-decoration: none;
   color: black;
   cursor: pointer;
 }
+
 .toggle-li-active {
   font-weight: 700;
+  transition: font-weight ease .2s;
 }
+
 .add-button {
   cursor: pointer;
   justify-content: center;
   align-content: center;
-  font-size: 28px;
+  font-size: 20px;
   height: 50px;
   width: 50px;
-  background-color: $light-blue-main;
+  background-color: $new-design-dull-blue;
   border: none;
   border-radius: $default-border-radius;
 }
+
 .profile-button {
   padding: 10px;
   font-size: 15px;
@@ -168,10 +189,12 @@ header {
   height: 50px;
   gap: 25px;
   border-radius: $default-border-radius;
-  background-color: $light-blue-main;
+  background-color: $new-design-dull-blue;
   border: none;
+  font-family: "Montserrat", sans-serif;
   text-decoration: none;
 }
+
 .profile-button-img {
   font-size: 15px;
   height: 40px;
