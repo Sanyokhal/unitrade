@@ -1,20 +1,19 @@
 <template>
   <div class="post" @click="openPost()">
-    <img :src="post.img_url" alt="Фото поста">
-    <span class="post-name">{{ post.name }}</span>
-    <span class="post-price"><b>{{ post.price }}₴</b></span>
+    <img :src="work.img_url" alt="Фото поста">
+    <span class="post-name">{{ work.name }}</span>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Post_comp",
+  name: "Work_comp",
   props: {
-    post: Object
+    work: Object
   },
   methods: {
     openPost() {
-      this.$router.push({name: 'post', params: {id: this.post.id}})
+      this.$router.push({name: 'work', params: {id: this.work.id}})
     }
   },
 }
@@ -37,7 +36,6 @@ export default {
 
   img {
     max-height: 75%;
-    min-height: 75%;
     object-fit: contain;
     height: auto;
     width: 100%;
@@ -45,6 +43,7 @@ export default {
   }
 
   .post-name {
+    transition: all ease-out .3s;
     height: 15%;
     width: calc(100% - 10px);
     padding-left: 10px;
@@ -64,7 +63,10 @@ export default {
 
 .post:hover {
   cursor: pointer;
+
   .post-name {
+    font-weight: bold;
+    transition: all ease-out .3s;
     text-decoration: underline;
   }
 }

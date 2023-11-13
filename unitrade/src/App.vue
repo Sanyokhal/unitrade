@@ -49,7 +49,7 @@ export default {
   color: #2c3e50;
   margin: 0;
   padding: 0;
-  background-color: #83c5be;
+  background-color: $new-design-peach;
 }
 
 * {
@@ -76,6 +76,6 @@ export default {
 }
 
 body {
-  background-color: $light-blue-main;
+  background-color: $new-design-peach;
 }
 </style>
