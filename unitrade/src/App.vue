@@ -76,6 +76,6 @@ export default {
 }
 
 body {
-  background-color: $border-default;
+  background-color: $background;
 }
 </style>
