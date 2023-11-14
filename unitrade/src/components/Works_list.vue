@@ -92,7 +92,6 @@ export default {
 }
 
 .container {
-  box-shadow: 0px 0px 10px $default-shadow-color;
   display: flex;
   flex-direction: column;
   align-items: center;
