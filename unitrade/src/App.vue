@@ -46,10 +46,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: $border-default;
   margin: 0;
   padding: 0;
-  background-color: $new-design-peach;
+  background-color: $background;
 }
 
 * {
@@ -76,6 +76,6 @@ export default {
 }
 
 body {
-  background-color: $new-design-peach;
+  background-color: $border-default;
 }
 </style>
