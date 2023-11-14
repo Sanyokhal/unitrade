@@ -78,7 +78,7 @@ export default {
   margin-top: 30px;
   width: 80vw;
   margin-left: 10vw;
-  background-color: $light-main;
+  background-color: $bg-secondary;
   display: flex;
   flex-direction: column;
 
@@ -155,7 +155,7 @@ export default {
       }
 
       .social-links {
-        background: $new-design-dull-blue;
+        background: $main;
         width: 70%;
         margin-top: 10px;
         padding: 20px 0px 20px 0px;
@@ -178,12 +178,12 @@ export default {
           line-height: 25px;
           text-decoration: none;
           transition: all ease-out .3s;
-          border-bottom: 2px solid $new-design-dull-blue;
+          border-bottom: 2px solid $main;
         }
 
         a:hover {
           transition: all ease-out .3s;
-          border-bottom: 2px solid #2c3e50;
+          border-bottom: 2px solid $border-default;
           font-size: 18px;
         }
 
@@ -206,7 +206,7 @@ export default {
     .post-tag {
       margin-left: 20px;
       height: 30px;
-      background-color: $new-design-dull-blue;
+      background-color: $main;
       border-radius: $default-border-radius;
       line-height: 30px;
       padding: 0px 20px 0px 20px;
@@ -230,7 +230,7 @@ export default {
 
     .report {
       background: $danger-color;
-      color: $light-main;
+      color: $bg-secondary;
       transition: box-shadow ease-out .3s;
       display: flex;
       flex-direction: row;

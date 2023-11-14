@@ -42,8 +42,9 @@
 </script>
 
 <style lang="scss">
+@import "../assets/main_colors";
 .page{
-  background-color: #ffddd2;
+  background-color: $background;
   display: flex;
   height: 100vh;
   justify-content: center;
@@ -63,7 +64,7 @@ html, body {
   justify-content: center;
   align-items: center;
   box-shadow: 5px 5px 15px silver, -5px -5px 15px white;
-  border-radius: 20px;
+  border-radius: $default-border-radius;
 }
 
 .gsi-material-button {

@@ -26,7 +26,7 @@ export default {
   border: 1px solid rgba(0, 0, 0, 0);
   width: calc(17.5vw - 20px);
   height: calc(15vw - 20px);
-  background-color: $light-main;
+  background-color: $bg-secondary;
   display: flex;
   align-items: center;
   justify-content: space-between;

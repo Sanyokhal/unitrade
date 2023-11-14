@@ -88,14 +88,14 @@ export default {
 @import "@/assets/main_colors.scss";
 
 body {
-  background-color: $light-blue-main;
+  background-color: $bg-secondary;
 }
 
 header {
   max-width: 100%;
   width: 100%;
   max-height: 80px;
-  background-color: $light-main;
+  background-color: $bg-menu;
   justify-content: space-between;
   border-radius: 0 0 $default-border-radius $default-border-radius;
 }
@@ -115,7 +115,7 @@ header {
   gap: 25px;
   display: flex;
   align-items: center;
-  background-color: #edf6f9;
+  background-color: $bg-secondary;
   justify-content: space-between;
   border-radius: 0 0 10px 10px;
 }
@@ -130,7 +130,7 @@ header {
   border: none;
   text-align: center;
   font-weight: 700;
-  background-color: $light-blue-main;
+  background-color: $main;
   height: 50px;
   width: 50px;
   font-family: "Montserrat", sans-serif;
@@ -177,7 +177,7 @@ header {
   font-size: 20px;
   height: 50px;
   width: 50px;
-  background-color: $new-design-dull-blue;
+  background-color: $main;
   border: none;
   border-radius: $default-border-radius;
 }
@@ -189,7 +189,7 @@ header {
   height: 50px;
   gap: 25px;
   border-radius: $default-border-radius;
-  background-color: $new-design-dull-blue;
+  background-color: $main;
   border: none;
   font-family: "Montserrat", sans-serif;
   text-decoration: none;

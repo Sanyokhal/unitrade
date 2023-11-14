@@ -106,7 +106,7 @@ export default {
   margin-top: 40px;
   margin-left: 12.5vw;
   justify-content: space-between;;
-  background: $light-main;
+  background: $bg-secondary;
   border-top-left-radius: $default-border-radius;
   border-top-right-radius: $default-border-radius;
 
@@ -118,13 +118,13 @@ export default {
     align-items: center;
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid #2c3e50;
+    border-bottom: 1px solid $border-default;
     justify-content: space-between;
 
     .menu-tag {
       font-size: 20px;
       font-weight: bold;
-      color: #2c3e50;
+      color: $border-default;
       margin-left: 10px;
     }
 
@@ -140,15 +140,15 @@ export default {
         max-width: 300px;
         padding-left: 10px;
         border: none;
-        background: $light-main;
-        border-bottom: 1px solid #2c3e50;
+        background: $bg-secondary;
+        border-bottom: 1px solid $border-default;
         font-weight: bold;
         transition: box-shadow ease-out .3s;
       }
 
       .search-bar::placeholder {
         transition: all ease-out .3s;
-        color: #2c3e50;
+        color: $border-default;
       }
 
       .search-bar:focus-visible, .search-bar:hover {
@@ -168,7 +168,7 @@ export default {
         font-family: 'Montserrat', sans-serif;
         max-width: 150px;
         font-weight: 500;
-        background-color: $new-design-blue;
+        background-color: $active;
         border-radius: $default-border-radius;
         border: none;
         transition: box-shadow ease-out .3s;
@@ -189,7 +189,7 @@ export default {
         width: 120px;
         height: 30px;
         line-height: 30px;
-        background-color: $new-design-blue;
+        background-color: $active;
         border-radius: $default-border-radius;
         font-weight: 500;
         border: none;
@@ -222,7 +222,7 @@ export default {
     width: 100%;
     display: flex;
     margin-top: 20px;
-    border-top: 1px solid #2c3e50;
+    border-top: 1px solid $border-default;
     flex-direction: row;
     align-items: center;
     justify-content: center;

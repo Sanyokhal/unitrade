@@ -63,7 +63,7 @@ button {
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
-  background: #EDF6F9;
+  background: $bg-secondary;
   margin-top: 100px;
 }
 
@@ -76,7 +76,7 @@ button {
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #006D77;
+  border-bottom: 1px solid $border-default;
   padding: 10px 10px;
 
   .user-info {
@@ -101,12 +101,12 @@ button {
     }
 
     .change-avatar-button {
-      background-color: $new-design-dull-blue;
+      background-color: $main;
     }
 
     .exit-profile-button {
       background-color: $danger-color;
-      color: $light-main;
+      color: $bg-secondary;
       font-weight: bold;
       box-shadow: 0px 0px 4px $danger-color;
     }
@@ -128,7 +128,7 @@ button {
   padding-left: 20px;
   max-width: 100%;
   gap: 10px;
-  border-bottom: 1px solid #006D77;
+  border-bottom: 1px solid $border-default;
 
   .category-selector {
     transition: all ease .2s;

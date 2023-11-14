@@ -100,7 +100,7 @@ export default {
   margin-left: 12.5vw;
   justify-content: space-between;
   margin-top: 40px;
-  background: $light-main;
+  background: $bg-secondary;
   border-radius: $default-border-radius;
   overflow: hidden;
 
@@ -110,13 +110,13 @@ export default {
     align-items: center;
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid #2c3e50;
+    border-bottom: 1px solid $border-default;
     justify-content: space-between;
 
     .menu-tag {
       font-size: 20px;
       font-weight: bold;
-      color: #2c3e50;
+      color: $border-default;
       margin-left: 10px;
     }
 
@@ -132,15 +132,15 @@ export default {
         max-width: 300px;
         padding-left: 10px;
         border: none;
-        background: $light-main;
-        border-bottom: 1px solid #2c3e50;
+        background: $bg-secondary;
+        border-bottom: 1px solid $border-default;
         font-weight: bold;
         transition: box-shadow ease-out .3s;
       }
 
       .search-bar::placeholder {
         transition: all ease-out .3s;
-        color: #2c3e50;
+        color: $border-default;
       }
 
       .search-bar:focus-visible, .search-bar:hover {
@@ -159,7 +159,7 @@ export default {
         border-radius: 2px;
         border: none;
         height: 30px;
-        background-color: $new-design-dull-blue;
+        background-color: $main;
         transition: all ease-out .3s;
 
         span {
@@ -171,7 +171,7 @@ export default {
 
       button:hover {
         cursor: pointer;
-        background-color: $new-design-blue;
+        background-color: $active;
         transition: all ease-out .3s;
       }
 
@@ -179,7 +179,7 @@ export default {
         padding-left: 25px;
         padding-right: 25px;
         transition: all ease-out .3s;
-        background-color: $new-design-blue;
+        background-color: $active;
 
         span {
           font-weight: bold;
@@ -204,7 +204,7 @@ export default {
     width: 100%;
     display: flex;
     margin-top: 20px;
-    border-top: 1px solid #2c3e50;
+    border-top: 1px solid $border-default;
     flex-direction: row;
     align-items: center;
     justify-content: center;
