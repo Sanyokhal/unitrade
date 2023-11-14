@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../assets/main_colors";
+@import "../../assets/main_colors";
 
 .post {
   border: 1px solid rgba(0, 0, 0, 0);

@@ -1,17 +1,17 @@
 <script>
-import {works} from "@/temp_data";
+import {posts} from "@/temp_data";
 
 export default {
-  name: "WorkPage",
+  name: "PostPage",
   data() {
     return {
-      work_data: {},
+      post_data: {},
       user_data: {},
     }
   },
   methods: {
     report() {
-      alert(`На допис з Id ${this.workId} поскаржено`);
+      alert(`На допис з Id ${this.postId} поскаржено`);
     },
     copyToClipboard(value) {
       navigator.clipboard.writeText(value)
@@ -19,14 +19,14 @@ export default {
     }
   },
   computed: {
-    workId() {
+    postId() {
       return this.$route.params.id
     },
   },
   mounted() {
-    this.work_data = works.filter((work) => work.id == this.workId)
-    this.work_data = this.work_data[0]
-    this.user_data = this.work_data.user_data
+    this.post_data = posts.filter((post) => post.id == this.postId)
+    this.post_data = this.post_data[0]
+    this.user_data = this.post_data.user_data
   }
 }
 </script>
@@ -36,28 +36,29 @@ export default {
     <div class="upper-part">
       <div class="img-section">
         <font-awesome-icon icon="arrow-left" class="img-toggle"/>
-        <img :src="work_data.img_url" alt="">
+        <img :src="post_data.img_url" alt="">
         <font-awesome-icon icon="arrow-right" class="img-toggle"/>
       </div>
       <div class="seller-data">
         <div class="post-data">
-          <p class="post-creation-time">Опубліковано : {{ work_data.creation_date }}</p>
-          <h2 class="post-title"> {{ work_data.name }}</h2>
-          <h2 class="post-price">{{ work_data.salary }} грн</h2>
+          <p class="post-creation-time">Опубліковано : {{ post_data.creation_date }}</p>
+          <h2 class="post-title"> {{ post_data.name }}</h2>
+          <h2 class="post-price">{{ post_data.price }} грн</h2>
         </div>
         <div class="social-links">
           <a :href="user_data.telegram">Telegram</a>
           <a :href="user_data.instagram">Instagram</a>
-          <a @click="copyToClipboard(user_data.phone)">+38{{ user_data.phone }}</a>
+          <a @click="copyToClipboard(user_data.phone)">Телефон</a>
         </div>
+        <p class="post-dormitory">{{ user_data.dormitory }}</p>
       </div>
     </div>
     <div class="lower-part">
       <div class="post-tag">
-        <span>{{ work_data.tag }}</span>
+        <span>{{ post_data.tag }}</span>
       </div>
       <h3>Опис</h3>
-      <p class="description">{{ work_data.description }}</p>
+      <p class="description">{{ post_data.description }}</p>
       <button @click="report()" class="report">
         <font-awesome-icon :icon="['far', 'flag']"/>
         <span>Поскаржитись</span>
@@ -67,7 +68,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@import "../assets/main_colors";
+@import "../../assets/main_colors";
 
 .post-wrapper {
   max-height: calc(100vh - 120px);
@@ -113,6 +114,12 @@ export default {
         max-width: 80%;
         max-height: 80%;
       }
+    }
+
+    .post-dormitory {
+      font-size: 18px;
+      font-weight: 500;
+      margin-top: 5px;
     }
 
     .seller-data {
@@ -246,7 +253,6 @@ export default {
       span {
         font-size: 14px;
         font-weight: bold;
-        font-family: "Montserrat", sans-serif;
       }
     }
 

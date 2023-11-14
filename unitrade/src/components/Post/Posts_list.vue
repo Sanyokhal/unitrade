@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import Post_comp from "@/components/Post_comp";
+import Post_comp from "@/components/Post/Post_comp.vue";
 import debounce from "lodash.debounce";
 import {posts} from "@/temp_data";
 
@@ -74,14 +74,14 @@ export default {
   mounted() {
     this.debouncedFetch = debounce(() => {
       this.fetch();
-    }, 300)
+    }, 500)
     this.posts = posts;
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/main_colors";
+@import "../../assets/main_colors";
 
 .hidden-page {
   opacity: 0 !important;
