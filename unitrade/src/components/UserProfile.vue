@@ -4,9 +4,9 @@
       <div class="user-info">
         <img
             class="avatar"
-            src="https://e7.pngegg.com/pngimages/799/987/png-clipart-computer-icons-avatar-icon-design-avatar-heroes-computer-wallpaper-thumbnail.png"
+            :src="user.avatarUrl"
         />
-        <h3>Галь Олександр</h3>
+        <h3>{{user.fullName}}</h3>
       </div>
       <div class="user-profile-actions">
         <button class="change-avatar-button">Змінити фото</button>
@@ -207,6 +207,7 @@ button {
 </style>
 <script>
 import {posts, works} from "@/temp_data";
+import { mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -227,6 +228,9 @@ export default {
   mounted() {
     this.posts_list = posts;
     this.works_list = works;
-  }
+  },
+  computed: {
+    ...mapGetters(['user']) 
+  },
 };
 </script>
