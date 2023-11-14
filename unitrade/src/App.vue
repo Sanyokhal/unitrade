@@ -5,15 +5,18 @@
     </button>
     <Header v-if="isLoggedIn"/>
     <RouterView></RouterView>
+    <Footer v-if="isLoggedIn"/>
   </div>
 </template>
 
 <script>
 import Header from "./components/UpperMenu.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "App",
   components: {
+    Footer,
     Header,
   },
   computed: {
@@ -76,6 +79,7 @@ export default {
 }
 
 body {
+  overflow-x: hidden;
   background-color: $background;
 }
 </style>

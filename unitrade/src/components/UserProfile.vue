@@ -64,7 +64,7 @@ button {
   align-items: center;
   margin: 0 auto;
   background: $bg-secondary;
-  margin-top: 100px;
+  margin-top: 40px;
 }
 
 .user-profile {
@@ -124,7 +124,7 @@ button {
   align-items: center;
   display: flex;
   flex-direction: row;
-  width: calc(80vw - 20px);
+  width: 80vw;
   padding-left: 20px;
   max-width: 100%;
   gap: 10px;
