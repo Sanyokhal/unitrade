@@ -7,6 +7,7 @@ let posts = [
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
         creation_date: "11.09.2023 12:00",
         tag: 'Посуд',
+        author: 'Галь Олександр',
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
             telegram: "https://t.me/sasha_hal",
@@ -21,6 +22,7 @@ let posts = [
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
         creation_date: "11.09.2023 12:00",
+        author: 'Галь Олександр',
         tag: 'Посуд',
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -36,6 +38,7 @@ let posts = [
         price: 200,
         tag: 'Меблі',
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -50,6 +53,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         tag: 'Їжа',
         user_data: {
@@ -66,6 +70,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -81,6 +86,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -96,6 +102,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -111,6 +118,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -126,6 +134,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -141,6 +150,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -156,6 +166,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -171,6 +182,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -186,6 +198,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -201,6 +214,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -216,6 +230,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -231,6 +246,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -246,6 +262,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -261,6 +278,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -276,6 +294,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -291,6 +310,7 @@ let posts = [
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         price: 200,
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             dormitory: "Гуртожиток №4, 4 поверх, 82/4",
@@ -306,6 +326,7 @@ let works = [
         name: "Yazaki Оператор лінії",
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         tag: 'Для всіх',
         salary: 1000,
@@ -322,6 +343,7 @@ let works = [
         salary: 1000,
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             telegram: "https://t.me/sasha_hal",
@@ -336,6 +358,7 @@ let works = [
         salary: 1000,
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             telegram: "https://t.me/sasha_hal",
@@ -350,6 +373,7 @@ let works = [
         name: "Jabil Розвантажувач",
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             telegram: "https://t.me/sasha_hal",
@@ -364,6 +388,7 @@ let works = [
         name: "Охоронець Гуртожиток №4",
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             telegram: "https://t.me/sasha_hal",
@@ -378,6 +403,7 @@ let works = [
         name: "Бариста Medelin",
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             telegram: "https://t.me/sasha_hal",
@@ -392,6 +418,7 @@ let works = [
         name: "Trainee Astound Commerce",
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             telegram: "https://t.me/sasha_hal",
@@ -406,6 +433,7 @@ let works = [
         name: "Full-stack web dev",
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             telegram: "https://t.me/sasha_hal",
@@ -420,6 +448,7 @@ let works = [
         name: "Кухар в Палітра Смаків",
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             telegram: "https://t.me/sasha_hal",
@@ -434,6 +463,7 @@ let works = [
         name: "Кухар в Палітра Смаків",
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             telegram: "https://t.me/sasha_hal",
@@ -448,6 +478,7 @@ let works = [
         name: "Кухар в Палітра Смаків",
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             telegram: "https://t.me/sasha_hal",
@@ -462,6 +493,7 @@ let works = [
         name: "Кухар в Палітра Смаків",
         img_url: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQAj79Q5PIpOlQrCebauRr21wuu3dByV1wjuHoTvrKDIznL4ab4wMvMSC92H_Z9773bNGeVXbHGvsCUR5qHodabLQ7mLkYm&usqp=CAE",
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pulvinar proin gravida hendrerit lectus. Fames ac turpis egestas integer eget aliquet nibh. Cras fermentum odio eu feugiat pretium nibh. Morbi tristique senectus et netus et malesuada. Risus at ultrices mi tempus imperdiet. Mattis rhoncus urna neque viverra justo. Enim ut sem viverra aliquet eget. Sit amet facilisis magna etiam tempor orci. Tellus orci ac auctor augue. Est sit amet facilisis magna etiam. At ultrices mi tempus imperdiet nulla malesuada pellentesque elit. Condimentum lacinia quis vel eros donec. Mauris sit amet massa vitae tortor condimentum. Molestie nunc non blandit massa enim nec dui nunc.\n",
+        author: 'Галь Олександр',
         creation_date: "11.09.2023 12:00",
         user_data: {
             telegram: "https://t.me/sasha_hal",

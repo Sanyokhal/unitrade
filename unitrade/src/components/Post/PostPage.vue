@@ -1,17 +1,20 @@
 <script>
 import {posts} from "@/temp_data";
+import Complain from "@/components/Complain.vue";
 
 export default {
   name: "PostPage",
+  components: {Complain},
   data() {
     return {
       post_data: {},
       user_data: {},
+      complain_status: false
     }
   },
   methods: {
     report() {
-      alert(`На допис з Id ${this.postId} поскаржено`);
+      this.complain_status = true;
     },
     copyToClipboard(value) {
       navigator.clipboard.writeText(value)
@@ -64,6 +67,8 @@ export default {
         <span>Поскаржитись</span>
       </button>
     </div>
+    <Complain @close="complain_status = false" v-if="complain_status" :post_id="post_data.id"
+              :post_img="post_data.img_url" :post_title="post_data.name" :post_author="post_data.author"/>
   </div>
 </template>
 
