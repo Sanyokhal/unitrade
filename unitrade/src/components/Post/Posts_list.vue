@@ -4,7 +4,7 @@
       <span class="menu-tag">Оголошення</span>
       <div class="menu-options">
         <input type="text" placeholder="Пошук" v-model="search" class="search-bar">
-        <select name="" id="" class="product-category" v-model="category" >
+        <select name="" id="" class="product-category" v-model="category">
           <option value="0">Всі</option>
           <option value="1">Меблі</option>
           <option value="2">Одяг</option>
