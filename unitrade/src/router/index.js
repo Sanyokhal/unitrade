@@ -1,12 +1,12 @@
 import {createRouter, createWebHistory} from "vue-router";
 import AuthPage from "@/components/AuthPage.vue";
-import PostsList from "@/components/Posts_list.vue";
-import Works_list from "@/components/Works_list.vue";
+import PostsList from "@/components/Post/Posts_list.vue";
 import UserProfile from "@/components/UserProfile.vue";
-
 import store from "@/store";
-import PostPage from "@/components/PostPage.vue";
-import WorkPage from "@/components/WorkPage.vue";
+import PostPage from "@/components/Post/PostPage.vue";
+import WorkPage from "@/components/Work/WorkPage.vue";
+import Works_list from "@/components/Work/Works_list.vue";
+import About from "@/components/About.vue";
 
 const routes = [
     {
@@ -53,6 +53,14 @@ const routes = [
         path: "/work/:id?",
         name: "work",
         component: WorkPage,
+        meta: {
+            forLoggedIn: true,
+        },
+    },
+    {
+        path: "/about",
+        name: "about",
+        component: About,
         meta: {
             forLoggedIn: true,
         },

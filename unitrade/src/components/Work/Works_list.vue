@@ -28,7 +28,7 @@
 <script>
 import debounce from "lodash.debounce";
 import {works} from "@/temp_data";
-import Work_comp from "@/components/Work_comp.vue";
+import Work_comp from "@/components/Work/Work_comp.vue";
 
 export default {
   name: "Works_list",
@@ -68,14 +68,14 @@ export default {
   mounted() {
     this.debouncedFetch = debounce(() => {
       this.fetch();
-    }, 300)
+    }, 500)
     this.works_list = works;
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/main_colors";
+@import "../../assets/main_colors";
 
 .hidden-page {
   opacity: 0 !important;

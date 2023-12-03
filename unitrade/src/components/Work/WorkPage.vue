@@ -67,7 +67,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@import "../assets/main_colors";
+@import "../../assets/main_colors";
 
 .post-wrapper {
   max-height: calc(100vh - 120px);

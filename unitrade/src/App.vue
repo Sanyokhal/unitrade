@@ -5,21 +5,38 @@
     </button>
     <Header v-if="isLoggedIn"/>
     <RouterView></RouterView>
+    <Footer v-if="isLoggedIn"/>
   </div>
 </template>
 
 <script>
 import Header from "./components/UpperMenu.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "App",
+  data() {
+    return {}
+  },
   components: {
+    Footer,
     Header,
   },
   computed: {
     isLoggedIn() {
       return this.$store.getters.isLoggedIn;
     },
+  },
+  mounted() {
+    window.stopScroll = (value) => {
+      let val = '';
+      if (!value) {
+        val = "auto";
+      } else {
+        val = "hidden";
+      }
+      document.body.style.overflowY = val;
+    }
   },
   methods: {
     changeIsLoggedIn() {
@@ -33,6 +50,10 @@ export default {
 
 <style lang="scss">
 @import "assets/main_colors";
+
+.stop-scroll {
+  overflow-y: hidden !important;
+}
 
 .temporary {
   position: fixed;
@@ -50,6 +71,10 @@ export default {
   margin: 0;
   padding: 0;
   background-color: $background;
+}
+
+button, textarea,select{
+  font-family: "Montserrat", sans-serif;
 }
 
 * {
@@ -76,6 +101,7 @@ export default {
 }
 
 body {
+  overflow-x: hidden;
   background-color: $background;
 }
 </style>
