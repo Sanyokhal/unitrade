@@ -1,8 +1,5 @@
 <template>
   <div>
-    <button @click="changeIsLoggedIn" class="temporary">
-      auth: {{ JSON.stringify($store.getters.isLoggedIn) }}
-    </button>
     <Header v-if="isLoggedIn"/>
     <RouterView></RouterView>
     <Footer v-if="isLoggedIn"/>
@@ -10,6 +7,7 @@
 </template>
 
 <script>
+// import Token from "@/token-usage.js";
 import Header from "./components/UpperMenu.vue";
 import Footer from "@/components/Footer.vue";
 
@@ -24,7 +22,7 @@ export default {
   },
   computed: {
     isLoggedIn() {
-      return this.$store.getters.isLoggedIn;
+      return this.$store.state.isLoggedIn;
     },
   },
   mounted() {
@@ -38,13 +36,13 @@ export default {
       document.body.style.overflowY = val;
     }
   },
-  methods: {
-    changeIsLoggedIn() {
-      this.$store.commit('changeIsLoggedIn');
+  // methods: {
+  //   changeIsLoggedIn() {
+  //     this.$store.commit('changeIsLoggedIn');
 
-      this.isLoggedIn ? this.$router.push('/') : this.$router.push('/auth');
-    }
-  }
+  //     this.isLoggedIn ? this.$router.push('/') : this.$router.push('/auth');
+  //   }
+  // }
 };
 </script>
 

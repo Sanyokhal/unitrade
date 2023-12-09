@@ -2,44 +2,102 @@
   <section class="user-profile">
     <div class="user-section">
       <div class="user-info">
-        <img
-            class="avatar"
-            :src="user.avatarUrl"
-        />
-        <h3>{{user.fullName}}</h3>
+        <img class="avatar" :src="user.avatarUrl" />
+        <h3>{{ user.fullName }}</h3>
       </div>
       <div class="user-profile-actions">
-        <button class="change-avatar-button">Змінити фото</button>
-        <button class="exit-profile-button">Вийти</button>
+        <!-- <button class="change-avatar-button">Змінити фото</button> -->
+        <button class="exit-profile-button" @click="signOutMethod()">
+          Вийти
+        </button>
       </div>
     </div>
     <div class="user-posts-toggle">
-        <span class="category-selector" @click="toggle = 'posts'" :class="{'selected':toggle == 'posts'}">
-          Оголошення
-        </span>
+      <span
+        class="category-selector"
+        @click="toggle = 'posts'"
+        :class="{ selected: toggle == 'posts' }"
+      >
+        Оголошення
+      </span>
       <span>|</span>
-      <span class="category-selector" @click="toggle = 'work'" :class="{'selected':toggle == 'work'}">Робота</span>
+      <span
+        class="category-selector"
+        @click="toggle = 'work'"
+        :class="{ selected: toggle == 'work' }"
+        >Робота</span
+      >
     </div>
     <div class="user-posts" v-if="toggle == 'posts'">
-      <div class="user-posts-item" v-for="post in posts_list" :key="post.id" @click="openPost(post.id)">
-        <img
-            class="post-image"
-            :src="post.img_url"
-        />
+      <div
+        class="user-posts-item"
+        v-for="post in posts_list"
+        :key="post.id"
+        @click="openPost(post.id)"
+      >
+        <img class="post-image" :src="post.img_url" />
         <h4 class="post-title">{{ post.name }}</h4>
       </div>
     </div>
     <div class="user-posts" v-if="toggle == 'work'">
-      <div class="user-posts-item" v-for="work in works_list" :key="work.id" @click="openWork(work.id)">
-        <img
-            class="post-image"
-            :src="work.img_url"
-        />
+      <div
+        class="user-posts-item"
+        v-for="work in works_list"
+        :key="work.id"
+        @click="openWork(work.id)"
+      >
+        <img class="post-image" :src="work.img_url" />
         <h4 class="post-title">{{ work.name }}</h4>
       </div>
     </div>
   </section>
 </template>
+
+<script>
+import { posts, works } from "@/temp_data";
+import { mapGetters } from "vuex";
+import { auth } from "@/firebase-config.js";
+import { signOut } from "firebase/auth";
+import Token from "@/token-usage.js";
+
+export default {
+  data() {
+    return {
+      toggle: "posts",
+      posts_list: [],
+      works_list: [],
+    };
+  },
+  methods: {
+    openPost(id) {
+      this.$router.push({ name: "post", params: { id: id } });
+    },
+    openWork(id) {
+      this.$router.push({ name: "work", params: { id: id } });
+    },
+    signOutMethod() {
+      signOut(auth)
+        .then(() => {
+          Token.removeAccessTokenCookie();
+          console.log("SignOut successful");
+          sessionStorage.clear();
+          this.$store.commit("changeIsLoggedIn", false);
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+  mounted() {
+    this.posts_list = posts;
+    this.works_list = works;
+  },
+  computed: {
+    ...mapGetters(["user"]),
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 @import "@/assets/main_colors.scss";
@@ -100,9 +158,9 @@ button {
       font-weight: 500;
     }
 
-    .change-avatar-button {
-      background-color: $main;
-    }
+    // .change-avatar-button {
+    //   background-color: $main;
+    // }
 
     .exit-profile-button {
       background-color: $danger-color;
@@ -110,13 +168,16 @@ button {
       font-weight: bold;
       box-shadow: 0px 0px 4px $danger-color;
     }
+    .exit-profile-button:hover {
+      transition: all 0.3s;
+      background-color: #ef8c8c;
+    }
 
     button:hover {
       cursor: pointer;
     }
   }
 }
-
 
 .user-posts-toggle {
   height: 50px;
@@ -131,7 +192,7 @@ button {
   border-bottom: 1px solid $border-default;
 
   .category-selector {
-    transition: all ease .2s;
+    transition: all ease 0.2s;
   }
 
   .category-selector:hover {
@@ -140,7 +201,7 @@ button {
 }
 
 .exit-profile-button {
-  border: 1px solid #FF0000;
+  border: 1px solid #ff0000;
   border-radius: 10px;
 }
 
@@ -154,7 +215,7 @@ button {
 
 .selected {
   font-weight: bold;
-  transition: all ease .2s;
+  transition: all ease 0.2s;
 }
 
 .user-posts {
@@ -166,8 +227,8 @@ button {
   width: 80vw;
   display: grid;
   justify-content: space-evenly;
-  grid-template-columns:repeat(auto-fit, 17.5vw);
-  grid-template-rows:repeat(auto-fit, 15vw);
+  grid-template-columns: repeat(auto-fit, 17.5vw);
+  grid-template-rows: repeat(auto-fit, 15vw);
 
   .user-posts-item {
     width: 17.5vw;
@@ -195,42 +256,11 @@ button {
       padding-left: 10px;
     }
   }
-  .user-posts-item:hover{
+  .user-posts-item:hover {
     cursor: pointer;
-    h4{
-      text-decoration:underline;
+    h4 {
+      text-decoration: underline;
     }
   }
 }
-
-
 </style>
-<script>
-import {posts, works} from "@/temp_data";
-import { mapGetters } from 'vuex';
-
-export default {
-  data() {
-    return {
-      toggle: "posts",
-      posts_list: [],
-      works_list: [],
-    };
-  },
-  methods:{
-    openPost(id){
-      this.$router.push({name: 'post', params: {id: id}})
-    },
-    openWork(id){
-      this.$router.push({name: 'work', params: {id: id}})
-    }
-  },
-  mounted() {
-    this.posts_list = posts;
-    this.works_list = works;
-  },
-  computed: {
-    ...mapGetters(['user']) 
-  },
-};
-</script>
