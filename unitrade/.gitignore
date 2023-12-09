@@ -1,7 +1,9 @@
 .DS_Store
-node_modules
-# /dist
+node_modules/
+dist/
 
+# Firebase
+.env
 
 # local env files
 .env.local
@@ -21,3 +23,7 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Firebase SDK automatically created files
+.firebase/
+.firestore-emulator

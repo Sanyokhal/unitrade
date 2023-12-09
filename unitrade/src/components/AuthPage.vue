@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <div class="outside-button">
-      <button class="gsi-material-button">
+      <button class="gsi-material-button" @click="handleGoogle()">
         <div class="gsi-material-button-state"></div>
         <div class="gsi-material-button-content-wrapper">
           <div class="gsi-material-button-icon">
@@ -39,24 +39,64 @@
 </template>
 
 <script>
+import { auth } from "@/firebase-config.js";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import Token from "@/token-usage.js";
+
+export default {
+  methods: {
+    handleGoogle() {
+      const provider = new GoogleAuthProvider();
+      //використовуємо функцію авторизації у спливаючому вікні
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user; //Дістаємо об'єкт користувача
+
+          sessionStorage.setItem("fullName", user.displayName); //user.displayName - ім'я акаунту
+          sessionStorage.setItem("avatarUrl", user.photoURL); //user.photoURL - аватар акаунту
+          sessionStorage.setItem("email", user.email); //user.email - електронна адреса акаунту
+          sessionStorage.setItem("isLoggedIn", true);
+
+          this.$store.commit("changeUser", {
+            avatarUrl: user.photoURL,
+            fullName: user.displayName,
+            email: user.email,
+          });
+          this.$store.commit("changeIsLoggedIn", true);
+
+          //Set token to cookie
+          Token.setAccessTokenCookie(
+            user.uid,
+            new Date().getTime() + 30 * 60 * 1000
+          );
+
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <style lang="scss">
 @import "../assets/main_colors";
-.page{
+.page {
   background-color: $background;
   display: flex;
   height: 100vh;
   justify-content: center;
   align-items: center;
 }
-html, body {
+html,
+body {
   max-width: 100vw;
   height: 100vh;
   margin: 0;
   padding: 0;
 }
-.outside-button{
+.outside-button {
   background-color: white;
   width: 576px;
   height: 198px;
@@ -81,7 +121,7 @@ html, body {
   box-sizing: border-box;
   color: #1f1f1f;
   cursor: pointer;
-  font-family: 'Roboto', arial, sans-serif;
+  font-family: "Roboto", arial, sans-serif;
   font-size: 22px;
   height: 70px;
   letter-spacing: 0.25px;
@@ -90,8 +130,9 @@ html, body {
   padding: 0 12px;
   position: relative;
   text-align: left;
-  -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
-  transition: background-color .218s, border-color .218s, box-shadow .218s;
+  -webkit-transition: background-color 0.218s, border-color 0.218s,
+    box-shadow 0.218s;
+  transition: background-color 0.218s, border-color 0.218s, box-shadow 0.218s;
   vertical-align: middle;
   white-space: nowrap;
   width: 450px;
@@ -121,7 +162,7 @@ html, body {
 .gsi-material-button .gsi-material-button-contents {
   -webkit-flex-grow: 1;
   flex-grow: 1;
-  font-family: 'Roboto', arial, sans-serif;
+  font-family: "Roboto", arial, sans-serif;
   font-weight: 300;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -129,8 +170,8 @@ html, body {
 }
 
 .gsi-material-button .gsi-material-button-state {
-  -webkit-transition: opacity .218s;
-  transition: opacity .218s;
+  -webkit-transition: opacity 0.218s;
+  transition: opacity 0.218s;
   bottom: 0;
   left: 0;
   opacity: 0;
@@ -160,13 +201,14 @@ html, body {
 }
 
 .gsi-material-button:not(:disabled):hover {
-  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+  -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 1px 3px 1px rgba(60, 64, 67, 0.15);
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    0 1px 3px 1px rgba(60, 64, 67, 0.15);
 }
 
 .gsi-material-button:not(:disabled):hover .gsi-material-button-state {
   background-color: #303030;
   opacity: 8%;
 }
-
 </style>
