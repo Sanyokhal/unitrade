@@ -43,8 +43,14 @@ import { auth } from "@/firebase-config.js";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import Token from "@/token-usage.js";
 
+import { mapActions, mapGetters } from "vuex";
+
 export default {
+  computed:{
+    ...mapGetters('user',['user'])
+  },
   methods: {
+    ...mapActions('user',['changeIsLoggedIn','changeUser']),
     handleGoogle() {
       const provider = new GoogleAuthProvider();
       //використовуємо функцію авторизації у спливаючому вікні
@@ -57,12 +63,12 @@ export default {
           sessionStorage.setItem("email", user.email); //user.email - електронна адреса акаунту
           sessionStorage.setItem("isLoggedIn", true);
 
-          this.$store.commit("changeUser", {
+          this.changeUser({
             avatarUrl: user.photoURL,
             fullName: user.displayName,
             email: user.email,
           });
-          this.$store.commit("changeIsLoggedIn", true);
+          this.changeIsLoggedIn(true);
 
           //Set token to cookie
           Token.setAccessTokenCookie(

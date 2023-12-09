@@ -27,12 +27,15 @@
 
 <script>
 import debounce from "lodash.debounce";
-import {works} from "@/temp_data";
+import { mapGetters } from "vuex";
 import Work_comp from "@/components/Work/Work_comp.vue";
 
 export default {
   name: "Works_list",
   components: {Work_comp},
+  computed:{
+    ...mapGetters('works', ['works'])
+  },
   methods: {
     fetch() {
       alert("Симуляція fetch запиту");
@@ -69,7 +72,7 @@ export default {
     this.debouncedFetch = debounce(() => {
       this.fetch();
     }, 500)
-    this.works_list = works;
+    this.works_list = this.works;
   }
 }
 </script>

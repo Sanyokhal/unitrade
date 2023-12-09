@@ -1,6 +1,6 @@
 <script>
-import {posts} from "@/temp_data";
 import Complain from "@/components/Complain.vue";
+import { mapGetters } from 'vuex';
 
 export default {
   name: "PostPage",
@@ -12,6 +12,12 @@ export default {
       complain_status: false
     }
   },
+  computed:{
+    ...mapGetters('posts',['posts']),
+    postId() {
+      return this.$route.params.id
+    },
+  },
   methods: {
     report() {
       this.complain_status = true;
@@ -21,13 +27,8 @@ export default {
       alert("Номер скопійовано")
     }
   },
-  computed: {
-    postId() {
-      return this.$route.params.id
-    },
-  },
   mounted() {
-    this.post_data = posts.filter((post) => post.id == this.postId)
+    this.post_data = this.posts.filter((post) => post.id == this.postId)
     this.post_data = this.post_data[0]
     this.user_data = this.post_data.user_data
   }

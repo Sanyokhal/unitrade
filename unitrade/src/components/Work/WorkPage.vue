@@ -1,5 +1,5 @@
 <script>
-import {works} from "@/temp_data";
+import { mapGetters } from 'vuex';
 
 export default {
   name: "WorkPage",
@@ -8,6 +8,12 @@ export default {
       work_data: {},
       user_data: {},
     }
+  },
+  computed: {
+    ...mapGetters('works',['works']),
+    workId() {
+      return this.$route.params.id
+    },
   },
   methods: {
     report() {
@@ -18,13 +24,8 @@ export default {
       alert("Номер скопійовано")
     }
   },
-  computed: {
-    workId() {
-      return this.$route.params.id
-    },
-  },
   mounted() {
-    this.work_data = works.filter((work) => work.id == this.workId)
+    this.work_data = this.works.filter((work) => work.id == this.workId)
     this.work_data = this.work_data[0]
     this.user_data = this.work_data.user_data
   }
