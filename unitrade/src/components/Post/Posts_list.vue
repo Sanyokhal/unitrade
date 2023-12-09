@@ -30,11 +30,15 @@
 <script>
 import Post_comp from "@/components/Post/Post_comp.vue";
 import debounce from "lodash.debounce";
-import {posts} from "@/temp_data";
+import { mapGetters } from "vuex";
+
 
 export default {
   name: "Posts_list",
   components: {Post_comp},
+  computed:{
+    ...mapGetters('posts', ['posts'])
+  },
   methods: {
     fetch() {
       alert("Симуляція fetch запиту");
@@ -53,7 +57,6 @@ export default {
   data() {
     return {
       page_index: 0,
-      posts: [],
       search: undefined,
       category: 0,
       is_free: false,
@@ -75,7 +78,6 @@ export default {
     this.debouncedFetch = debounce(() => {
       this.fetch();
     }, 500)
-    this.posts = posts;
   }
 }
 </script>

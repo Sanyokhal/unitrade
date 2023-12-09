@@ -78,7 +78,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["user"]),
+    ...mapGetters('user',["user"]),
   },
   watch: {
     dormitoryNumber() {

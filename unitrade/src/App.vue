@@ -11,6 +11,8 @@
 import Header from "./components/UpperMenu.vue";
 import Footer from "@/components/Footer.vue";
 
+import {mapGetters} from 'vuex';
+
 export default {
   name: "App",
   data() {
@@ -21,9 +23,7 @@ export default {
     Header,
   },
   computed: {
-    isLoggedIn() {
-      return this.$store.state.isLoggedIn;
-    },
+    ...mapGetters('user',['isLoggedIn'])
   },
   mounted() {
     window.stopScroll = (value) => {

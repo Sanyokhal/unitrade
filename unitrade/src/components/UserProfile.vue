@@ -55,7 +55,7 @@
 
 <script>
 import { posts, works } from "@/temp_data";
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import { auth } from "@/firebase-config.js";
 import { signOut } from "firebase/auth";
 import Token from "@/token-usage.js";
@@ -69,6 +69,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions('user',['changeIsLoggedIn']),
     openPost(id) {
       this.$router.push({ name: "post", params: { id: id } });
     },
@@ -81,7 +82,7 @@ export default {
           Token.removeAccessTokenCookie();
           console.log("SignOut successful");
           sessionStorage.clear();
-          this.$store.commit("changeIsLoggedIn", false);
+          this.changeIsLoggedIn(false);
           this.$router.push("/");
         })
         .catch((error) => {
@@ -94,7 +95,7 @@ export default {
     this.works_list = works;
   },
   computed: {
-    ...mapGetters(["user"]),
+    ...mapGetters('user',["user"]),
   },
 };
 </script>
