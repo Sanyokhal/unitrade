@@ -37,7 +37,7 @@ const routes = [
   {
     path: "/post/:id?",
     name: "post",
-    component: () => import("@/components/Work/WorkPage.vue"),
+    component: () => import("@/components/Post/PostPage.vue"),
     meta: {
       forLoggedIn: true,
     },

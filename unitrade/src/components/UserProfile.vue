@@ -54,7 +54,6 @@
 </template>
 
 <script>
-import { posts, works } from "@/temp_data";
 import { mapGetters, mapActions } from "vuex";
 import { auth } from "@/firebase-config.js";
 import { signOut } from "firebase/auth";
@@ -91,11 +90,13 @@ export default {
     },
   },
   mounted() {
-    this.posts_list = posts;
-    this.works_list = works;
+    this.posts_list = this.posts;
+    this.works_list = this.works;
   },
   computed: {
     ...mapGetters('user',["user"]),
+    ...mapGetters('posts',['posts']),
+    ...mapGetters('works',['works'])
   },
 };
 </script>
