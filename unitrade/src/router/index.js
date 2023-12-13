@@ -1,6 +1,5 @@
 import {createRouter, createWebHistory} from "vue-router";
 import AuthPage from "@/components/AuthPage.vue";
-import PostsList from "@/components/Post/Posts_list.vue";
 import UserProfile from "@/components/UserProfile.vue";
 // import store from "@/store";
 // import PostPage from "@/components/Post/PostPage.vue";
@@ -35,13 +34,13 @@ const routes = [
             forLoggedIn: false,
         },
     },
-  },
-  {
-    path: "/post/:id?",
-    name: "post",
-    component: () => import("@/components/Post/PostPage.vue"),
-    meta: {
-      forLoggedIn: true,
+    {
+        path: "/posts",
+        name: "posts",
+        component: () => import("@/components/Post/Posts_list.vue"),
+        meta: {
+            forLoggedIn: true,
+        }
     },
     {
         path: "/posts/:id",
