@@ -35,13 +35,13 @@ const routes = [
             forLoggedIn: false,
         },
     },
-    {
-        path: "/posts",
-        name: "posts",
-        component: PostsList,
-        meta: {
-            forLoggedIn: true,
-        },
+  },
+  {
+    path: "/post/:id?",
+    name: "post",
+    component: () => import("@/components/Post/PostPage.vue"),
+    meta: {
+      forLoggedIn: true,
     },
     {
         path: "/posts/:id",

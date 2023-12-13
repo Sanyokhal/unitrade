@@ -46,37 +46,43 @@ import Token from "@/token-usage.js";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-  computed:{
-    ...mapGetters('user',['user'])
+  computed: {
+    ...mapGetters("user", ["user"]),
   },
   methods: {
-    ...mapActions('user',['changeIsLoggedIn','changeUser']),
+    ...mapActions("user", ["changeIsLoggedIn", "changeUser"]),
     handleGoogle() {
       const provider = new GoogleAuthProvider();
       //використовуємо функцію авторизації у спливаючому вікні
       signInWithPopup(auth, provider)
         .then((result) => {
           const user = result.user; //Дістаємо об'єкт користувача
+          const emailDomain = user.email.split("@")[1];
+          if (emailDomain !== "student.uzhnu.edu.ua") {
+            alert("Неприпустимий домен електронної пошти! Увійдіть за допомогою студентської пошти");
+            auth.signOut();
+          } 
+          else {
+            sessionStorage.setItem("fullName", user.displayName); //user.displayName - ім'я акаунту
+            sessionStorage.setItem("avatarUrl", user.photoURL); //user.photoURL - аватар акаунту
+            sessionStorage.setItem("email", user.email); //user.email - електронна адреса акаунту
+            sessionStorage.setItem("isLoggedIn", true);
 
-          sessionStorage.setItem("fullName", user.displayName); //user.displayName - ім'я акаунту
-          sessionStorage.setItem("avatarUrl", user.photoURL); //user.photoURL - аватар акаунту
-          sessionStorage.setItem("email", user.email); //user.email - електронна адреса акаунту
-          sessionStorage.setItem("isLoggedIn", true);
+            this.changeUser({
+              avatarUrl: user.photoURL,
+              fullName: user.displayName,
+              email: user.email,
+            });
+            this.changeIsLoggedIn(true);
 
-          this.changeUser({
-            avatarUrl: user.photoURL,
-            fullName: user.displayName,
-            email: user.email,
-          });
-          this.changeIsLoggedIn(true);
+            //Set token to cookie
+            Token.setAccessTokenCookie(
+              user.uid,
+              new Date().getTime() + 30 * 60 * 1000
+            );
 
-          //Set token to cookie
-          Token.setAccessTokenCookie(
-            user.uid,
-            new Date().getTime() + 30 * 60 * 1000
-          );
-
-          this.$router.push("/");
+            this.$router.push("/");
+          }
         })
         .catch((error) => {
           console.log(error);

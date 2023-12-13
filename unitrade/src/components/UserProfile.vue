@@ -89,8 +89,14 @@ export default {
         });
     },
   },
+  mounted() {
+    this.posts_list = this.posts;
+    this.works_list = this.works;
+  },
   computed: {
     ...mapGetters('user',["user"]),
+    ...mapGetters('posts',['posts']),
+    ...mapGetters('works',['works'])
   },
 };
 </script>
