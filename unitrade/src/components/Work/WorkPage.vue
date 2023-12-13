@@ -27,7 +27,7 @@ export default {
   mounted() {
     this.work_data = this.works.filter((work) => work.id == this.workId)
     this.work_data = this.work_data[0]
-    this.user_data = this.work_data.user_data
+    // this.user_data = this.work_data.user_data
   }
 }
 </script>
@@ -46,17 +46,17 @@ export default {
           <h2 class="post-title"> {{ work_data.name }}</h2>
           <h2 class="post-price">{{ work_data.salary }} грн</h2>
         </div>
-        <div class="social-links">
+        <!-- <div class="social-links">
           <a :href="user_data.telegram">Telegram</a>
           <a :href="user_data.instagram">Instagram</a>
           <a @click="copyToClipboard(user_data.phone)">+38{{ user_data.phone }}</a>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="lower-part">
-      <div class="post-tag">
+      <!-- <div class="post-tag">
         <span>{{ work_data.tag }}</span>
-      </div>
+      </div> -->
       <h3>Опис</h3>
       <p class="description">{{ work_data.description }}</p>
       <button @click="report()" class="report">

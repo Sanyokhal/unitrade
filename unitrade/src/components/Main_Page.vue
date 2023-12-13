@@ -14,9 +14,9 @@ export default {
       if (this.selected_dormitory == 1) {
         return "dorm-1"
       } else if (this.selected_dormitory == 2) {
-        return ".dorm-2"
+        return "dorm-2"
       } else if (this.selected_dormitory == 3) {
-        return ".dorm-3"
+        return "dorm-3"
       } else if (this.selected_dormitory == 4) {
         return "dorm-4"
       } else {

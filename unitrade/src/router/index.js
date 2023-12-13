@@ -4,7 +4,7 @@ import UserProfile from "@/components/UserProfile.vue";
 // import store from "@/store";
 // import PostPage from "@/components/Post/PostPage.vue";
 // import WorkPage from "@/components/Work/WorkPage.vue";
-import Works_list from "@/components/Work/Works_list.vue";
+// import Works_list from "@/components/Work/Works_list.vue";
 import Token from "@/token-usage.js";
 import Main_Page from "@/components/Main_Page.vue";
 import Info from "@/components/Info.vue";
@@ -45,7 +45,7 @@ const routes = [
     {
         path: "/posts/:id",
         name: "post",
-        component: () => import("@/components/Work/WorkPage.vue"),
+        component: () => import("@/components/Post/PostPage.vue"),
         meta: {
             forLoggedIn: true,
         },
@@ -53,7 +53,7 @@ const routes = [
     {
         path: "/works",
         name: "works",
-        component: Works_list,
+        component: ()=> import("@/components/Work/Works_list.vue"),
         meta: {
             forLoggedIn: true,
         },

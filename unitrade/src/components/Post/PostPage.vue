@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       post_data: {},
-      user_data: {},
+      // user_data: {},
       complain_status: false
     }
   },
@@ -30,7 +30,7 @@ export default {
   mounted() {
     this.post_data = this.posts.filter((post) => post.id == this.postId)
     this.post_data = this.post_data[0]
-    this.user_data = this.post_data.user_data
+    // this.user_data = this.post_data.user_data
   }
 }
 </script>
@@ -47,22 +47,22 @@ export default {
         <div class="post-data">
           <p class="post-creation-time">Опубліковано : {{ post_data.creation_date }}</p>
           <h2 class="post-title"> {{ post_data.name }}</h2>
-          <h2 class="post-price">{{ post_data.price }} грн</h2>
+          <!-- <h2 class="post-price">{{ post_data.price }} грн</h2> -->
         </div>
-        <div class="social-links">
+        <!-- <div class="social-links">
           <a :href="user_data.telegram">Telegram</a>
           <a :href="user_data.instagram">Instagram</a>
           <a @click="copyToClipboard(user_data.phone)">Телефон</a>
-        </div>
-        <p class="post-dormitory">{{ user_data.dormitory }}</p>
+        </div> -->
+        <!-- <p class="post-dormitory">{{ user_data.dormitory }}</p> -->
       </div>
     </div>
     <div class="lower-part">
       <div class="post-tag">
         <span>{{ post_data.tag }}</span>
       </div>
-      <h3>Опис</h3>
-      <p class="description">{{ post_data.description }}</p>
+      <!-- <h3>Опис</h3>
+      <p class="description">{{ post_data.description }}</p> -->
       <button @click="report()" class="report">
         <font-awesome-icon :icon="['far', 'flag']"/>
         <span>Поскаржитись</span>
