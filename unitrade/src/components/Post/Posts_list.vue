@@ -23,6 +23,8 @@
       <Post_comp :post="post" v-for="post in posts" :key="post.id"/>
     </div>
     <div class="page-selector">
+      <font-awesome-icon icon="arrow-left" :class="{'hidden-page':page_index == 0}" @click="subPage()"
+                         class="page-toggle"/>
       <span>{{ page_index + 1 }}</span>
       <font-awesome-icon icon="arrow-right" :class="{'hidden-page':!has_next_page}" @click="addPage()"
                          class="page-toggle"/>
@@ -148,17 +150,18 @@ export default {
   }
 
   .page-selector {
+    margin-bottom: 50px;
     width: 100%;
     display: flex;
     margin-top: 20px;
     border-top: 1px solid $border-default;
     flex-direction: row;
     align-items: center;
+    font-size: 14px;
     justify-content: center;
     height: 40px;
     gap: 10px;
-    font-size: 20px;
-    font-weight: bold;
+    font-weight: 500;
   }
 }
 </style>

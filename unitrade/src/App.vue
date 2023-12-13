@@ -110,7 +110,9 @@ input::placeholder, input {
   background-color: #B8DEDC;
 }
 body {
-  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100vw;
+  overflow-x: hidden !important;
   background-color: $background;
 }
 </style>
