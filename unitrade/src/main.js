@@ -7,5 +7,5 @@ import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome'
 import {faArrowLeft, faArrowRight, faUserSecret, faPlus, faExclamation} from '@fortawesome/free-solid-svg-icons'
 import {faFlag} from '@fortawesome/free-regular-svg-icons';
 
-library.add(faUserSecret, faArrowLeft, faArrowRight, faFlag, faPlus,faExclamation)
+library.add(faUserSecret, faArrowLeft, faArrowRight, faFlag, faPlus, faExclamation)
 createApp(App).use(store).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')

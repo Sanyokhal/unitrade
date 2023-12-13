@@ -1,21 +1,24 @@
 <template>
   <div class="container">
     <div class="menu">
-      <span class="menu-tag">Оголошення</span>
-      <div class="menu-options">
-        <input type="text" placeholder="Пошук" v-model="search" class="search-bar">
-        <select name="" id="" class="product-category" v-model="category">
-          <option value="0">Всі</option>
-          <option value="1">Меблі</option>
-          <option value="2">Одяг</option>
-          <option value="3">Їжа</option>
-        </select>
-        <select class="product-price" v-model="is_free">
-          <option value="true">Даром</option>
-          <option value="false">Не даром</option>
-        </select>
-      </div>
+      <select>
+        <option value="" disabled selected>№ гуртожитку</option>
+        <option value="1">Гуртожиток №1</option>
+        <option value="2">Гуртожиток №2</option>
+        <option value="3">Гуртожиток №3</option>
+        <option value="4">Гуртожиток №4</option>
+        <option value="5">Гуртожиток №5</option>
+      </select>
+      <select>
+        <option value="" disabled selected>Категорія</option>
+        <option value="1">Рандомна №1</option>
+        <option value="2">Рандомна №2</option>
+        <option value="3">Рандомна №3</option>
+        <option value="4">Рандомна №4</option>
+        <option value="5">Рандомна №5</option>
+      </select>
     </div>
+    <div class="posts-spacer"></div>
     <div class="posts_list">
       <Post_comp :post="post" v-for="post in posts" :key="post.id"/>
     </div>
@@ -30,13 +33,13 @@
 <script>
 import Post_comp from "@/components/Post/Post_comp.vue";
 import debounce from "lodash.debounce";
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
 
 
 export default {
   name: "Posts_list",
   components: {Post_comp},
-  computed:{
+  computed: {
     ...mapGetters('posts', ['posts'])
   },
   methods: {
@@ -100,124 +103,48 @@ export default {
 }
 
 .container {
+  background-color: #B8DEDC;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 75vw;
+  width: 100vw;
+  margin-top: 10px;
   overflow: hidden;
-  margin-top: 40px;
-  margin-left: 12.5vw;
-  justify-content: space-between;;
-  background: $bg-secondary;
-  border-top-left-radius: $default-border-radius;
-  border-top-right-radius: $default-border-radius;
+  justify-content: space-between;
 
   .menu {
-    border-top-left-radius: $default-border-radius;
-    border-top-right-radius: $default-border-radius;
-    width: 100%;
-    height: 60px;
+    width: calc(100vw - 30px);
+    height: 25px;
+    margin: 15px 0;
     align-items: center;
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid $border-default;
+    gap: 30px;
     justify-content: space-between;
-
-    .menu-tag {
-      font-size: 20px;
-      font-weight: bold;
-      color: $border-default;
-      margin-left: 10px;
-    }
-
-    .menu-options {
-      margin-right: 10px;
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
-
-      .search-bar {
-        width: 290px;
-        font-family: 'Montserrat', sans-serif;
-        max-width: 300px;
-        padding-left: 10px;
-        border: none;
-        background: $bg-secondary;
-        border-bottom: 1px solid $border-default;
-        font-weight: bold;
-        transition: box-shadow ease-out .3s;
-      }
-
-      .search-bar::placeholder {
-        transition: all ease-out .3s;
-        color: $border-default;
-      }
-
-      .search-bar:focus-visible, .search-bar:hover {
-        outline: none;
-      }
-
-      .search-bar:focus-visible::placeholder {
-        padding-left: 50px;
-        opacity: 0;
-        transition: all ease-out .3s;
-      }
-
-      .product-category {
-        width: 150px;
-        padding-left: 10px;
-        height: 30px;
-        font-family: 'Montserrat', sans-serif;
-        max-width: 150px;
-        font-weight: 500;
-        background-color: $active;
-        border-radius: $default-border-radius;
-        border: none;
-        transition: box-shadow ease-out .3s;
-      }
-
-      .product-category:focus-visible {
-        outline: none;
-      }
-
-      .product-category:hover {
-        cursor: pointer;
-      }
-
-      .product-price {
-        font-family: 'Montserrat', sans-serif;
-        max-width: 120px;
-        padding-left: 10px;
-        width: 120px;
-        height: 30px;
-        line-height: 30px;
-        background-color: $active;
-        border-radius: $default-border-radius;
-        font-weight: 500;
-        border: none;
-        text-align: center;
-        transition: box-shadow ease-out .3s;
-      }
-
-      .product-price:hover {
-        cursor: pointer;
-      }
-
-      .product-price:focus-visible {
-        outline: none;
-      }
+    select{
+      outline: none;
+      flex: 1;
+      font-size: 11px;
+      font-weight: 400;
+      height: 25px;
+      border-radius: 3px;
+      border:none;
+      padding-left: 10px;
     }
   }
 
+  .posts-spacer{
+    width:calc(100vw - 30px);
+    height: 1px;
+    background-color: #006D77;
+  }
+
   .posts_list {
+    gap: 15px;
     padding-top: 20px;
-    max-width: 75vw;
-    width: 75vw;
-    grid-gap: 20px;
-    display: grid;
-    justify-content: space-evenly;
-    grid-template-columns:repeat(auto-fit, 17.5vw);
-    grid-template-rows:repeat(auto-fit, 15vw);
+    width: calc(100vw - 30px);
+    display: flex;
+    flex-direction: column;
   }
 
   .page-selector {
