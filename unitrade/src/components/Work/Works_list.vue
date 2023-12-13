@@ -1,17 +1,16 @@
 <template>
   <div class="container">
     <div class="menu">
-      <span class="menu-tag">Робота</span>
-      <div class="menu-options">
-        <input type="text" placeholder="Пошук" v-model="search" class="search-bar">
-        <button class="all" :class="{'selected-gender':gender === 'all'}" @click="gender = 'all'"><span>Для всіх</span>
-        </button>
-        <button class="woman" :class="{'selected-gender':gender === 'woman'}" @click="gender = 'woman'">
-          <span>Жінкам</span></button>
-        <button class="man" :class="{'selected-gender':gender === 'man'}" @click="gender = 'man'"><span>Чоловікам</span>
-        </button>
-      </div>
+      <select>
+        <option value="" disabled selected>Категорія</option>
+        <option value="1">Рандомна №1</option>
+        <option value="2">Рандомна №2</option>
+        <option value="3">Рандомна №3</option>
+        <option value="4">Рандомна №4</option>
+        <option value="5">Рандомна №5</option>
+      </select>
     </div>
+    <div class="works-spacer"></div>
     <div class="works_list">
       <Work_comp :work="work" v-for="work in works_list" :key="work.id"/>
     </div>
@@ -27,13 +26,13 @@
 
 <script>
 import debounce from "lodash.debounce";
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
 import Work_comp from "@/components/Work/Work_comp.vue";
 
 export default {
   name: "Works_list",
   components: {Work_comp},
-  computed:{
+  computed: {
     ...mapGetters('works', ['works'])
   },
   methods: {
@@ -80,6 +79,12 @@ export default {
 <style lang="scss" scoped>
 @import "../../assets/main_colors";
 
+.works-spacer{
+  width:calc(100vw - 30px);
+  height: 1px;
+  background-color: #006D77;
+}
+
 .hidden-page {
   opacity: 0 !important;
   transition: opacity ease-out .2s;
@@ -95,114 +100,47 @@ export default {
 }
 
 .container {
+  background-color: #B8DEDC;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: calc(100vw - 30px);
-  margin-left: auto;
-  justify-content: space-between;
-  margin-top: 40px;
-  background: $bg-secondary;
-  border-radius: $default-border-radius;
+  width: 100vw;
+  margin-top: 10px;
   overflow: hidden;
+  justify-content: space-between;
 
   .menu {
-    width: 100%;
-    height: 60px;
+    width: calc(100vw - 30px);
+    height: 25px;
+    margin: 15px 0;
     align-items: center;
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid $border-default;
+    gap: 30px;
     justify-content: space-between;
-
-    .menu-tag {
-      font-size: 20px;
-      font-weight: bold;
-      color: $border-default;
-      margin-left: 10px;
-    }
-
-    .menu-options {
-      margin-right: 10px;
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
-
-      .search-bar {
-        width: 290px;
-        font-family: 'Montserrat', sans-serif;
-        max-width: 300px;
-        padding-left: 10px;
-        border: none;
-        background: $bg-secondary;
-        border-bottom: 1px solid $border-default;
-        font-weight: bold;
-        transition: box-shadow ease-out .3s;
-      }
-
-      .search-bar::placeholder {
-        transition: all ease-out .3s;
-        color: $border-default;
-      }
-
-      .search-bar:focus-visible, .search-bar:hover {
-        outline: none;
-      }
-
-      .search-bar:focus-visible::placeholder {
-        padding-left: 50px;
-        opacity: 0;
-        transition: all ease-out .3s;
-      }
-
-      button {
-        padding-left: 10px;
-        padding-right: 10px;
-        border-radius: 2px;
-        border: none;
-        height: 30px;
-        background-color: $main;
-        transition: all ease-out .3s;
-
-        span {
-          transition: all ease-out .3s;
-          font-family: 'Montserrat', sans-serif;
-          font-weight: 500;
-        }
-      }
-
-      button:hover {
-        cursor: pointer;
-        background-color: $active;
-        transition: all ease-out .3s;
-      }
-
-      .selected-gender {
-        padding-left: 25px;
-        padding-right: 25px;
-        transition: all ease-out .3s;
-        background-color: $active;
-
-        span {
-          font-weight: bold;
-          transition: all ease-out .3s;
-        }
-      }
+    select{
+      width: calc(100% - 10px);
+      outline: none;
+      flex: 1;
+      font-size: 11px;
+      font-weight: 400;
+      height: 25px;
+      border-radius: 3px;
+      border:none;
+      padding-left: 10px;
     }
   }
 
   .works_list {
+    gap: 15px;
     padding-top: 20px;
-    max-width: 75vw;
-    width: 75vw;
-    grid-gap: 20px;
-    display: grid;
-    justify-content: space-evenly;
-    grid-template-columns:repeat(auto-fit, 17.5vw);
-    grid-template-rows:repeat(auto-fit, 15vw);
+    width: calc(100vw - 30px);
+    display: flex;
+    flex-direction: column;
   }
 
   .page-selector {
+    margin-bottom: 50px;
     width: 100%;
     display: flex;
     margin-top: 20px;

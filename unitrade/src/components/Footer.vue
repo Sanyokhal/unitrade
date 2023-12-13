@@ -19,6 +19,11 @@ export default {
       }
       this.selected = link;
     }
+  },
+  mounted() {
+    window.changeMenuSelect = (value) => {
+      this.selected = value;
+    }
   }
 }
 </script>
