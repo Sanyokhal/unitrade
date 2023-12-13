@@ -1,58 +1,105 @@
 <script>
-export default {}
+import {mapGetters} from "vuex";
+
+export default {
+  data() {
+    return {
+      selected: 'main'
+    }
+  },
+  computed: {
+    ...mapGetters('user', ['isLoggedIn'])
+  },
+  methods: {
+    pushLink(link) {
+      if (link === "main") {
+        this.$router.push('/');
+      } else {
+        this.$router.push(`/${link}`);
+      }
+      this.selected = link;
+    }
+  }
+}
 </script>
 
 <template>
-  <footer>
-    <div class="footer-content">
-      <span class="made-by">Зроблено студентами СА</span>
-      <div class="links">
-        <router-link to="/about#about-us">Про нас</router-link>
-        <router-link to="/about#contacts">Контакти</router-link>
-        <router-link to="/about#rules">Правила</router-link>
-      </div>
+  <div class="footer">
+    <div class="footer-element" :class="{'selected':selected === 'main'}" @click="pushLink('main')">
+      <img src="@/assets/svg/home.svg" alt="">
+      <span>Головна</span>
     </div>
-  </footer>
+    <div class="footer-element" :class="{'selected':selected === 'posts'}"
+         @click="pushLink('posts')">
+      <img src="@/assets/svg/browse.svg" alt="">
+      <span>Оголошення</span>
+    </div>
+    <div class="footer-element" :class="{'selected':selected === 'info'}" @click="pushLink('info')">
+      <img src="@/assets/svg/info.svg" alt="">
+      <span>Інформація</span>
+    </div>
+    <div class="footer-element" :class="{'selected':selected === 'works'}"
+         @click="pushLink('works')">
+      <img src="@/assets/svg/work.svg" alt="">
+      <span>Робота</span>
+    </div>
+    <div class="footer-element" :class="{'selected':selected === 'me'}" @click="pushLink('me')">
+      <img src="@/assets/svg/person.svg" alt="">
+      <span>Акаунт</span>
+    </div>
+  </div>
 </template>
 
 <style scoped lang="scss">
 
 @import "@/assets/main_colors";
 
-.footer-content {
+.selected {
+  transition: all ease-out .3s;
+  background-color: #B8DEDC !important;
+
+  span {
+    font-weight: 700;
+  }
+}
+
+.footer {
+  position: fixed;
+  height: 50px;
+  overflow: hidden;
+  width: 100vw;
   display: flex;
   flex-direction: row;
-  width: 90vw;
-  height: 50px;
   align-items: center;
-  background-color: $bg-menu;
-  justify-content: space-between;
-  max-width: 100vw;
-  padding-left: 5vw;
-  padding-right: 5vw;
+  justify-content: space-evenly;
+  background-color: #FFFFFF;
+  left: 0;
+  top: calc(100vh - 50px);
 
-  .made-by {
-    font-weight: 500;
+  .footer-element {
+    transition: background-color ease-out .3s, font-weight ease-out .3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    padding: 2px 0px;
+    width: 57px;
+    border-radius: 5px;
+
+    img {
+      height: 24px;
+      width: 24px;
+    }
+
+    span {
+      font-size: 7px;
+      font-weight: 500;
+    }
   }
 
-  .links {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-
-    a {
-      text-decoration: none;
-      color: $text-main;
-      font-weight: 500;
-      transition: all ease .2s;
-    }
-
-    a:hover {
-      cursor: pointer;
-      text-decoration: underline;
-      font-weight: bold;
-      transition: all ease .2s;
-    }
+  .footer-element:hover {
+    cursor: pointer;
   }
 }
 </style>

@@ -98,8 +98,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 75vw;
-  margin-left: 12.5vw;
+  width: calc(100vw - 30px);
+  margin-left: auto;
   justify-content: space-between;
   margin-top: 40px;
   background: $bg-secondary;

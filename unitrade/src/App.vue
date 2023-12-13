@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Header v-if="isLoggedIn"/>
+    <Header/>
     <RouterView></RouterView>
-    <Footer v-if="isLoggedIn"/>
+    <Footer/>
   </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
     Header,
   },
   computed: {
-    ...mapGetters('user',['isLoggedIn'])
+    ...mapGetters('user', ['isLoggedIn'])
   },
   mounted() {
     window.stopScroll = (value) => {
@@ -53,6 +53,9 @@ export default {
   overflow-y: hidden !important;
 }
 
+body{
+  overflow-x: hidden;
+}
 .temporary {
   position: fixed;
   top: 0;
@@ -66,12 +69,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: $border-default;
-  margin: 0;
-  padding: 0;
   background-color: $background;
 }
 
-button, textarea,select{
+button, textarea, select {
+  font-family: "Montserrat", sans-serif;
+}
+
+input::placeholder, input {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -97,7 +102,13 @@ button, textarea,select{
     transition: background-color ease-out .3s;
   }
 }
-
+.spacer {
+  margin-top: 5px;
+  height: 2px;
+  width: 90vw;
+  border-radius: 5px;
+  background-color: #B8DEDC;
+}
 body {
   overflow-x: hidden;
   background-color: $background;
