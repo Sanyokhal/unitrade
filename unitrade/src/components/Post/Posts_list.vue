@@ -20,14 +20,22 @@
     </div>
     <div class="posts-spacer"></div>
     <div class="posts_list">
-      <Post_comp :post="post" v-for="post in postsList" :key="post.id"/>
+      <Post_comp :post="post" v-for="post in postsList" :key="post.id" />
     </div>
     <div class="page-selector">
-      <font-awesome-icon icon="arrow-left" :class="{'hidden-page':page_index == 0}" @click="subPage()"
-                         class="page-toggle"/>
+      <font-awesome-icon
+        icon="arrow-left"
+        :class="{ 'hidden-page': page_index == 0 }"
+        @click="subPage()"
+        class="page-toggle"
+      />
       <span>{{ page_index + 1 }}</span>
-      <font-awesome-icon icon="arrow-right" :class="{'hidden-page':!has_next_page}" @click="addPage()"
-                         class="page-toggle"/>
+      <font-awesome-icon
+        icon="arrow-right"
+        :class="{ 'hidden-page': !has_next_page }"
+        @click="addPage()"
+        class="page-toggle"
+      />
     </div>
   </div>
 </template>
@@ -35,18 +43,25 @@
 <script>
 import Post_comp from "@/components/Post/Post_comp.vue";
 import debounce from "lodash.debounce";
-import {mapGetters} from "vuex";
-
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Posts_list",
-  components: {Post_comp},
+  components: { Post_comp },
   computed: {
-    ...mapGetters('posts', ['posts']),
-    postsList(){ return this.posts.slice(this.page_index*10,(this.page_index+1)*10)},
-    has_next_page(){ return this.posts.slice((this.page_index+1)*10,(this.page_index+2)*10).length!=0},
+    ...mapGetters("posts", ["posts"]),
+    postsList() {
+      return this.posts.slice(this.page_index * 10, (this.page_index + 1) * 10);
+    },
+    has_next_page() {
+      return (
+        this.posts.slice((this.page_index + 1) * 10, (this.page_index + 2) * 10)
+          .length != 0
+      );
+    },
   },
   methods: {
+    ...mapActions("posts", ["fetchPosts"]),
     fetch() {
       alert("Симуляція fetch запиту");
     },
@@ -59,7 +74,7 @@ export default {
       if (this.has_next_page) {
         this.page_index += 1;
       }
-    }
+    },
   },
   data() {
     return {
@@ -67,7 +82,7 @@ export default {
       search: undefined,
       category: 0,
       is_free: false,
-    }
+    };
   },
   watch: {
     search() {
@@ -78,14 +93,15 @@ export default {
     },
     is_free() {
       this.fetch();
-    }
+    },
   },
   mounted() {
     this.debouncedFetch = debounce(() => {
       this.fetch();
-    }, 500)
-  }
-}
+    }, 500);
+    this.fetchPosts();
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -93,12 +109,12 @@ export default {
 
 .hidden-page {
   opacity: 0 !important;
-  transition: opacity ease-out .2s;
+  transition: opacity ease-out 0.2s;
   cursor: default !important;
 }
 
 .page-toggle {
-  transition: opacity ease-out .2s;
+  transition: opacity ease-out 0.2s;
 }
 
 .page-toggle:hover {
@@ -124,22 +140,22 @@ export default {
     flex-direction: row;
     gap: 30px;
     justify-content: space-between;
-    select{
+    select {
       outline: none;
       flex: 1;
       font-size: 11px;
       font-weight: 400;
       height: 25px;
       border-radius: 3px;
-      border:none;
+      border: none;
       padding-left: 10px;
     }
   }
 
-  .posts-spacer{
-    width:calc(100vw - 30px);
+  .posts-spacer {
+    width: calc(100vw - 30px);
     height: 1px;
-    background-color: #006D77;
+    background-color: #006d77;
   }
 
   .posts_list {
