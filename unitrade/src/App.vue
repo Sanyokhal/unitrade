@@ -49,6 +49,13 @@ export default {
 <style lang="scss">
 @import "assets/main_colors";
 
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
 .stop-scroll {
   overflow-y: hidden !important;
 }
