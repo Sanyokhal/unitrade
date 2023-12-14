@@ -25,6 +25,7 @@ export default {
   display: flex;
   width: 100vw;
   height: calc(100vh - 57px);
+  min-height: calc(100vh - 57px);
   justify-content: center;
   align-items: center;
 }
