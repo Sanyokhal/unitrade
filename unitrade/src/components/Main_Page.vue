@@ -13,7 +13,7 @@ export default {
     window.changeMenuSelect('main');
   },
   computed: {
-    isLoggedIn(){
+    isLoggedIn() {
       return sessionStorage.getItem("email");
     },
     selector_bg() {
@@ -88,6 +88,8 @@ export default {
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+  height: calc(100vh - 67px);
+  min-height: calc(100vh - 67px);
 
   .login-notification {
     width: 100%;
