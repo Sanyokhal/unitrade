@@ -1,6 +1,6 @@
 <script>
 import Complain from "@/components/Complain.vue";
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: "PostPage",
@@ -19,6 +19,7 @@ export default {
     },
   },
   methods: {
+    ...mapActions('posts',['fetchPosts']),
     report() {
       this.complain_status = true;
     },
@@ -28,8 +29,15 @@ export default {
     }
   },
   mounted() {
-    this.post_data = this.posts.filter((post) => post.id == this.postId)
-    this.post_data = this.post_data[0]
+    this.fetchPosts()
+      .then((posts)=>{
+        this.post_data = this.posts.filter((post) => post.id == this.postId)
+        this.post_data = this.post_data[0]
+        console.log(posts);
+      })
+      .catch(()=>{
+        console.log('something wrong')
+      })
     // this.user_data = this.post_data.user_data
   }
 }
@@ -40,12 +48,12 @@ export default {
     <div class="upper-part">
       <div class="img-section">
         <font-awesome-icon icon="arrow-left" class="img-toggle"/>
-        <img :src="post_data.img_url" alt="">
+        <img :src="post_data.img" alt="">
         <font-awesome-icon icon="arrow-right" class="img-toggle"/>
       </div>
       <div class="seller-data">
         <div class="post-data">
-          <p class="post-creation-time">Опубліковано : {{ post_data.creation_date }}</p>
+          <p class="post-creation-time">Опубліковано : {{ post_data.creationDate }}</p>
           <h2 class="post-title"> {{ post_data.name }}</h2>
           <!-- <h2 class="post-price">{{ post_data.price }} грн</h2> -->
         </div>

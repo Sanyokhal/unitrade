@@ -100,7 +100,7 @@ export default {
 }
 
 .container {
-  background-color: #B8DEDC;
+  background-color: $bg-green;
   display: flex;
   flex-direction: column;
   align-items: center;
