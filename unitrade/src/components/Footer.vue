@@ -16,43 +16,43 @@ export default {
 <template>
   <div class="footer">
     <div
-      class="footer-element"
-      :class="{ selected: $route.path === '/' }"
-      @click="pushLink('/')"
+        class="footer-element"
+        :class="{ selected: $route.path === '/' }"
+        @click="pushLink('/')"
     >
-      <img src="@/assets/svg/home.svg" alt="" />
+      <img src="@/assets/svg/home.svg" alt=""/>
       <span>Головна</span>
     </div>
     <div
-      class="footer-element"
-      :class="{ selected: $route.path === '/posts' }"
-      @click="pushLink('/posts')"
+        class="footer-element"
+        :class="{ selected: $route.path === '/posts' }"
+        @click="pushLink('/posts')"
     >
-      <img src="@/assets/svg/browse.svg" alt="" />
+      <img src="@/assets/svg/browse.svg" alt=""/>
       <span>Оголошення</span>
     </div>
     <div
-      class="footer-element"
-      :class="{ selected: $route.path === '/info' }"
-      @click="pushLink('/info')"
+        class="footer-element"
+        :class="{ selected: $route.path === '/info' }"
+        @click="pushLink('/info')"
     >
-      <img src="@/assets/svg/info.svg" alt="" />
+      <img src="@/assets/svg/info.svg" alt=""/>
       <span>Інформація</span>
     </div>
     <div
-      class="footer-element"
-      :class="{ selected: $route.path === '/works' }"
-      @click="pushLink('/works')"
+        class="footer-element"
+        :class="{ selected: $route.path === '/works' }"
+        @click="pushLink('/works')"
     >
-      <img src="@/assets/svg/work.svg" alt="" />
+      <img src="@/assets/svg/work.svg" alt=""/>
       <span>Робота</span>
     </div>
     <div
-      class="footer-element"
-      :class="{ selected: $route.path === '/me' }"
-      @click="pushLink('/me')"
+        class="footer-element"
+        :class="{ selected: $route.path === '/me' }"
+        @click="pushLink('/me')"
     >
-      <img src="@/assets/svg/person.svg" alt="" />
+      <img src="@/assets/svg/person.svg" alt=""/>
       <span>Акаунт</span>
     </div>
   </div>
@@ -81,7 +81,7 @@ export default {
   justify-content: space-evenly;
   background-color: #ffffff;
   left: 0;
-  top: calc(100vh - 50px);
+  bottom: 0;
 
   .footer-element {
     transition: background-color ease-out 0.3s, font-weight ease-out 0.3s;

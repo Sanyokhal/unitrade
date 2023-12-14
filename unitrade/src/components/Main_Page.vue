@@ -119,6 +119,7 @@ export default {
 
   .dormitory-selector {
     width: 90vw;
+    background-size: cover;
     margin-top: 15px;
     aspect-ratio: 1.3/1;
     border-radius: 15px;
