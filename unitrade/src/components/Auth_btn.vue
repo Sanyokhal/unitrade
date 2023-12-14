@@ -1,5 +1,5 @@
 <script>
-import {mapActions, mapGetters} from "vuex";
+import {mapActions} from "vuex";
 import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import {auth} from "@/firebase-config";
 import Token from "@/token-usage";
@@ -7,7 +7,7 @@ import Token from "@/token-usage";
 export default {
   name: "Auth_btn",
   methods: {
-    ...mapActions("user", ["changeIsLoggedIn", "changeUser"]),
+    ...mapActions("user", ["changeUser"]),
     handleGoogle() {
       const provider = new GoogleAuthProvider();
       //використовуємо функцію авторизації у спливаючому вікні
@@ -22,14 +22,12 @@ export default {
               sessionStorage.setItem("fullName", user.displayName); //user.displayName - ім'я акаунту
               sessionStorage.setItem("avatarUrl", user.photoURL); //user.photoURL - аватар акаунту
               sessionStorage.setItem("email", user.email); //user.email - електронна адреса акаунту
-              sessionStorage.setItem("isLoggedIn", true);
 
               this.changeUser({
                 avatarUrl: user.photoURL,
                 fullName: user.displayName,
                 email: user.email,
               });
-              this.changeIsLoggedIn(true);
 
               //Set token to cookie
               Token.setAccessTokenCookie(
@@ -37,7 +35,7 @@ export default {
                   new Date().getTime() + 30 * 60 * 1000
               );
 
-              this.$router.push("/");
+              this.$router.push(this.$route.query.redirect);
             }
           })
           .catch((error) => {
@@ -45,9 +43,6 @@ export default {
           });
     },
   },
-  computed: {
-    ...mapGetters('user', ['isLoggedIn']),
-  }
 }
 </script>
 

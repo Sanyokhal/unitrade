@@ -1,5 +1,4 @@
 <script>
-import {mapGetters} from "vuex";
 import Auth_btn from "@/components/Auth_btn.vue";
 
 export default {
@@ -14,7 +13,9 @@ export default {
     window.changeMenuSelect('main');
   },
   computed: {
-    ...mapGetters('user', ['isLoggedIn']),
+    isLoggedIn(){
+      return sessionStorage.getItem("email");
+    },
     selector_bg() {
       if (this.selected_dormitory == 1) {
         return "dorm-1"
@@ -62,23 +63,23 @@ export default {
 }
 
 .dorm-1 {
-  background: url('../assets/dev_images/andrij.jpg');
+  background: url('../assets/dormitory_img/dormitory-1.jpg');
 }
 
 .dorm-2 {
-  background: url('../assets/dev_images/sasha.jpg');
+  background: url('../assets/dormitory_img/dormitory-2.jpg');
 }
 
 .dorm-3 {
-  background: url('../assets/dev_images/viktor.jpg');
+  background: url('../assets/dormitory_img/dormitory-3.jpg');
 }
 
 .dorm-4 {
-  background: url('../assets/dev_images/jarik.jpg');
+  background: url('../assets/dev_images/andrij.jpg');
 }
 
 .dorm-5 {
-  background: url('../assets/dev_images/lioha.jpg');
+  background: url('../assets/dev_images/sasha.jpg');
 }
 
 .main-page-container {

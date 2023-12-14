@@ -1,13 +1,10 @@
 import {createRouter, createWebHistory} from "vue-router";
+
 import AuthPage from "@/components/AuthPage.vue";
 import UserProfile from "@/components/UserProfile.vue";
-// import store from "@/store";
-// import PostPage from "@/components/Post/PostPage.vue";
-// import WorkPage from "@/components/Work/WorkPage.vue";
-// import Works_list from "@/components/Work/Works_list.vue";
-import Token from "@/token-usage.js";
 import Main_Page from "@/components/Main_Page.vue";
-import Info from "@/components/Info.vue";
+
+import Token from "@/token-usage.js";
 
 const routes = [
     {
@@ -22,6 +19,7 @@ const routes = [
         path: "/auth",
         name: "auth",
         component: AuthPage,
+        props: true,
         meta: {
             forLoggedIn: false,
         },
@@ -29,7 +27,7 @@ const routes = [
     {
         path: "/info",
         name: "info",
-        component: Info,
+        component: ()=>import("@/components/Info.vue"),
         meta: {
             forLoggedIn: false,
         },
@@ -86,7 +84,7 @@ router.beforeEach((to, from, next) => {
     const nextRouteIsForLoggedIn = to.meta?.forLoggedIn;
 
     if (nextRouteIsForLoggedIn && !accessToken) {
-        next("/auth");
+        next({ path: "/auth", query: { redirect: to.fullPath } });
     } else {
         next();
     }

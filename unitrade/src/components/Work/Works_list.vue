@@ -12,7 +12,7 @@
     </div>
     <div class="works-spacer"></div>
     <div class="works_list">
-      <Work_comp :work="work" v-for="work in works_list" :key="work.id"/>
+      <Work_comp :work="work" v-for="work in worksList" :key="work.id"/>
     </div>
     <div class="page-selector">
       <font-awesome-icon icon="arrow-left" :class="{'hidden-page':page_index == 0}" @click="subPage()"
@@ -33,7 +33,9 @@ export default {
   name: "Works_list",
   components: {Work_comp},
   computed: {
-    ...mapGetters('works', ['works'])
+    ...mapGetters('works', ['works']),
+    worksList(){ return this.works.slice(this.page_index*10,(this.page_index+1)*10)},
+    has_next_page(){ return this.works.slice((this.page_index+1)*10,(this.page_index+2)*10).length!=0},
   },
   methods: {
     fetch() {
@@ -53,10 +55,8 @@ export default {
   data() {
     return {
       page_index: 0,
-      works_list: [],
       gender: 'all',
       search: undefined,
-      has_next_page: true,
     }
   },
   watch: {
@@ -150,8 +150,8 @@ export default {
     justify-content: center;
     height: 40px;
     gap: 10px;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 14px;
+    font-weight: 500;
   }
 }
 </style>

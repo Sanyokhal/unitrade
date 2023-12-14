@@ -20,7 +20,7 @@
     </div>
     <div class="posts-spacer"></div>
     <div class="posts_list">
-      <Post_comp :post="post" v-for="post in posts" :key="post.id"/>
+      <Post_comp :post="post" v-for="post in postsList" :key="post.id"/>
     </div>
     <div class="page-selector">
       <font-awesome-icon icon="arrow-left" :class="{'hidden-page':page_index == 0}" @click="subPage()"
@@ -42,7 +42,9 @@ export default {
   name: "Posts_list",
   components: {Post_comp},
   computed: {
-    ...mapGetters('posts', ['posts'])
+    ...mapGetters('posts', ['posts']),
+    postsList(){ return this.posts.slice(this.page_index*10,(this.page_index+1)*10)},
+    has_next_page(){ return this.posts.slice((this.page_index+1)*10,(this.page_index+2)*10).length!=0},
   },
   methods: {
     fetch() {
@@ -65,7 +67,6 @@ export default {
       search: undefined,
       category: 0,
       is_free: false,
-      has_next_page: true,
     }
   },
   watch: {
@@ -105,7 +106,7 @@ export default {
 }
 
 .container {
-  background-color: #B8DEDC;
+  background-color: $bg-green;
   display: flex;
   flex-direction: column;
   align-items: center;

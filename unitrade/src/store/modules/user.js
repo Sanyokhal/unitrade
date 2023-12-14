@@ -5,7 +5,6 @@ const state = {
     email: sessionStorage.getItem("email"),
   },
   accessToken: null,
-  isLoggedIn: sessionStorage.getItem("isLoggedIn") === 'true',
   isUserLoading: false,
 };
 const getters = {
@@ -15,25 +14,16 @@ const getters = {
   accessToken: ({ accessToken }) => {
     return accessToken;
   },
-  isLoggedIn: ({ isLoggedIn }) => {
-    return isLoggedIn;
-  },
 };
 const mutations = {
   changeUser(state, value) {
     state.user = value;
-  },
-  changeIsLoggedIn(state, value) {
-    state.isLoggedIn = value;
   },
   changeAccessToken(state, value) {
     state.accessToken = value;
   },
 };
 const actions = {
-    changeIsLoggedIn({commit},value){
-        commit('changeIsLoggedIn',value)
-    },
     changeAccessToken({commit},value){
         commit('changeAccessToken',value)
     },
