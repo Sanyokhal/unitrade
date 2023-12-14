@@ -53,9 +53,10 @@ export default {
   overflow-y: hidden !important;
 }
 
-body{
+body {
   overflow-x: hidden;
 }
+
 .temporary {
   position: fixed;
   top: 0;
@@ -102,6 +103,7 @@ input::placeholder, input {
     transition: background-color ease-out .3s;
   }
 }
+
 .spacer {
   margin-top: 5px;
   height: 2px;
@@ -109,10 +111,19 @@ input::placeholder, input {
   border-radius: 5px;
   background-color: #B8DEDC;
 }
+
 body {
   max-width: 100vw;
   width: 100vw;
   overflow-x: hidden !important;
   background-color: $background;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 </style>
