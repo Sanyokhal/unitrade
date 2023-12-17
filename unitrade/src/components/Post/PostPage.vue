@@ -9,17 +9,18 @@ export default {
     return {
       post_data: {},
       // user_data: {},
-      complain_status: false
+      complain_status: false,
+      isLoaded: false,
     }
   },
   computed:{
-    ...mapGetters('posts',['posts']),
+    ...mapGetters('posts',['list']),
     postId() {
       return this.$route.params.id
     },
   },
   methods: {
-    ...mapActions('posts',['fetchPosts']),
+    ...mapActions('posts',['fetchList']),
     report() {
       this.complain_status = true;
     },
@@ -28,12 +29,12 @@ export default {
       alert("Номер скопійовано")
     }
   },
-  mounted() {
-    this.fetchPosts()
-      .then((posts)=>{
-        this.post_data = this.posts.filter((post) => post.id == this.postId)
+  created() {
+    this.fetchList()
+      .then((list)=>{
+        this.post_data = list.filter((post) => post.id == this.postId)
         this.post_data = this.post_data[0]
-        console.log(posts);
+        this.isLoaded = true
       })
       .catch(()=>{
         console.log('something wrong')
@@ -44,7 +45,7 @@ export default {
 </script>
 
 <template>
-  <div class="post-wrapper">
+  <div class="post-wrapper" v-if="isLoaded">
     <div class="upper-part">
       <div class="img-section">
         <font-awesome-icon icon="arrow-left" class="img-toggle"/>
@@ -57,11 +58,11 @@ export default {
           <h2 class="post-title"> {{ post_data.name }}</h2>
           <!-- <h2 class="post-price">{{ post_data.price }} грн</h2> -->
         </div>
-        <!-- <div class="social-links">
-          <a :href="user_data.telegram">Telegram</a>
-          <a :href="user_data.instagram">Instagram</a>
-          <a @click="copyToClipboard(user_data.phone)">Телефон</a>
-        </div> -->
+        <div class="social-links">
+          <a :href="post_data.creator.telegram">Telegram</a>
+          <!-- <a :href="user_data.instagram">Instagram</a> -->
+          <a @click="copyToClipboard(post_data.creator.phone)">Телефон</a>
+        </div>
         <!-- <p class="post-dormitory">{{ user_data.dormitory }}</p> -->
       </div>
     </div>
@@ -77,8 +78,9 @@ export default {
       </button>
     </div>
     <Complain @close="complain_status = false" v-if="complain_status" :post_id="post_data.id"
-              :post_img="post_data.img_url" :post_title="post_data.name" :post_author="post_data.author"/>
+              :post_img="post_data.img_url" :post_title="post_data.name" :post_author="post_data.creator"/>
   </div>
+  <div v-else>Loading</div>
 </template>
 
 <style scoped lang="scss">

@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { auth } from "@/firebase-config.js";
 import { signOut } from "firebase/auth";
 import Token from "@/token-usage.js";
@@ -68,6 +68,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions('user',['loadUser']),
     openPost(id) {
       this.$router.push({ name: "post", params: { id: id } });
     },
@@ -86,14 +87,15 @@ export default {
         });
     },
   },
-  mounted() {
+  async mounted() {
+    await this.loadUser();
     this.posts_list = this.posts;
     this.works_list = this.works;
   },
   computed: {
-    ...mapGetters('user',["user"]),
-    ...mapGetters('posts',['posts']),
-    ...mapGetters('works',['works'])
+    ...mapGetters('user',["user",'accessToken']),
+    // ...mapGetters('posts',['posts']),
+    // ...mapGetters('works',['works'])
   },
 };
 </script>

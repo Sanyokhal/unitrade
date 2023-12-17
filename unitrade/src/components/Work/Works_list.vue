@@ -12,32 +12,33 @@
     </div>
     <div class="works-spacer"></div>
     <div class="works_list">
-      <Work_comp :work="work" v-for="work in worksList" :key="work.id"/>
+      <Work_comp :work="work" v-for="work in list" :key="work.id"/>
     </div>
     <div class="page-selector">
-      <font-awesome-icon icon="arrow-left" :class="{'hidden-page':page_index == 0}" @click="subPage()"
+      <!-- <font-awesome-icon icon="arrow-left" :class="{'hidden-page':page_index == 0}" @click="subPage()"
                          class="page-toggle"/>
       <span>{{ page_index + 1 }}</span>
       <font-awesome-icon icon="arrow-right" :class="{'hidden-page':!has_next_page}" @click="addPage()"
-                         class="page-toggle"/>
+                         class="page-toggle"/> -->
     </div>
   </div>
 </template>
 
 <script>
 import debounce from "lodash.debounce";
-import {mapGetters} from "vuex";
+import {mapGetters, mapActions} from "vuex";
 import Work_comp from "@/components/Work/Work_comp.vue";
 
 export default {
   name: "Works_list",
   components: {Work_comp},
   computed: {
-    ...mapGetters('works', ['works']),
-    worksList(){ return this.works.slice(this.page_index*10,(this.page_index+1)*10)},
-    has_next_page(){ return this.works.slice((this.page_index+1)*10,(this.page_index+2)*10).length!=0},
+    ...mapGetters('works', ['list']),
+    // worksList(){ return this.list.slice(this.page_index*10,(this.page_index+1)*10)},
+    // has_next_page(){ return this.list.slice((this.page_index+1)*10,(this.page_index+2)*10).length!=0},
   },
   methods: {
+    ...mapActions("works", ["fetchList"]),
     fetch() {
       alert("Симуляція fetch запиту");
     },
@@ -71,7 +72,11 @@ export default {
     this.debouncedFetch = debounce(() => {
       this.fetch();
     }, 500)
-    this.works_list = this.works;
+    this.works_list = this.list;
+  },
+  created(){
+    this.fetchList();
+    console.log(this.list)
   }
 }
 </script>

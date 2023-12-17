@@ -5,14 +5,14 @@
       <div class="text">
         <div class="post-name-icon">
           <span class="post-name">{{ post.name }}</span>
-          <!-- <img :src="user.avatarUrl" alt="" class="user-profile"> -->
+          <img :src="post.creator.avatarUrl" alt="" class="user-profile">
         </div>
         <p class="address">
           Гурт. №4 82/a
         </p>
       </div>
       <div class="tag">
-        <span>Техніка</span>
+        <span>{{post.tag}}</span>
       </div>
     </div>
   </div>

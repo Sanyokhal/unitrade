@@ -3,40 +3,33 @@ import { mapActions } from "vuex";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/firebase-config";
 import Token from "@/token-usage";
+import { firebaseDB } from "@/firebase-config";
+import { doc, setDoc } from "firebase/firestore/lite";
+// const dbCollection = collection(firebaseDB, "users");
 
 export default {
   name: "Auth_btn",
   methods: {
-    ...mapActions("user", ["changeUser"]),
+    ...mapActions("user", ["changeUser", "addItem"]),
     handleGoogle() {
       const provider = new GoogleAuthProvider();
       //використовуємо функцію авторизації у спливаючому вікні
       signInWithPopup(auth, provider)
-        .then((result) => {
+        .then(async(result) => {
           const user = result.user; //Дістаємо об'єкт користувача
-          // const emailDomain = user.email.split("@")[1];
-          // if (emailDomain !== "student.uzhnu.edu.ua") {
-          //   alert("Неприпустимий домен електронної пошти! Увійдіть за допомогою студентської пошти");
-          //   auth.signOut();
-          // } else {
-          sessionStorage.setItem("fullName", user.displayName); //user.displayName - ім'я акаунту
-          sessionStorage.setItem("avatarUrl", user.photoURL); //user.photoURL - аватар акаунту
-          sessionStorage.setItem("email", user.email); //user.email - електронна адреса акаунту
-
-          this.changeUser({
+          await setDoc(doc(firebaseDB, "users", user.uid),{
             avatarUrl: user.photoURL,
             fullName: user.displayName,
             email: user.email,
-          });
-
+          })
           //Set token to cookie
           Token.setAccessTokenCookie(
             user.uid,
             new Date().getTime() + 30 * 60 * 1000
           );
-          if(this.$route.query.redirect){
+          if (this.$route.query.redirect) {
             this.$router.push(this.$route.query.redirect);
-          }else{
+          } else {
             location.reload();
           }
           // }

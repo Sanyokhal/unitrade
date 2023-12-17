@@ -4,12 +4,14 @@ import posts from "./modules/posts";
 import user from "./modules/user";
 import works from "./modules/works";
 
+// import firestoreHelper from "./helpers/firestore-helper";
 
 export default createStore({
+  namespaced: true,
   modules:{
     information,
-    posts,
+    posts: posts,
     user,
-    works
+    works: works,
   },
 });

@@ -1,49 +1,59 @@
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "WorkPage",
   data() {
     return {
       work_data: {},
-      user_data: {},
-    }
+      // user_data: {},
+      isLoaded: false,
+    };
   },
   computed: {
-    ...mapGetters('works',['works']),
+    ...mapGetters("works", ["list"]),
     workId() {
-      return this.$route.params.id
+      return this.$route.params.id;
     },
   },
   methods: {
+    ...mapActions("works", ["fetchList"]),
     report() {
       alert(`На допис з Id ${this.workId} поскаржено`);
     },
     copyToClipboard(value) {
-      navigator.clipboard.writeText(value)
-      alert("Номер скопійовано")
-    }
+      navigator.clipboard.writeText(value);
+      alert("Номер скопійовано");
+    },
   },
-  mounted() {
-    this.work_data = this.works.filter((work) => work.id == this.workId)
-    this.work_data = this.work_data[0]
-    // this.user_data = this.work_data.user_data
-  }
-}
+  created() {
+    this.fetchList()
+      .then((list) => {
+        this.work_data = list.filter((work) => work.id == this.workId);
+        this.work_data = this.work_data[0];
+        this.isLoaded=true
+      })
+      .catch(() => {
+        console.log("something wrong");
+      });
+  },
+};
 </script>
 
 <template>
-  <div class="post-wrapper">
+  <div class="post-wrapper" v-if="isLoaded">
     <div class="upper-part">
       <div class="img-section">
-        <font-awesome-icon icon="arrow-left" class="img-toggle"/>
-        <img :src="work_data.img_url" alt="">
-        <font-awesome-icon icon="arrow-right" class="img-toggle"/>
+        <font-awesome-icon icon="arrow-left" class="img-toggle" />
+        <img :src="work_data.img" alt="" />
+        <font-awesome-icon icon="arrow-right" class="img-toggle" />
       </div>
       <div class="seller-data">
         <div class="post-data">
-          <p class="post-creation-time">Опубліковано : {{ work_data.creation_date }}</p>
-          <h2 class="post-title"> {{ work_data.name }}</h2>
+          <p class="post-creation-time">
+            Опубліковано : {{ work_data.creationDate }}
+          </p>
+          <h2 class="post-title">{{ work_data.name }}</h2>
           <h2 class="post-price">{{ work_data.salary }} грн</h2>
         </div>
         <!-- <div class="social-links">
@@ -60,7 +70,7 @@ export default {
       <h3>Опис</h3>
       <p class="description">{{ work_data.description }}</p>
       <button @click="report()" class="report">
-        <font-awesome-icon :icon="['far', 'flag']"/>
+        <font-awesome-icon :icon="['far', 'flag']" />
         <span>Поскаржитись</span>
       </button>
     </div>
@@ -145,7 +155,6 @@ export default {
         .post-price {
           font-weight: 500;
         }
-
       }
 
       .social-links {
@@ -171,12 +180,12 @@ export default {
           color: #2c3e50;
           line-height: 25px;
           text-decoration: none;
-          transition: all ease-out .3s;
+          transition: all ease-out 0.3s;
           border-bottom: 2px solid $main;
         }
 
         a:hover {
-          transition: all ease-out .3s;
+          transition: all ease-out 0.3s;
           border-bottom: 2px solid $border-default;
           font-size: 18px;
         }
@@ -225,7 +234,7 @@ export default {
     .report {
       background: $danger-color;
       color: $bg-secondary;
-      transition: box-shadow ease-out .3s;
+      transition: box-shadow ease-out 0.3s;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -252,7 +261,7 @@ export default {
     }
 
     .report:hover {
-      transition: box-shadow ease-out .3s;
+      transition: box-shadow ease-out 0.3s;
       cursor: pointer;
       box-shadow: 0px 0px 10px $danger-shadow;
     }
