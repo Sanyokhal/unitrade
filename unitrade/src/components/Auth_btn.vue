@@ -1,30 +1,45 @@
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/firebase-config";
 import Token from "@/token-usage";
 import { firebaseDB } from "@/firebase-config";
-import { doc, setDoc } from "firebase/firestore/lite";
+import { doc, setDoc,  } from "firebase/firestore/lite";
 // const dbCollection = collection(firebaseDB, "users");
 
 export default {
   name: "Auth_btn",
+  computed: {
+    ...mapGetters('usersDefaultDB', ["getItemById","getItemsList"]),
+  },
   methods: {
     ...mapActions("user", ["changeUser", "addItem"]),
+    ...mapActions("usersDefaultDB", ["loadList"]),
     handleGoogle() {
       const provider = new GoogleAuthProvider();
       //використовуємо функцію авторизації у спливаючому вікні
       signInWithPopup(auth, provider)
-        .then(async(result) => {
+        .then(async (result) => {
           const user = result.user; //Дістаємо об'єкт користувача
-          await setDoc(doc(firebaseDB, "users", user.uid),{
-            avatarUrl: user.photoURL,
-            fullName: user.displayName,
-            email: user.email,
-          })
+          if (!this.getItemById(user.uid)) {
+            console.log("Write to firestore");
+            await setDoc(doc(firebaseDB, "users", user.uid), {
+              avatarUrl: user.photoURL,
+              fullName: user.displayName,
+              email: user.email,
+            });
+          }
           //Set token to cookie
           Token.setAccessTokenCookie(
             user.uid,
+            new Date().getTime() + 30 * 60 * 1000
+          );
+          Token.setUserCookie(
+            {
+              avatarUrl: user.photoURL,
+              fullName: user.displayName,
+              email: user.email,
+            },
             new Date().getTime() + 30 * 60 * 1000
           );
           if (this.$route.query.redirect) {
@@ -32,13 +47,15 @@ export default {
           } else {
             location.reload();
           }
-          // }
         })
         .catch((error) => {
           console.log(error);
         });
     },
   },
+  async created(){
+    await this.loadList()
+  }
 };
 </script>
 

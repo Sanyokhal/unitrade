@@ -1,5 +1,6 @@
 <script>
 import Auth_btn from "@/components/Auth_btn.vue";
+import Token from '@/token-usage.js';
 
 export default {
   name: "Main_Page",
@@ -14,7 +15,7 @@ export default {
   },
   computed: {
     isLoggedIn() {
-      return sessionStorage.getItem("email");
+      return Token.getAccessTokenFromCookie();
     },
     selector_bg() {
       if (this.selected_dormitory == 1) {

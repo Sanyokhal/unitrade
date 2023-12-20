@@ -1,23 +1,22 @@
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "WorkPage",
   data() {
     return {
       work_data: {},
-      // user_data: {},
-      isLoaded: false,
+
     };
   },
   computed: {
-    ...mapGetters("works", ["list"]),
+    ...mapGetters('works',['getItemById']),
     workId() {
       return this.$route.params.id;
     },
   },
   methods: {
-    ...mapActions("works", ["fetchList"]),
+    ...mapActions("works", ["loadList"]),
     report() {
       alert(`На допис з Id ${this.workId} поскаржено`);
     },
@@ -26,22 +25,15 @@ export default {
       alert("Номер скопійовано");
     },
   },
-  created() {
-    this.fetchList()
-      .then((list) => {
-        this.work_data = list.filter((work) => work.id == this.workId);
-        this.work_data = this.work_data[0];
-        this.isLoaded=true
-      })
-      .catch(() => {
-        console.log("something wrong");
-      });
+  async created() {
+    await this.loadList()
+    this.work_data = this.getItemById(this.workId)
   },
 };
 </script>
 
 <template>
-  <div class="post-wrapper" v-if="isLoaded">
+  <div class="post-wrapper">
     <div class="upper-part">
       <div class="img-section">
         <font-awesome-icon icon="arrow-left" class="img-toggle" />

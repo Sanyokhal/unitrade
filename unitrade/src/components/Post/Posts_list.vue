@@ -1,3 +1,4 @@
+<!-- TODO Зробити для цього firebase по фільтруванню за категорією -->
 <template>
   <div class="container">
     <div class="menu">

@@ -5,13 +5,14 @@ import user from "./modules/user";
 import works from "./modules/works";
 
 // import firestoreHelper from "./helpers/firestore-helper";
-
+import firebaseGetModules from "./helpers/getModuleSettingObject"
 export default createStore({
   namespaced: true,
   modules:{
     information,
-    posts: posts,
+    posts,
     user,
-    works: works,
+    usersDefaultDB: firebaseGetModules("users"),
+    works,
   },
 });

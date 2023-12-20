@@ -12,7 +12,7 @@
     </div>
     <div class="works-spacer"></div>
     <div class="works_list">
-      <Work_comp :work="work" v-for="work in list" :key="work.id"/>
+      <Work_comp :work="work" v-for="work in getItemsList" :key="work.id"/>
     </div>
     <div class="page-selector">
       <!-- <font-awesome-icon icon="arrow-left" :class="{'hidden-page':page_index == 0}" @click="subPage()"
@@ -33,12 +33,12 @@ export default {
   name: "Works_list",
   components: {Work_comp},
   computed: {
-    ...mapGetters('works', ['list']),
+    ...mapGetters('works', ['getItemsList']),
     // worksList(){ return this.list.slice(this.page_index*10,(this.page_index+1)*10)},
     // has_next_page(){ return this.list.slice((this.page_index+1)*10,(this.page_index+2)*10).length!=0},
   },
   methods: {
-    ...mapActions("works", ["fetchList"]),
+    ...mapActions("works", ["loadList"]),
     fetch() {
       alert("Симуляція fetch запиту");
     },
@@ -72,11 +72,10 @@ export default {
     this.debouncedFetch = debounce(() => {
       this.fetch();
     }, 500)
-    this.works_list = this.list;
+    this.works_list = this.getItemsList;
   },
   created(){
-    this.fetchList();
-    console.log(this.list)
+    this.loadList();
   }
 }
 </script>

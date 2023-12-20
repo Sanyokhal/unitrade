@@ -28,7 +28,7 @@
         >Робота</span
       >
     </div>
-    <div class="user-posts" v-if="toggle == 'posts'">
+    <div class="user-posts" v-if="toggle == 'posts'&&this.posts_list">
       <div
         class="user-posts-item"
         v-for="post in posts_list"
@@ -39,6 +39,7 @@
         <h4 class="post-title">{{ post.name }}</h4>
       </div>
     </div>
+    <div v-else-if="toggle == 'posts'&&!this.works_list">Loading</div>
     <div class="user-posts" v-if="toggle == 'work'">
       <div
         class="user-posts-item"
@@ -50,6 +51,7 @@
         <h4 class="post-title">{{ work.name }}</h4>
       </div>
     </div>
+    <div v-else-if="toggle == 'works'&&!this.works_list">Loading</div>
   </section>
 </template>
 
@@ -68,7 +70,12 @@ export default {
     };
   },
   methods: {
-    ...mapActions('user',['loadUser']),
+    ...mapActions('works',{
+      loadWorks: 'loadList',
+    }),
+    ...mapActions('posts',{
+      loadPosts: 'fetchList',
+    }),
     openPost(id) {
       this.$router.push({ name: "post", params: { id: id } });
     },
@@ -79,7 +86,7 @@ export default {
       signOut(auth)
         .then(() => {
           Token.removeAccessTokenCookie();
-          sessionStorage.clear();
+          Token.removeUserCookie();
           this.$router.push("/");
         })
         .catch((error) => {
@@ -87,16 +94,23 @@ export default {
         });
     },
   },
-  async mounted() {
-    await this.loadUser();
+  mounted() {
     this.posts_list = this.posts;
     this.works_list = this.works;
   },
   computed: {
-    ...mapGetters('user',["user",'accessToken']),
-    // ...mapGetters('posts',['posts']),
-    // ...mapGetters('works',['works'])
+    ...mapGetters('user',["user"]),
+    ...mapGetters('works',{
+      works: 'getItemsList',
+    }),
+    ...mapGetters('posts',{
+      posts:'list',
+    })
   },
+  created(){
+    this.loadWorks(),
+    this.loadPosts()
+  }
 };
 </script>
 

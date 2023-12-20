@@ -1,4 +1,4 @@
-import firestoreHelper from "../helpers/firestore-helper";
+import getModuleSettingsObject from "../helpers/getModuleSettingObject"
 export default{
-  ...firestoreHelper('works'),
+  ...getModuleSettingsObject("works"),
 }

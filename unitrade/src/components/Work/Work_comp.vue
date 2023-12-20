@@ -1,3 +1,5 @@
+<!-- TODO: підключити до firebase.
+Зробити для цього firebase по фільтруванню за категорією -->
 <template>
   <div class="work" @click="openPost()">
     <img :src="work.img" alt="Фото поста">
