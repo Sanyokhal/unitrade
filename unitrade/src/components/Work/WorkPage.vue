@@ -58,7 +58,7 @@ export default {
     </div>
   </div>
 </template>
-
+<!--TODO Переробити сторінку роботи-->
 <style scoped lang="scss">
 @import "../../assets/main_colors";
 

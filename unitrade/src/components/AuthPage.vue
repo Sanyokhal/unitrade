@@ -8,7 +8,7 @@
     </div>
   </div>
 </template>
-
+<!-- Сторінка яка з'являється якщо користувач не авторизований -->
 <script>
 import Auth_btn from "@/components/Auth_btn.vue";
 

@@ -20,27 +20,27 @@
       </select>
     </div>
     <div class="posts-spacer"></div>
-    <div class="posts_list" v-if="isLoaded">
+    <div class="posts_list">
       <Post_comp :post="post" v-for="post in list" :key="post.id" />
     </div>
-    <div v-else>Loading...</div>
-    <div class="page-selector">
-      <!-- <font-awesome-icon
-        icon="arrow-left"
-        :class="{ 'hidden-page': page_index == 0 }"
-        @click="subPage()"
-        class="page-toggle"
-      />
-      <span>{{ page_index + 1 }}</span>
-      <font-awesome-icon
-        icon="arrow-right"
-        :class="{ 'hidden-page': !has_next_page }"
-        @click="addPage()"
-        class="page-toggle"
-      /> -->
-    </div>
+<!--    <div class="page-selector">-->
+<!--      &lt;!&ndash; <font-awesome-icon-->
+<!--        icon="arrow-left"-->
+<!--        :class="{ 'hidden-page': page_index == 0 }"-->
+<!--        @click="subPage()"-->
+<!--        class="page-toggle"-->
+<!--      />-->
+<!--      <span>{{ page_index + 1 }}</span>-->
+<!--      <font-awesome-icon-->
+<!--        icon="arrow-right"-->
+<!--        :class="{ 'hidden-page': !has_next_page }"-->
+<!--        @click="addPage()"-->
+<!--        class="page-toggle"-->
+<!--      /> &ndash;&gt;-->
+<!--    </div>-->
   </div>
 </template>
+<!--TODO Зробити min-height для списку-->
 
 <script>
 import Post_comp from "@/components/Post/Post_comp.vue";
@@ -167,6 +167,7 @@ export default {
 
   .posts_list {
     gap: 15px;
+    min-height: calc(100vh - 75px - 68px); // $2 це селектор $3 це верхнє меню + 1px (1px height spacer)
     padding-top: 20px;
     width: calc(100vw - 30px);
     display: flex;

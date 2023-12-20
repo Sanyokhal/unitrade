@@ -5,11 +5,6 @@ export default {
       this.$router.push(link);
     },
   },
-  mounted() {
-    window.changeMenuSelect = (value) => {
-      this.selected = value;
-    };
-  },
 };
 </script>
 
