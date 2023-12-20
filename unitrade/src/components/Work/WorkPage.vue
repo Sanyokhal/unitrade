@@ -36,9 +36,7 @@ export default {
   <div class="post-wrapper">
     <div class="upper-part">
       <div class="img-section">
-        <font-awesome-icon icon="arrow-left" class="img-toggle" />
         <img :src="work_data.img" alt="" />
-        <font-awesome-icon icon="arrow-right" class="img-toggle" />
       </div>
       <div class="seller-data">
         <div class="post-data">
@@ -48,17 +46,9 @@ export default {
           <h2 class="post-title">{{ work_data.name }}</h2>
           <h2 class="post-price">{{ work_data.salary }} грн</h2>
         </div>
-        <!-- <div class="social-links">
-          <a :href="user_data.telegram">Telegram</a>
-          <a :href="user_data.instagram">Instagram</a>
-          <a @click="copyToClipboard(user_data.phone)">+38{{ user_data.phone }}</a>
-        </div> -->
       </div>
     </div>
     <div class="lower-part">
-      <!-- <div class="post-tag">
-        <span>{{ work_data.tag }}</span>
-      </div> -->
       <h3>Опис</h3>
       <p class="description">{{ work_data.description }}</p>
       <button @click="report()" class="report">

@@ -48,9 +48,7 @@ export default {
   <div class="post-wrapper" v-if="isLoaded">
     <div class="upper-part">
       <div class="img-section">
-        <font-awesome-icon icon="arrow-left" class="img-toggle"/>
         <img :src="post_data.img" alt="">
-        <font-awesome-icon icon="arrow-right" class="img-toggle"/>
       </div>
       <div class="seller-data">
         <div class="post-data">

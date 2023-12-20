@@ -7,9 +7,7 @@
           <span class="post-name">{{ post.name }}</span>
           <img :src="post.creator.avatarUrl" alt="" class="user-profile">
         </div>
-        <p class="address">
-          Гурт. №4 82/a
-        </p>
+        <p class="address"></p>
       </div>
       <div class="tag">
         <span>{{post.tag}}</span>
