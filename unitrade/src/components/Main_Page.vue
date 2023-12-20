@@ -10,9 +10,6 @@ export default {
       selected_dormitory: 1,
     }
   },
-  mounted() {
-    window.changeMenuSelect('main');
-  },
   computed: {
     isLoggedIn() {
       return Token.getAccessTokenFromCookie();
@@ -56,7 +53,7 @@ export default {
 
   </div>
 </template>
-
+<!--TODO Добавити розділ "Про нас", "Правила", "Зв'язок з розробниками"-->
 <style scoped lang="scss">
 .spacer {
   margin-top: 15px;

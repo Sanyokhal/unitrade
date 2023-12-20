@@ -50,7 +50,8 @@ export default {
   }
 }
 </script>
-
+<!--TODO Переробити так, щоб дані витягувались з бази данних і рендерились через v-for-->
+<!--TODO * в майбутньому це буде в адмін панелі -->
 <template>
   <div class="info-page">
     <div class="about-page">
