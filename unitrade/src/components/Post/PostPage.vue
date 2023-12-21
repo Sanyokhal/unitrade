@@ -80,6 +80,7 @@ export default {
   </div>
   <div v-else>Loading</div>
 </template>
+<!--TODO Переробити сторінку оголошення-->
 
 <style scoped lang="scss">
 @import "../../assets/main_colors";

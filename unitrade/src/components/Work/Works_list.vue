@@ -14,16 +14,16 @@
     <div class="works_list">
       <Work_comp :work="work" v-for="work in getItemsList" :key="work.id"/>
     </div>
-    <div class="page-selector">
-      <!-- <font-awesome-icon icon="arrow-left" :class="{'hidden-page':page_index == 0}" @click="subPage()"
-                         class="page-toggle"/>
-      <span>{{ page_index + 1 }}</span>
-      <font-awesome-icon icon="arrow-right" :class="{'hidden-page':!has_next_page}" @click="addPage()"
-                         class="page-toggle"/> -->
-    </div>
+    <!--    <div class="page-selector">-->
+    <!-- <font-awesome-icon icon="arrow-left" :class="{'hidden-page':page_index == 0}" @click="subPage()"
+                       class="page-toggle"/>
+    <span>{{ page_index + 1 }}</span>
+    <font-awesome-icon icon="arrow-right" :class="{'hidden-page':!has_next_page}" @click="addPage()"
+                       class="page-toggle"/> -->
+    <!--    </div>-->
   </div>
 </template>
-
+<!--TODO Зробити min-height для списку-->
 <script>
 import debounce from "lodash.debounce";
 import {mapGetters, mapActions} from "vuex";
@@ -74,7 +74,7 @@ export default {
     }, 500)
     this.works_list = this.getItemsList;
   },
-  created(){
+  created() {
     this.loadList();
   }
 }
@@ -83,8 +83,8 @@ export default {
 <style lang="scss" scoped>
 @import "../../assets/main_colors";
 
-.works-spacer{
-  width:calc(100vw - 30px);
+.works-spacer {
+  width: calc(100vw - 30px);
   height: 1px;
   background-color: #006D77;
 }
@@ -122,7 +122,8 @@ export default {
     flex-direction: row;
     gap: 30px;
     justify-content: space-between;
-    select{
+
+    select {
       width: calc(100% - 10px);
       outline: none;
       flex: 1;
@@ -130,7 +131,7 @@ export default {
       font-weight: 400;
       height: 25px;
       border-radius: 3px;
-      border:none;
+      border: none;
       padding-left: 10px;
     }
   }
@@ -138,6 +139,7 @@ export default {
   .works_list {
     gap: 15px;
     padding-top: 20px;
+    min-height: calc(100vh - 75px - 68px); // $2 це селектор $3 це верхнє меню + 1px (1px height spacer)
     width: calc(100vw - 30px);
     display: flex;
     flex-direction: column;

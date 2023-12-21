@@ -1,97 +1,139 @@
 <template>
-  <section class="user-profile">
-    <div class="user-section">
-      <div class="user-info">
-        <img class="avatar" :src="user.avatarUrl" />
-        <h3>{{ user.fullName }}</h3>
+
+  <div class="user-profile" v-if="!edit_state">
+    <div class="user-data">
+      <div class="main-data">
+        <div class="profile-photo">
+          <img :src="user.avatarUrl" alt="Фото профілю">
+          <div class="edit-pen" @click="edit_state = true">
+            <font-awesome-icon :icon="['fas', 'pen']"/>
+          </div>
+        </div>
+        <div class="data">
+          <p id="fullname">{{ user.fullName }}</p>
+          <p id="dormitory">Гуртожиток №4, Кімната 82/4</p>
+          <p id="creationdate">Дата приєднання: 17.02.2023</p>
+        </div>
       </div>
-      <div class="user-profile-actions">
-        <!-- <button class="change-avatar-button">Змінити фото</button> -->
-        <button class="exit-profile-button" @click="signOutMethod()">
-          Вийти
-        </button>
-      </div>
-    </div>
-    <div class="user-posts-toggle">
-      <span
-        class="category-selector"
-        @click="toggle = 'posts'"
-        :class="{ selected: toggle == 'posts' }"
-      >
-        Оголошення
-      </span>
-      <span>|</span>
-      <span
-        class="category-selector"
-        @click="toggle = 'work'"
-        :class="{ selected: toggle == 'work' }"
-        >Робота</span
-      >
-    </div>
-    <div class="user-posts" v-if="toggle == 'posts'&&this.posts_list">
-      <div
-        class="user-posts-item"
-        v-for="post in posts_list"
-        :key="post.id"
-        @click="openPost(post.id)"
-      >
-        <img class="post-image" :src="post.img_url" />
-        <h4 class="post-title">{{ post.name }}</h4>
+      <div class="contacts">
+        <div class="left-part">
+          <p>
+            <font-awesome-icon :icon="['fas', 'phone']"/>
+            +380663928283
+          </p>
+          <p>
+            <font-awesome-icon :icon="['far', 'envelope']"/>
+            test@gmail.com
+          </p>
+        </div>
+        <div class="right-part">
+          <div class="links">
+            <font-awesome-icon :icon="['fab', 'instagram']"/>
+            <font-awesome-icon :icon="['fab', 'telegram']"/>
+          </div>
+        </div>
       </div>
     </div>
-    <div v-else-if="toggle == 'posts'&&!this.works_list">Loading</div>
-    <div class="user-posts" v-if="toggle == 'work'">
-      <div
-        class="user-posts-item"
-        v-for="work in works_list"
-        :key="work.id"
-        @click="openWork(work.id)"
-      >
-        <img class="post-image" :src="work.img_url" />
-        <h4 class="post-title">{{ work.name }}</h4>
+    <div class="user-selector">
+      <span>Показати</span>
+      <div class="select-group">
+        <select v-model="toggle">
+          <option value="post">
+            Оголошення
+          </option>
+          <option value="work"> Робота</option>
+        </select>
+        <img src="@/assets/svg/browse.svg" alt="" v-if="toggle === 'post'"/>
+        <img src="@/assets/svg/work.svg" alt="" v-else/>
       </div>
     </div>
-    <div v-else-if="toggle == 'works'&&!this.works_list">Loading</div>
-  </section>
+    <div class="user-actions">
+      <button id="exit" @click="signOutMethod()">Вийти</button>
+      <button id="create-post">Створити оголошення</button>
+    </div>
+    <div class="spacer"></div>
+    <div class="list" v-if="toggle === 'post'">
+      <Post_comp :post="post" v-for="post in posts_list" :key="post.id"/>
+    </div>
+    <div class="list" v-else>
+      <Work_comp :work="work" v-for="work in works_list" :key="work.id"/>
+    </div>
+  </div>
+  <div class="user-edit" v-else>
+    <div class="main-data">
+      <div class="profile-photo">
+        <img :src="user.avatarUrl" alt="Фото профілю">
+      </div>
+      <div class="data">
+        <p id="fullname">{{ user.fullName }}</p>
+        <p id="creationdate">Дата приєднання: 17.02.2023</p>
+      </div>
+    </div>
+    <div class="inputs">
+      <div class="input-row">
+        <font-awesome-icon :icon="['fas', 'map-location']"/>
+        <input type="text" placeholder="Адреса">
+      </div>
+      <div class="input-row">
+        <font-awesome-icon :icon="['fas', 'phone']"/>
+        <input type="text" placeholder="Номер телефону">
+      </div>
+      <div class="input-row">
+        <font-awesome-icon :icon="['fab', 'instagram']"/>
+        <input type="text" placeholder="Instagram">
+      </div>
+      <div class="input-row">
+        <font-awesome-icon :icon="['fab', 'telegram']"/>
+        <input type="text" placeholder="Telegram">
+      </div>
+    </div>
+    <div class="actions">
+      <button id="save">Зберегти</button>
+      <button id="cancel" @click="edit_state = false">Скасувати</button>
+    </div>
+  </div>
 </template>
+<!--TODO Переробити сторінку PROFILE-->
+<!--TODO добавити кнопки створити оголошення та створити роботу-->
 
 <script>
-import { mapActions, mapGetters } from "vuex";
-import { auth } from "@/firebase-config.js";
-import { signOut } from "firebase/auth";
+import {mapActions, mapGetters} from "vuex";
+import {auth} from "@/firebase-config.js";
+import {signOut} from "firebase/auth";
 import Token from "@/token-usage.js";
+import Post_comp from "@/components/Post/Post_comp.vue";
+import Work_comp from "@/components/Work/Work_comp.vue";
 
 export default {
+  components: {Work_comp, Post_comp},
   data() {
     return {
-      toggle: "posts",
+      toggle: "post",
       posts_list: [],
       works_list: [],
+      edit_state: false,
     };
   },
   methods: {
-    ...mapActions('works',{
+    ...mapActions('works', {
       loadWorks: 'loadList',
     }),
-    ...mapActions('posts',{
+    ...mapActions('posts', {
       loadPosts: 'fetchList',
     }),
     openPost(id) {
-      this.$router.push({ name: "post", params: { id: id } });
-    },
-    openWork(id) {
-      this.$router.push({ name: "work", params: { id: id } });
+      this.$router.push({name: "post", params: {id: id}});
     },
     signOutMethod() {
       signOut(auth)
-        .then(() => {
-          Token.removeAccessTokenCookie();
-          Token.removeUserCookie();
-          this.$router.push("/");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+          .then(() => {
+            Token.removeAccessTokenCookie();
+            Token.removeUserCookie();
+            this.$router.push("/");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
     },
   },
   mounted() {
@@ -99,17 +141,17 @@ export default {
     this.works_list = this.works;
   },
   computed: {
-    ...mapGetters('user',["user"]),
-    ...mapGetters('works',{
+    ...mapGetters('user', ["user"]),
+    ...mapGetters('works', {
       works: 'getItemsList',
     }),
-    ...mapGetters('posts',{
-      posts:'list',
-    })
+    ...mapGetters('posts', {
+      posts: 'list',
+    }),
   },
-  created(){
-    this.loadWorks(),
-    this.loadPosts()
+  created() {
+    this.loadWorks();
+    this.loadPosts();
   }
 };
 </script>
@@ -117,164 +159,377 @@ export default {
 <style lang="scss" scoped>
 @import "@/assets/main_colors.scss";
 
-* {
-  box-sizing: border-box;
+.spacer {
+  width: 100%;
+  height: 2px;
+  background-color: #B8DEDC;
 }
 
-button {
-  padding: 5px;
+.user-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  button {
+    border: none;
+    outline: none;
+    background-color: #B8DEDC;
+    font-size: 12px;
+    border-radius: 10px;
+    padding: 5px 15px;
+  }
+
+  #exit {
+    flex: 1;
+  }
 }
 
-.avatar {
-  width: 40px;
-  height: 40px;
-}
-
-.user-profile {
-  width: 80vw;
+.user-edit {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto;
-  background: $bg-secondary;
-  margin-top: 40px;
+  gap: 15px;
+  width: calc(90vw - 30px);
+  border-radius: 15px;
+  padding: 15px;
+  margin: auto;
+  margin-top: 15px;
+  background-color: #FFFFFF;
+
+  .main-data {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-direction: row;
+
+    .profile-photo:hover {
+      .edit-pen {
+        transition: box-shadow ease-out .2s;
+        box-shadow: 0px 0px 5px #000000;
+      }
+    }
+
+    .profile-photo {
+      height: 60px;
+      width: 60px;
+
+      img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50px;
+      }
+
+      .edit-pen {
+        height: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        top: -65px;
+        background-color: #EDF6F9;
+        color: #000000;
+        transition: box-shadow ease-out .2s;
+        position: relative;
+        width: 20px;
+        border-radius: 50px;
+
+        svg {
+          height: 10px;
+          width: 10px;
+        }
+      }
+    }
+
+    .data {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      align-items: center;
+      gap: 3px;
+      justify-content: left;
+
+      p {
+        text-align: left;
+        width: 100%;
+        font-weight: 400;
+      }
+
+      #fullname {
+        font-size: 14px;
+      }
+
+      #creationdate {
+        font-size: 8px;
+        color: #8E8E8E;
+      }
+    }
+  }
+
+  .inputs {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .input-row {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 20px;
+      justify-content: space-between;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      input {
+        padding-left: 15px;
+        border-radius: 15px;
+        border: none;
+        outline: none;
+        background-color: #D3DFE3;
+        font-size: 10px;
+        font-weight: 400;
+        height: 25px;
+        flex: 1;
+
+        &::placeholder {
+          transition: padding-left ease-out .2s, opacity ease-out .2s;
+        }
+
+        &:focus-visible::placeholder {
+          padding-left: 30px;
+          opacity: 0;
+          transition: padding-left ease-out .2s, opacity ease-out .2s;
+        }
+      }
+    }
+  }
+
+  .actions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+
+    button {
+      border-radius: 15px;
+      padding: 8px 15px;
+    }
+
+    #save {
+      background-color: #006D77;
+      color: #FFFFFF;
+      font-size: 10px;
+      font-weight: 700;
+      outline: none;
+      border: 1px solid #006D77;
+    }
+
+    #cancel {
+      background: none;
+      border: 1px solid #5C6669;
+      color: #5C6669;
+      font-size: 10px;
+      outline: none;
+      font-weight: 500;
+    }
+  }
 }
 
 .user-profile {
-  border-radius: $default-border-radius;
-}
-
-.user-section {
+  width: 90vw;
+  margin: auto;
+  margin-top: 10px;
   display: flex;
-  width: 100%;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid $border-default;
-  padding: 10px 10px;
+  gap: 15px;
 
-  .user-info {
-    display: flex;
-    align-items: center;
-
-    h3 {
-      font-weight: 500;
-      font-size: 14px;
-      margin-left: 20px;
-    }
-  }
-
-  .user-profile-actions {
-    button {
-      height: 35px;
-      border-radius: $default-border-radius;
-      border: none;
-      padding: 0px 20px 0px 20px;
-      font-family: "Montserrat", sans-serif;
-      font-weight: 500;
-    }
-
-    // .change-avatar-button {
-    //   background-color: $main;
-    // }
-
-    .exit-profile-button {
-      background-color: $danger-color;
-      color: $bg-secondary;
-      font-weight: bold;
-      box-shadow: 0px 0px 4px $danger-color;
-    }
-    .exit-profile-button:hover {
-      transition: all 0.3s;
-      background-color: #ef8c8c;
-    }
-
-    button:hover {
-      cursor: pointer;
-    }
-  }
-}
-
-.user-posts-toggle {
-  height: 50px;
-  line-height: 50px;
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  width: 80vw;
-  padding-left: 20px;
-  max-width: 100%;
-  gap: 10px;
-  border-bottom: 1px solid $border-default;
-
-  .category-selector {
-    transition: all ease 0.2s;
-  }
-
-  .category-selector:hover {
-    cursor: pointer;
-  }
-}
-
-.exit-profile-button {
-  border: 1px solid #ff0000;
-  border-radius: 10px;
-}
-
-.user-profile-actions button {
-  margin-left: 20px;
-}
-
-.title {
-  margin: 10px auto;
-}
-
-.selected {
-  font-weight: bold;
-  transition: all ease 0.2s;
-}
-
-.user-posts {
-  margin-bottom: 20px;
-  padding-top: 20px;
-  grid-gap: 20px;
-  height: auto;
-  min-height: 20%;
-  width: 80vw;
-  display: grid;
-  justify-content: space-evenly;
-  grid-template-columns: repeat(auto-fit, 17.5vw);
-  grid-template-rows: repeat(auto-fit, 15vw);
-
-  .user-posts-item {
-    width: 17.5vw;
-    height: 15vw;
-    text-align: start;
+  .user-data {
+    padding: 15px;
+    gap: 20px;
+    width: calc(100% - 30px);
+    border-radius: 15px;
+    background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
-    align-items: start;
-    justify-content: center;
 
-    img {
-      max-width: 100%;
-      width: auto;
-      object-fit: contain;
-      height: 80%;
-      border-radius: $default-border-radius;
+    .main-data {
+      width: 100%;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-direction: row;
+
+      .profile-photo:hover {
+        .edit-pen {
+          transition: box-shadow ease-out .2s;
+          box-shadow: 0px 0px 5px #000000;
+        }
+      }
+
+      .profile-photo {
+        height: 60px;
+        width: 60px;
+
+        img {
+          width: 60px;
+          height: 60px;
+          border-radius: 50px;
+        }
+
+        .edit-pen {
+          height: 20px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          top: -65px;
+          background-color: #EDF6F9;
+          color: #000000;
+          transition: box-shadow ease-out .2s;
+          position: relative;
+          width: 20px;
+          border-radius: 50px;
+
+          svg {
+            height: 10px;
+            width: 10px;
+          }
+        }
+      }
+
+      .data {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        align-items: center;
+        gap: 3px;
+        justify-content: left;
+
+        p {
+          text-align: left;
+          width: 100%;
+          font-weight: 400;
+        }
+
+        #fullname {
+          font-size: 14px;
+        }
+
+        #dormitory {
+          font-size: 11px;
+        }
+
+        #creationdate {
+          font-size: 8px;
+          color: #8E8E8E;
+        }
+      }
     }
 
-    h4 {
-      height: 20%;
+    .contacts {
+      width: 100%;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding-left: 10px;
+      flex-direction: row;
+      align-items: end;
+      justify-content: space-between;
+
+      .left-part {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: left;
+        gap: 5px;
+        font-size: 11px;
+
+        p {
+          display: flex;
+          flex-direction: row;
+          flex: 1;
+          gap: 10px;
+          align-items: center;
+          line-height: 20px;
+        }
+
+        svg {
+          height: 15px;
+          width: 15px;
+          padding: 2.5px;
+        }
+      }
+
+      .right-part {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: end;
+
+        .links {
+          gap: 10px;
+          display: flex;
+          flex-direction: row;
+
+          svg {
+            height: 20px;
+            width: 20px;
+          }
+        }
+      }
     }
   }
-  .user-posts-item:hover {
-    cursor: pointer;
-    h4 {
-      text-decoration: underline;
+
+  .list {
+    width: 100%;
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .user-selector {
+    background-color: #B8DEDC;
+    border-radius: 15px;
+    padding: 0 15px;
+    height: 40px;
+    width: calc(100% - 30px);
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+
+    span {
+      font-size: 16px;
+    }
+
+    .select-group {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 5px;
+
+      select {
+        border: none;
+        outline: none;
+        font-size: 10px;
+        background-color: #B8DEDC;
+        text-align: right;
+      }
+
+      img {
+        height: 15px;
+        width: 15px;
+        padding: 2.5px;
+      }
     }
   }
 }
