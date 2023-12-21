@@ -33,7 +33,7 @@
         <button type="submit" class="save-button" @click="createPost()">
           Зберегти
         </button>
-        <button type="button" class="cancel-button">Скасувати</button>
+        <button type="button" class="cancel-button" @click="this.$router.push('/me')">Скасувати</button>
       </div>
     </form>
   </div>

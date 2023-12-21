@@ -37,7 +37,7 @@ const routes = [
     name: "posts",
     component: () => import("@/components/Post/Posts_list.vue"),
     meta: {
-      forLoggedIn: true,
+      forLoggedIn: false,
     },
   },
   {
@@ -53,7 +53,7 @@ const routes = [
     name: "post",
     component: () => import("@/components/Post/PostPage.vue"),
     meta: {
-      forLoggedIn: true,
+      forLoggedIn: false,
     },
   },
   {
@@ -61,7 +61,7 @@ const routes = [
     name: "works",
     component: () => import("@/components/Work/Works_list.vue"),
     meta: {
-      forLoggedIn: true,
+      forLoggedIn: false,
     },
   },
   {
@@ -69,7 +69,7 @@ const routes = [
     name: "work",
     component: () => import("@/components/Work/WorkPage.vue"),
     meta: {
-      forLoggedIn: true,
+      forLoggedIn: false,
     },
   },
   {
