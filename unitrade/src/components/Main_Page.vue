@@ -7,6 +7,7 @@ export default {
   components: {Auth_btn},
   data() {
     return {
+      // TODO: Записувати, а потім діставати з кукі гуртожиток за замовчуванням
       selected_dormitory: 1,
     }
   },
@@ -72,12 +73,12 @@ export default {
   width: calc(100% - 30px);
   border-radius: 15px;
   padding: 15px;
-
+  
   p {
     font-weight: 500;
     font-size: 12px;
   }
-
+  
   span {
     font-size: 10px;
   }
