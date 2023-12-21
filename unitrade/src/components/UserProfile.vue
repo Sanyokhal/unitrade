@@ -53,7 +53,7 @@
     <div class="user-actions">
       <button id="exit" @click="signOutMethod()">Вийти</button>
       <!-- TODO: Робити перевірку, чи у юзера задані всі потрібні нам поля -->
-      <button id="create-post" @click="this.$router.push('posts/create')">Створити оголошення</button>
+      <button id="create-post" @click="createPostBtn()">Створити оголошення</button>
     </div>
     <div class="spacer"></div>
     <div class="list" v-if="toggle === 'post'">
@@ -70,7 +70,7 @@
       </div>
       <div class="data">
         <p id="fullname">{{ user.fullName }}</p>
-        <p id="creationdate">Дата приєднання: 17.02.2023</p>
+        <p id="creationdate">Дата приєднання: 00</p>
       </div>
     </div>
     <div class="inputs">
@@ -170,6 +170,13 @@ export default {
     },
     cancel(){
       location.reload();
+    },
+    createPostBtn(){
+      if(this.user.dormitory&&this.user.instagram&&this.user.phone&&this.user.room&&this.user.telegram){
+        this.$router.push('posts/create');
+      }else{
+        alert("Редагуйте дані свого профілю, додавши інформацію")
+      }
     }
   },
   async mounted() {
