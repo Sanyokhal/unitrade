@@ -102,16 +102,16 @@
       </div>
       <div class="input-row">
         <font-awesome-icon :icon="['fab', 'instagram']" />
-        <input type="text" v-model="user.instagram" placeholder="Приклад: " />
+        <input type="text" v-model="user.instagram" placeholder="Приклад: https://www.instagram.com/uzhnu/" />
       </div>
       <div class="input-row">
         <font-awesome-icon :icon="['fab', 'telegram']" />
-        <input type="text" v-model="user.telegram" placeholder="Telegram" />
+        <input type="text" v-model="user.telegram" placeholder="https://t.me/uzhnu" />
       </div>
     </div>
     <div class="actions">
       <button id="save" @click="setUser()">Зберегти</button>
-      <button id="cancel" @click="edit_state = false">Скасувати</button>
+      <button id="cancel" @click="cancel()">Скасувати</button>
     </div>
   </div>
 </template>
@@ -168,6 +168,9 @@ export default {
         console.error("Error setting document:", error);
       }
     },
+    cancel(){
+      location.reload();
+    }
   },
   async mounted() {
     await this.loadUser();
