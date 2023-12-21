@@ -76,7 +76,7 @@ export default {
 }
 
 .dorm-4 {
-  background: url('../assets/dev_images/andrij.jpg');
+  background: url('../assets/dormitory_img/dormitory-4.jpg');
 }
 
 .dorm-5 {
