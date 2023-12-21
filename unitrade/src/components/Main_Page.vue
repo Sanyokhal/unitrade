@@ -10,6 +10,7 @@ export default {
       selected_dormitory: 1,
     }
   },
+  methods: {},
   computed: {
     isLoggedIn() {
       return Token.getAccessTokenFromCookie();
@@ -50,14 +51,51 @@ export default {
       </select>
     </div>
     <div class="spacer"></div>
-
+    <div class="disclaimer about-us">
+      <p>Про нас</p>
+      <span>Трохи про нас та цей проект</span>
+    </div>
+    <div class="disclaimer rules">
+      <p>Правила</p>
+      <span>Правила користування платформою</span>
+    </div>
+    <div class="disclaimer guide">
+      <p>Посібник</p>
+      <span>Невеликий посібник по платформі</span>
+    </div>
   </div>
 </template>
 <!--TODO Добавити розділ "Про нас", "Правила", "Зв'язок з розробниками"-->
 <style scoped lang="scss">
-.spacer {
-  margin-top: 15px;
-  margin-bottom: 15px;
+.disclaimer {
+  text-align: left;
+  width: calc(100% - 30px);
+  border-radius: 15px;
+  padding: 15px;
+
+  p {
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  span {
+    font-size: 10px;
+  }
+}
+
+.about-us {
+  background: rgb(246, 234, 230);
+  background: linear-gradient(120deg, rgba(246, 234, 230, 1) 0%, rgba(255, 221, 210, 1) 100%);
+}
+
+.rules {
+  background: rgb(255, 221, 210);
+  background: linear-gradient(120deg, rgba(255, 221, 210, 1) 0%, rgba(241, 185, 165, 1) 100%);
+}
+
+.guide {
+  background: rgb(241, 185, 165);
+  background: linear-gradient(120deg, rgba(241, 185, 165, 1) 0%, rgba(226, 149, 120, 1) 100%);
 }
 
 .dorm-1 {
@@ -85,6 +123,7 @@ export default {
   margin-left: 5vw;
   display: flex;
   flex-direction: column;
+  gap: 15px;
   margin-top: 10px;
   height: calc(100vh - 67px);
   min-height: calc(100vh - 67px);
