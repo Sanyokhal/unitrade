@@ -115,7 +115,7 @@ export default {
 }
 
 .dorm-5 {
-  background: url('../assets/dev_images/sasha.jpg');
+  background: url('../assets/dormitory_img/dormitory-5.jpg');
 }
 
 .main-page-container {

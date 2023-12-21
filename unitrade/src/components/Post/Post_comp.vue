@@ -1,11 +1,11 @@
 <template>
   <div class="post" @click="openPost()">
-    <img :src="post.img_url" alt="Фото поста">
+    <img :src="post.img" alt="Фото поста">
     <div class="post-data">
       <div class="text">
         <div class="post-name-icon">
           <span class="post-name">{{ post.name }}</span>
-<!--          <img :src="post.creator.avatarUrl" alt="" class="user-profile">-->
+         <img :src="post.creator.avatarUrl" alt="" class="user-profile">
         </div>
         <p class="address"></p>
       </div>

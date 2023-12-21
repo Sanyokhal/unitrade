@@ -4,13 +4,13 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/firebase-config";
 import Token from "@/token-usage";
 import { firebaseDB } from "@/firebase-config";
-import { doc, setDoc,  } from "firebase/firestore/lite";
+import { doc, setDoc } from "firebase/firestore/lite";
 // const dbCollection = collection(firebaseDB, "users");
 
 export default {
   name: "Auth_btn",
   computed: {
-    ...mapGetters('usersDefaultDB', ["getItemById","getItemsList"]),
+    ...mapGetters("usersDefaultDB", ["getItemById", "getItemsList"]),
   },
   methods: {
     ...mapActions("user", ["changeUser", "addItem"]),
@@ -32,16 +32,9 @@ export default {
           //Set token to cookie
           Token.setAccessTokenCookie(
             user.uid,
-            new Date().getTime() + 30 * 60 * 1000
+            new Date().getTime() + 3 * 60 * 60 * 1000 // 3 hours in milliseconds
           );
-          Token.setUserCookie(
-            {
-              avatarUrl: user.photoURL,
-              fullName: user.displayName,
-              email: user.email,
-            },
-            new Date().getTime() + 30 * 60 * 1000
-          );
+
           if (this.$route.query.redirect) {
             this.$router.push(this.$route.query.redirect);
           } else {
@@ -53,9 +46,9 @@ export default {
         });
     },
   },
-  async created(){
-    await this.loadList()
-  }
+  async created() {
+    await this.loadList();
+  },
 };
 </script>
 

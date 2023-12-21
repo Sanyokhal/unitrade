@@ -2,7 +2,7 @@
 Зробити для цього firebase по фільтруванню за категорією -->
 <template>
   <div class="work" @click="openPost()">
-    <img :src="work.img_url" alt="Фото поста">
+    <img :src="work.img" alt="Фото поста">
     <div class="post-data">
       <div class="text">
         <p class="post-name">{{ work.name }}</p>

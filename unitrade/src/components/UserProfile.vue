@@ -1,35 +1,40 @@
 <template>
-
   <div class="user-profile" v-if="!edit_state">
     <div class="user-data">
       <div class="main-data">
         <div class="profile-photo">
-          <img :src="user.avatarUrl" alt="Фото профілю">
+          <img :src="user.avatarUrl" alt="Фото профілю" />
           <div class="edit-pen" @click="edit_state = true">
-            <font-awesome-icon :icon="['fas', 'pen']"/>
+            <font-awesome-icon :icon="['fas', 'pen']" />
           </div>
         </div>
         <div class="data">
           <p id="fullname">{{ user.fullName }}</p>
-          <p id="dormitory">Гуртожиток №4, Кімната 82/4</p>
+          <p id="dormitory">
+            Гуртожиток №{{ user.dormitory }}, Кімната {{ user.room }}
+          </p>
           <p id="creationdate">Дата приєднання: 17.02.2023</p>
         </div>
       </div>
       <div class="contacts">
         <div class="left-part">
           <p>
-            <font-awesome-icon :icon="['fas', 'phone']"/>
-            +380663928283
+            <font-awesome-icon :icon="['fas', 'phone']" />
+            {{ user.phone }}
           </p>
           <p>
-            <font-awesome-icon :icon="['far', 'envelope']"/>
-            test@gmail.com
+            <font-awesome-icon :icon="['far', 'envelope']" />
+            {{ user.email }}
           </p>
         </div>
         <div class="right-part">
           <div class="links">
-            <font-awesome-icon :icon="['fab', 'instagram']"/>
-            <font-awesome-icon :icon="['fab', 'telegram']"/>
+            <a :href="user.instagram"
+              ><font-awesome-icon :icon="['fab', 'instagram']"
+            /></a>
+            <a :href="user.telegram"
+              ><font-awesome-icon :icon="['fab', 'telegram']"
+            /></a>
           </div>
         </div>
       </div>
@@ -38,31 +43,29 @@
       <span>Показати</span>
       <div class="select-group">
         <select v-model="toggle">
-          <option value="post">
-            Оголошення
-          </option>
-          <option value="work"> Робота</option>
+          <option value="post">Оголошення</option>
+          <option value="work">Робота</option>
         </select>
-        <img src="@/assets/svg/browse.svg" alt="" v-if="toggle === 'post'"/>
-        <img src="@/assets/svg/work.svg" alt="" v-else/>
+        <img src="@/assets/svg/browse.svg" alt="" v-if="toggle === 'post'" />
+        <img src="@/assets/svg/work.svg" alt="" v-else />
       </div>
     </div>
     <div class="user-actions">
       <button id="exit" @click="signOutMethod()">Вийти</button>
-      <button id="create-post">Створити оголошення</button>
+      <button id="create-post" @click="this.$router.push('posts/create')">Створити оголошення</button>
     </div>
     <div class="spacer"></div>
     <div class="list" v-if="toggle === 'post'">
-      <Post_comp :post="post" v-for="post in posts_list" :key="post.id"/>
+      <Post_comp :post="post" v-for="post in posts_list" :key="post.id" />
     </div>
     <div class="list" v-else>
-      <Work_comp :work="work" v-for="work in works_list" :key="work.id"/>
+      <Work_comp :work="work" v-for="work in works_list" :key="work.id" />
     </div>
   </div>
   <div class="user-edit" v-else>
     <div class="main-data">
       <div class="profile-photo">
-        <img :src="user.avatarUrl" alt="Фото профілю">
+        <img :src="user.avatarUrl" alt="Фото профілю" />
       </div>
       <div class="data">
         <p id="fullname">{{ user.fullName }}</p>
@@ -71,41 +74,61 @@
     </div>
     <div class="inputs">
       <div class="input-row">
-        <font-awesome-icon :icon="['fas', 'map-location']"/>
-        <input type="text" placeholder="Адреса">
+        <font-awesome-icon :icon="['fas', 'building']" />
+        <input
+          type="number"
+          v-model="user.dormitory"
+          max="5"
+          min="1"
+          placeholder="Номер гуртожитку. Приклад: 4"
+        />
       </div>
       <div class="input-row">
-        <font-awesome-icon :icon="['fas', 'phone']"/>
-        <input type="text" placeholder="Номер телефону">
+        <font-awesome-icon :icon="['fas', 'person-shelter']" />
+        <input
+          type="text"
+          v-model="user.room"
+          placeholder="Номер кімнати. Приклад: 82/4"
+        />
       </div>
       <div class="input-row">
-        <font-awesome-icon :icon="['fab', 'instagram']"/>
-        <input type="text" placeholder="Instagram">
+        <font-awesome-icon :icon="['fas', 'phone']" />
+        <input
+          type="text"
+          v-model="user.phone"
+          placeholder="Приклад: +380950990019"
+        />
       </div>
       <div class="input-row">
-        <font-awesome-icon :icon="['fab', 'telegram']"/>
-        <input type="text" placeholder="Telegram">
+        <font-awesome-icon :icon="['fab', 'instagram']" />
+        <input type="text" v-model="user.instagram" placeholder="Приклад: " />
+      </div>
+      <div class="input-row">
+        <font-awesome-icon :icon="['fab', 'telegram']" />
+        <input type="text" v-model="user.telegram" placeholder="Telegram" />
       </div>
     </div>
     <div class="actions">
-      <button id="save">Зберегти</button>
+      <button id="save" @click="setUser()">Зберегти</button>
       <button id="cancel" @click="edit_state = false">Скасувати</button>
     </div>
   </div>
 </template>
 <!--TODO Переробити сторінку PROFILE-->
-<!--TODO добавити кнопки створити оголошення та створити роботу-->
 
 <script>
-import {mapActions, mapGetters} from "vuex";
-import {auth} from "@/firebase-config.js";
-import {signOut} from "firebase/auth";
+import { mapActions, mapGetters } from "vuex";
+import { auth } from "@/firebase-config.js";
+import { signOut } from "firebase/auth";
 import Token from "@/token-usage.js";
 import Post_comp from "@/components/Post/Post_comp.vue";
 import Work_comp from "@/components/Work/Work_comp.vue";
 
+import { firebaseDB } from "@/firebase-config";
+import { doc, setDoc } from "firebase/firestore/lite";
+
 export default {
-  components: {Work_comp, Post_comp},
+  components: { Work_comp, Post_comp },
   data() {
     return {
       toggle: "post",
@@ -115,54 +138,64 @@ export default {
     };
   },
   methods: {
-    ...mapActions('works', {
-      loadWorks: 'loadList',
+    ...mapActions("works", {
+      loadWorks: "loadList",
     }),
-    ...mapActions('posts', {
-      loadPosts: 'fetchList',
+    ...mapActions("posts", {
+      loadPosts: "fetchList",
     }),
+    ...mapActions("user", ["loadUser"]),
     openPost(id) {
-      this.$router.push({name: "post", params: {id: id}});
+      this.$router.push({ name: "post", params: { id: id } });
     },
     signOutMethod() {
       signOut(auth)
-          .then(() => {
-            Token.removeAccessTokenCookie();
-            Token.removeUserCookie();
-            this.$router.push("/");
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        .then(() => {
+          Token.removeAccessTokenCookie();
+          Token.removeUserCookie();
+          this.$router.push("/");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    async setUser() {
+      try {
+        await setDoc(doc(firebaseDB, "users", this.user.id), this.user);
+        location.reload();
+      } catch (error) {
+        console.error("Error setting document:", error);
+      }
     },
   },
-  mounted() {
+  async mounted() {
+    await this.loadUser();
+    await this.loadWorks();
+    await this.loadPosts();
     this.posts_list = this.posts;
     this.works_list = this.works;
   },
   computed: {
-    ...mapGetters('user', ["user"]),
-    ...mapGetters('works', {
-      works: 'getItemsList',
+    ...mapGetters("user", ["user"]),
+    ...mapGetters("works", {
+      works: "getItemsList",
     }),
-    ...mapGetters('posts', {
-      posts: 'list',
+    ...mapGetters("posts", {
+      posts: "list",
     }),
   },
-  created() {
-    this.loadWorks();
-    this.loadPosts();
-  }
 };
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/main_colors.scss";
-
+@import "../assets/main_colors";
+#exit {
+  background-color: $danger-color;
+}
 .spacer {
   width: 100%;
   height: 2px;
-  background-color: #B8DEDC;
+  background-color: #b8dedc;
 }
 
 .user-actions {
@@ -176,7 +209,7 @@ export default {
   button {
     border: none;
     outline: none;
-    background-color: #B8DEDC;
+    background-color: #b8dedc;
     font-size: 12px;
     border-radius: 10px;
     padding: 5px 15px;
@@ -197,7 +230,7 @@ export default {
   padding: 15px;
   margin: auto;
   margin-top: 15px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 
   .main-data {
     width: 100%;
@@ -208,7 +241,7 @@ export default {
 
     .profile-photo:hover {
       .edit-pen {
-        transition: box-shadow ease-out .2s;
+        transition: box-shadow ease-out 0.2s;
         box-shadow: 0px 0px 5px #000000;
       }
     }
@@ -230,9 +263,9 @@ export default {
         align-items: center;
         justify-content: center;
         top: -65px;
-        background-color: #EDF6F9;
+        background-color: #edf6f9;
         color: #000000;
-        transition: box-shadow ease-out .2s;
+        transition: box-shadow ease-out 0.2s;
         position: relative;
         width: 20px;
         border-radius: 50px;
@@ -264,7 +297,7 @@ export default {
 
       #creationdate {
         font-size: 8px;
-        color: #8E8E8E;
+        color: #8e8e8e;
       }
     }
   }
@@ -293,20 +326,20 @@ export default {
         border-radius: 15px;
         border: none;
         outline: none;
-        background-color: #D3DFE3;
+        background-color: #d3dfe3;
         font-size: 10px;
         font-weight: 400;
         height: 25px;
         flex: 1;
 
         &::placeholder {
-          transition: padding-left ease-out .2s, opacity ease-out .2s;
+          transition: padding-left ease-out 0.2s, opacity ease-out 0.2s;
         }
 
         &:focus-visible::placeholder {
           padding-left: 30px;
           opacity: 0;
-          transition: padding-left ease-out .2s, opacity ease-out .2s;
+          transition: padding-left ease-out 0.2s, opacity ease-out 0.2s;
         }
       }
     }
@@ -325,18 +358,18 @@ export default {
     }
 
     #save {
-      background-color: #006D77;
-      color: #FFFFFF;
+      background-color: #006d77;
+      color: #ffffff;
       font-size: 10px;
       font-weight: 700;
       outline: none;
-      border: 1px solid #006D77;
+      border: 1px solid #006d77;
     }
 
     #cancel {
       background: none;
-      border: 1px solid #5C6669;
-      color: #5C6669;
+      border: 1px solid #5c6669;
+      color: #5c6669;
       font-size: 10px;
       outline: none;
       font-weight: 500;
@@ -358,7 +391,7 @@ export default {
     gap: 20px;
     width: calc(100% - 30px);
     border-radius: 15px;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
 
@@ -371,7 +404,7 @@ export default {
 
       .profile-photo:hover {
         .edit-pen {
-          transition: box-shadow ease-out .2s;
+          transition: box-shadow ease-out 0.2s;
           box-shadow: 0px 0px 5px #000000;
         }
       }
@@ -393,9 +426,9 @@ export default {
           align-items: center;
           justify-content: center;
           top: -65px;
-          background-color: #EDF6F9;
+          background-color: #edf6f9;
           color: #000000;
-          transition: box-shadow ease-out .2s;
+          transition: box-shadow ease-out 0.2s;
           position: relative;
           width: 20px;
           border-radius: 50px;
@@ -431,7 +464,7 @@ export default {
 
         #creationdate {
           font-size: 8px;
-          color: #8E8E8E;
+          color: #8e8e8e;
         }
       }
     }
@@ -446,7 +479,7 @@ export default {
       .left-part {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: left;
         justify-content: left;
         gap: 5px;
         font-size: 11px;
@@ -483,6 +516,10 @@ export default {
             height: 20px;
             width: 20px;
           }
+          a {
+            text-decoration: none;
+            color: black;
+          }
         }
       }
     }
@@ -497,7 +534,7 @@ export default {
   }
 
   .user-selector {
-    background-color: #B8DEDC;
+    background-color: #b8dedc;
     border-radius: 15px;
     padding: 0 15px;
     height: 40px;
@@ -521,7 +558,7 @@ export default {
         border: none;
         outline: none;
         font-size: 10px;
-        background-color: #B8DEDC;
+        background-color: #b8dedc;
         text-align: right;
       }
 

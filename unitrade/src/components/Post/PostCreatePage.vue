@@ -4,13 +4,21 @@
       <h2 class="form-title">Створіть нове оголошення</h2>
       <!-- Заголовок -->
       <div class="input-group">
-        <input type="file" id="photo" accept="image/*" class="input-field" />
+        <input
+          type="file"
+          @change="encodeImageFileAsURL"
+          id="photo"
+          accept="image/*"
+          class="input-field"
+          required
+        />
         <input
           type="text"
           id="title"
-          v-model="formData.title"
+          v-model="formData.name"
           placeholder="Назва"
           class="input-field"
+          required
         />
         <input
           type="text"
@@ -18,10 +26,13 @@
           v-model="formData.tag"
           placeholder="Тег"
           class="input-field"
+          required
         />
       </div>
       <div class="button-group">
-        <button type="submit" class="save-button">Зберегти</button>
+        <button type="submit" class="save-button" @click="createPost()">
+          Зберегти
+        </button>
         <button type="button" class="cancel-button">Скасувати</button>
       </div>
     </form>
@@ -29,20 +40,54 @@
 </template>
 
 <script>
+import Token from "@/token-usage";
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
       formData: {
-        photo: null,
-        title: "",
+        img: "",
+        name: "",
         tag: "",
+        dormitory: 1,
+        creationDate: "11.09.2023 12:00",
+        creatorId: Token.getAccessTokenFromCookie(),
       },
     };
   },
+  computed: {
+    ...mapGetters("user", ["user"]),
+  },
   methods: {
+    ...mapActions("postsDefaultDB", ["addItem"]),
+    ...mapActions("user", ["loadUser"]),
     submitForm() {
       console.log("Надіслано:", this.formData);
     },
+    encodeImageFileAsURL(event) {
+      var file = event.target.files[0];
+
+      if (file) {
+        var reader = new FileReader();
+
+        reader.onloadend = () => {
+          this.formData.img = reader.result;
+        };
+
+        reader.readAsDataURL(file);
+      } else {
+        console.error("No file selected.");
+      }
+    },
+
+    async createPost() {
+      this.formData.dormitory = this.user.dormitory;
+      await this.addItem(this.formData);
+      this.$router.push('/me');
+    },
+  },
+  async mounted() {
+    await this.loadUser();
   },
 };
 </script>
@@ -56,7 +101,7 @@ export default {
 }
 
 .form-content {
-    font-weight: 500;
+  font-weight: 500;
   width: calc(100vw - 30px);
   background-color: white; /* Білий фон для форми */
   border-radius: 15px;
