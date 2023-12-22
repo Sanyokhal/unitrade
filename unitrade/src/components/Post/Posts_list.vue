@@ -74,6 +74,7 @@ export default {
       this.fetch();
     },
     async dormitoryNumber(newValue) {
+      localStorage.setItem("defaultDormitory", newValue);
       this.isLoaded = false;
       await this.loadListByDormitory(newValue);
       this.isLoaded = true;

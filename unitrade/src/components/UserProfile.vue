@@ -54,7 +54,6 @@
     </div>
     <div class="user-actions">
       <button id="exit" @click="signOutMethod()">Вийти</button>
-      <!-- TODO: Робити перевірку, чи у юзера задані всі потрібні нам поля -->
       <button id="create-post" @click="createPostBtn()">
         Створити оголошення
       </button>

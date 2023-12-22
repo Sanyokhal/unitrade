@@ -45,7 +45,7 @@
 </template>
   
   <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 import { firebaseDB } from "@/firebase-config";
 import { doc, setDoc } from "firebase/firestore/lite";
 export default {
@@ -56,7 +56,6 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("posts", ["list"]),
   },
   methods: {
     ...mapActions("posts", ["loadListById"]),

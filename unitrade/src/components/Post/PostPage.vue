@@ -1,6 +1,6 @@
 <script>
 import Complain from "@/components/Complain.vue";
-import { mapGetters, mapActions } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "PostPage",
@@ -14,7 +14,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters("posts", ["list"]),
+    // ...mapGetters("posts", ["list"]),
     postId() {
       return this.$route.params.id;
     },
@@ -32,7 +32,7 @@ export default {
   created() {
     this.loadListById(this.$route.params.id)
       .then((list) => {
-        this.formData = list[0];
+        this.post_data = list[0];
         this.isLoaded = true;
       })
       .catch(() => {
@@ -53,7 +53,7 @@ export default {
       <div class="seller-data">
         <div class="post-data">
           <p class="post-creation-time">
-            Опубліковано : {{ post_data.creationDate }}
+            Опубліковано : {{ new Date(this.post_data.creationDate.toMillis()).toLocaleDateString() }}
           </p>
           <h2 class="post-title">{{ post_data.name }}</h2>
           <!-- <h2 class="post-price">{{ post_data.price }} грн</h2> -->
@@ -86,7 +86,6 @@ export default {
       :post_author="post_data.creator"
     />
   </div>
-  <div v-else>Loading</div>
 </template>
 <!--TODO Переробити сторінку оголошення-->
 
