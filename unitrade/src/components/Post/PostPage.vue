@@ -1,59 +1,61 @@
 <script>
 import Complain from "@/components/Complain.vue";
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "PostPage",
-  components: {Complain},
+  components: { Complain },
   data() {
     return {
       post_data: {},
       // user_data: {},
       complain_status: false,
       isLoaded: false,
-    }
+    };
   },
-  computed:{
-    ...mapGetters('posts',['list']),
+  computed: {
+    ...mapGetters("posts", ["list"]),
     postId() {
-      return this.$route.params.id
+      return this.$route.params.id;
     },
   },
   methods: {
-    ...mapActions('posts',['fetchList']),
+    ...mapActions("posts", ["loadListById"]),
     report() {
       this.complain_status = true;
     },
     copyToClipboard(value) {
-      navigator.clipboard.writeText(value)
-      alert("Номер скопійовано")
-    }
+      navigator.clipboard.writeText(value);
+      alert("Номер скопійовано");
+    },
   },
   created() {
-    this.fetchList()
-      .then((list)=>{
-        this.post_data = list.filter((post) => post.id == this.postId)
-        this.post_data = this.post_data[0]
-        this.isLoaded = true
+    this.loadListById(this.$route.params.id)
+      .then((list) => {
+        this.formData = list[0];
+        this.isLoaded = true;
       })
-      .catch(()=>{
-        console.log('something wrong')
-      })
+      .catch(() => {
+        console.log("something wrong");
+      });
+
     // this.user_data = this.post_data.user_data
-  }
-}
+  },
+};
 </script>
 
 <template>
   <div class="post-wrapper" v-if="isLoaded">
     <div class="upper-part">
       <div class="img-section">
-        <img :src="post_data.img" alt="">
+        <img :src="post_data.img" alt="" />
       </div>
       <div class="seller-data">
         <div class="post-data">
-          <p class="post-creation-time">Опубліковано : {{ post_data.creationDate }}</p>
-          <h2 class="post-title"> {{ post_data.name }}</h2>
+          <p class="post-creation-time">
+            Опубліковано : {{ post_data.creationDate }}
+          </p>
+          <h2 class="post-title">{{ post_data.name }}</h2>
           <!-- <h2 class="post-price">{{ post_data.price }} грн</h2> -->
         </div>
         <div class="social-links">
@@ -71,12 +73,18 @@ export default {
       <!-- <h3>Опис</h3>
       <p class="description">{{ post_data.description }}</p> -->
       <button @click="report()" class="report">
-        <font-awesome-icon :icon="['far', 'flag']"/>
+        <font-awesome-icon :icon="['far', 'flag']" />
         <span>Поскаржитись</span>
       </button>
     </div>
-    <Complain @close="complain_status = false" v-if="complain_status" :post_id="post_data.id"
-              :post_img="post_data.img_url" :post_title="post_data.name" :post_author="post_data.creator"/>
+    <Complain
+      @close="complain_status = false"
+      v-if="complain_status"
+      :post_id="post_data.id"
+      :post_img="post_data.img_url"
+      :post_title="post_data.name"
+      :post_author="post_data.creator"
+    />
   </div>
   <div v-else>Loading</div>
 </template>
@@ -166,7 +174,6 @@ export default {
         .post-price {
           font-weight: 500;
         }
-
       }
 
       .social-links {
@@ -192,12 +199,12 @@ export default {
           color: #2c3e50;
           line-height: 25px;
           text-decoration: none;
-          transition: all ease-out .3s;
+          transition: all ease-out 0.3s;
           border-bottom: 2px solid $main;
         }
 
         a:hover {
-          transition: all ease-out .3s;
+          transition: all ease-out 0.3s;
           border-bottom: 2px solid $border-default;
           font-size: 18px;
         }
@@ -246,7 +253,7 @@ export default {
     .report {
       background: $danger-color;
       color: $bg-secondary;
-      transition: box-shadow ease-out .3s;
+      transition: box-shadow ease-out 0.3s;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -272,7 +279,7 @@ export default {
     }
 
     .report:hover {
-      transition: box-shadow ease-out .3s;
+      transition: box-shadow ease-out 0.3s;
       cursor: pointer;
       box-shadow: 0px 0px 10px $danger-shadow;
     }

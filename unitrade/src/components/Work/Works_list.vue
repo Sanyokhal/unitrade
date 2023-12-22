@@ -143,6 +143,7 @@ export default {
     width: calc(100vw - 30px);
     display: flex;
     flex-direction: column;
+    padding-bottom: 60px;
   }
 
   .page-selector {

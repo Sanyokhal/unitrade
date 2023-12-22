@@ -1,8 +1,7 @@
 <template>
-  <div class="form-container">
+  <div class="form-container" v-if="formData">
     <form @submit="submitForm()" class="form-content">
       <h2 class="form-title">Створіть нове оголошення</h2>
-      <!-- Заголовок -->
       <div class="input-group">
         <input
           type="file"
@@ -30,38 +29,37 @@
         />
       </div>
       <div class="button-group">
-        <button type="submit" class="save-button" @click="createPost()">
+        <button type="submit" class="save-button" @click="updatePost()">
           Зберегти
         </button>
-        <button type="button" class="cancel-button" @click="this.$router.push('/me')">Скасувати</button>
+        <button
+          type="button"
+          class="cancel-button"
+          @click="this.$router.push('/me')"
+        >
+          Скасувати
+        </button>
       </div>
     </form>
   </div>
 </template>
-
-<script>
-import {serverTimestamp} from "firebase/firestore/lite";
-import Token from "@/token-usage";
+  
+  <script>
 import { mapGetters, mapActions } from "vuex";
+import { firebaseDB } from "@/firebase-config";
+import { doc, setDoc } from "firebase/firestore/lite";
 export default {
   data() {
     return {
-      formData: {
-        img: "",
-        name: "",
-        tag: "",
-        dormitory: 1,
-        creatorId: Token.getAccessTokenFromCookie(),
-        creationDate: serverTimestamp(),
-      },
+      formData: {},
+      image: "",
     };
   },
   computed: {
-    ...mapGetters("user", ["user"]),
+    ...mapGetters("posts", ["list"]),
   },
   methods: {
-    ...mapActions("postsDefaultDB", ["addItem"]),
-    ...mapActions("user", ["loadUser"]),
+    ...mapActions("posts", ["loadListById"]),
     submitForm() {
       console.log("Надіслано:", this.formData);
     },
@@ -72,7 +70,7 @@ export default {
         var reader = new FileReader();
 
         reader.onloadend = () => {
-          this.formData.img = reader.result;
+          this.image = reader.result;
         };
 
         reader.readAsDataURL(file);
@@ -81,19 +79,29 @@ export default {
       }
     },
 
-    async createPost() {
-      this.formData.dormitory = this.user.dormitory;
-      await this.addItem(this.formData);
-      this.$router.push('/me');
+    async updatePost() {
+        // TODO: Не працює редагування фотографії. Переписати
+        this.formData.img = this.image;
+      const data = this.formData;
+      delete data.creator;
+      delete data.id;
+      await setDoc(doc(firebaseDB, "posts", this.$route.params.id), data);
+      this.$router.push("/me");
     },
   },
-  async mounted() {
-    await this.loadUser();
+  created() {
+    this.loadListById(this.$route.params.id)
+      .then((list) => {
+        this.formData = list[0];
+      })
+      .catch(() => {
+        console.log("something wrong");
+      });
   },
 };
 </script>
-
-<style lang="scss">
+  
+  <style lang="scss">
 @import "../../assets/main_colors";
 .form-container {
   margin-top: 60px;
@@ -173,3 +181,4 @@ input[type="file"]::file-selector-button:hover {
   font-weight: 500;
 }
 </style>
+  

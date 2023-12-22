@@ -3,8 +3,7 @@
   <div class="container">
     <div class="menu">
       <select v-model="dormitoryNumber">
-        <!-- <option value="" disabled selected>№ гуртожитку</option> -->
-        <option value="1" selected>Гуртожиток №1</option>
+        <option value="1">Гуртожиток №1</option>
         <option value="2">Гуртожиток №2</option>
         <option value="3">Гуртожиток №3</option>
         <option value="4">Гуртожиток №4</option>
@@ -23,21 +22,6 @@
     <div class="posts_list">
       <Post_comp :post="post" v-for="post in list" :key="post.id" />
     </div>
-<!--    <div class="page-selector">-->
-<!--      &lt;!&ndash; <font-awesome-icon-->
-<!--        icon="arrow-left"-->
-<!--        :class="{ 'hidden-page': page_index == 0 }"-->
-<!--        @click="subPage()"-->
-<!--        class="page-toggle"-->
-<!--      />-->
-<!--      <span>{{ page_index + 1 }}</span>-->
-<!--      <font-awesome-icon-->
-<!--        icon="arrow-right"-->
-<!--        :class="{ 'hidden-page': !has_next_page }"-->
-<!--        @click="addPage()"-->
-<!--        class="page-toggle"-->
-<!--      /> &ndash;&gt;-->
-<!--    </div>-->
   </div>
 </template>
 <!--TODO Зробити min-height для списку-->
@@ -52,15 +36,6 @@ export default {
   components: { Post_comp },
   computed: {
     ...mapGetters("posts", ["list"]),
-    // postsList() {
-    //   return this.list.slice(this.page_index * 10, (this.page_index + 1) * 10);
-    // },
-    // has_next_page() {
-    //   return (
-    //     this.list.slice((this.page_index + 1) * 10, (this.page_index + 2) * 10)
-    //       .length != 0
-    //   );
-    // },
   },
   methods: {
     ...mapActions("posts", ["loadListByDormitory"]),
@@ -85,7 +60,7 @@ export default {
       category: 0,
       is_free: false,
       isLoaded: false,
-      dormitoryNumber: 1,
+      dormitoryNumber: localStorage.getItem("defaultDormitory"),
     };
   },
   watch: {
@@ -172,6 +147,7 @@ export default {
     width: calc(100vw - 30px);
     display: flex;
     flex-direction: column;
+    padding-bottom:60px;
   }
 
   .page-selector {

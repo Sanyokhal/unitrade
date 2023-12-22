@@ -9,10 +9,10 @@ import {
     faArrowRight,
     faUserSecret,
     faPlus,
-    faExclamation, faPhone, faPen, faMapLocation, faBuilding, faPersonShelter
+    faExclamation, faPhone, faPen, faMapLocation, faBuilding, faPersonShelter, faTrash
 } from '@fortawesome/free-solid-svg-icons'
 import {faFlag, faEnvelope} from '@fortawesome/free-regular-svg-icons';
 import {faInstagram, faTelegram} from "@fortawesome/free-brands-svg-icons";
 
-library.add(faUserSecret, faArrowLeft, faArrowRight, faFlag, faPlus, faExclamation, faEnvelope, faInstagram, faPen,faMapLocation, faTelegram, faPhone, faBuilding, faPersonShelter)
+library.add(faUserSecret, faArrowLeft, faArrowRight, faFlag, faPlus, faExclamation, faEnvelope, faInstagram, faPen,faMapLocation, faTelegram, faPhone, faBuilding, faPersonShelter, faTrash)
 createApp(App).use(store).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app')

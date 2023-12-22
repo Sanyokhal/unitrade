@@ -13,7 +13,9 @@
           <p id="dormitory">
             Гуртожиток №{{ user.dormitory }}, Кімната {{ user.room }}
           </p>
-          <p id="creationdate">Дата приєднання: 17.02.2023</p>
+          <p id="creationdate" v-if="formatJoinDate">
+            Дата приєднання: {{ formatJoinDate }}
+          </p>
         </div>
       </div>
       <div class="contacts">
@@ -53,11 +55,13 @@
     <div class="user-actions">
       <button id="exit" @click="signOutMethod()">Вийти</button>
       <!-- TODO: Робити перевірку, чи у юзера задані всі потрібні нам поля -->
-      <button id="create-post" @click="createPostBtn()">Створити оголошення</button>
+      <button id="create-post" @click="createPostBtn()">
+        Створити оголошення
+      </button>
     </div>
     <div class="spacer"></div>
     <div class="list" v-if="toggle === 'post'">
-      <Post_comp :post="post" v-for="post in posts_list" :key="post.id" />
+      <Post_comp :post="post" :userProp="user" v-for="post in posts_list" :key="post.id" />
     </div>
     <div class="list" v-else>
       <Work_comp :work="work" v-for="work in works_list" :key="work.id" />
@@ -70,7 +74,9 @@
       </div>
       <div class="data">
         <p id="fullname">{{ user.fullName }}</p>
-        <p id="creationdate">Дата приєднання: 00</p>
+        <p id="creationdate" v-if="formatJoinDate">
+          Дата приєднання: {{ formatJoinDate }}
+        </p>
       </div>
     </div>
     <div class="inputs">
@@ -102,11 +108,19 @@
       </div>
       <div class="input-row">
         <font-awesome-icon :icon="['fab', 'instagram']" />
-        <input type="text" v-model="user.instagram" placeholder="Приклад: https://www.instagram.com/uzhnu/" />
+        <input
+          type="text"
+          v-model="user.instagram"
+          placeholder="Приклад: https://www.instagram.com/uzhnu/"
+        />
       </div>
       <div class="input-row">
         <font-awesome-icon :icon="['fab', 'telegram']" />
-        <input type="text" v-model="user.telegram" placeholder="https://t.me/uzhnu" />
+        <input
+          type="text"
+          v-model="user.telegram"
+          placeholder="https://t.me/uzhnu"
+        />
       </div>
     </div>
     <div class="actions">
@@ -130,6 +144,13 @@ import { doc, setDoc } from "firebase/firestore/lite";
 
 export default {
   components: { Work_comp, Post_comp },
+  async mounted() {
+    await this.loadUser();
+    await this.loadWorks();
+    await this.loadPosts(this.user.id);
+    this.posts_list = this.posts;
+    this.works_list = this.works;
+  },
   data() {
     return {
       toggle: "post",
@@ -138,12 +159,28 @@ export default {
       edit_state: false,
     };
   },
+  computed: {
+    ...mapGetters("user", ["user"]),
+    ...mapGetters("works", {
+      works: "getItemsList",
+    }),
+    ...mapGetters("posts", {
+      posts: "list",
+    }),
+    formatJoinDate() {
+      if (this.user && this.user.joinDate) {
+        return new Date(this.user.joinDate.toMillis()).toLocaleDateString();
+      } else {
+        return null;
+      }
+    },
+  },
   methods: {
     ...mapActions("works", {
       loadWorks: "loadList",
     }),
     ...mapActions("posts", {
-      loadPosts: "fetchList",
+      loadPosts: "loadListByCreator",
     }),
     ...mapActions("user", ["loadUser"]),
     openPost(id) {
@@ -162,38 +199,34 @@ export default {
     },
     async setUser() {
       try {
-        await setDoc(doc(firebaseDB, "users", this.user.id), this.user);
-        location.reload();
+        if (this.user.dormitory > 0 && this.user.dormitory < 6) {
+          const userWithoutId = { ...this.user };
+          delete userWithoutId.id;
+          await setDoc(doc(firebaseDB, "users", this.user.id), userWithoutId);
+          location.reload();
+        } else {
+          alert("Введіть коректний номер гуртожиту");
+        }
       } catch (error) {
         console.error("Error setting document:", error);
       }
     },
-    cancel(){
+    cancel() {
       location.reload();
     },
-    createPostBtn(){
-      if(this.user.dormitory&&this.user.instagram&&this.user.phone&&this.user.room&&this.user.telegram){
-        this.$router.push('posts/create');
-      }else{
-        alert("Редагуйте дані свого профілю, додавши інформацію")
+    createPostBtn() {
+      if (
+        this.user.dormitory &&
+        this.user.instagram &&
+        this.user.phone &&
+        this.user.room &&
+        this.user.telegram
+      ) {
+        this.$router.push("posts/create");
+      } else {
+        alert("Редагуйте дані свого профілю, додавши інформацію");
       }
-    }
-  },
-  async mounted() {
-    await this.loadUser();
-    await this.loadWorks();
-    await this.loadPosts();
-    this.posts_list = this.posts;
-    this.works_list = this.works;
-  },
-  computed: {
-    ...mapGetters("user", ["user"]),
-    ...mapGetters("works", {
-      works: "getItemsList",
-    }),
-    ...mapGetters("posts", {
-      posts: "list",
-    }),
+    },
   },
 };
 </script>
@@ -542,6 +575,7 @@ export default {
     flex: 1 1 auto;
     flex-direction: column;
     gap: 15px;
+    padding-bottom:60px;
   }
 
   .user-selector {

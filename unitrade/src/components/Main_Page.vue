@@ -8,7 +8,7 @@ export default {
   data() {
     return {
       // TODO: Записувати, а потім діставати з кукі гуртожиток за замовчуванням
-      selected_dormitory: 1,
+      selected_dormitory: localStorage.getItem("defaultDormitory"),
     }
   },
   methods: {},
@@ -28,6 +28,16 @@ export default {
       } else {
         return "dorm-5"
       }
+    }
+  },
+  watch: {
+    selected_dormitory(newValue) {
+      localStorage.setItem("defaultDormitory",newValue)
+    }
+  },
+  created () {
+    if(!localStorage.getItem("defaultDormitory")){
+      localStorage.setItem("defaultDormitory",4)
     }
   },
 }

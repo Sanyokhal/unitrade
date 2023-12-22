@@ -70,11 +70,11 @@ function getModuleSettingsObject(collectionTitle) {
             commit("setLoading", false);
           });
       },
-      deleteItem({ commit, dispatch }, itemId) {
+      async deleteItem({ commit, dispatch }, itemId) {
         commit("setError", null);
         commit("setLoading", true);
 
-        collectionDB
+        await collectionDB
           .deleteItem(itemId)
           .then(() => {
             dispatch("loadList");
@@ -87,6 +87,8 @@ function getModuleSettingsObject(collectionTitle) {
           });
       },
       updateItem({ commit, dispatch }, { itemId, data }) {
+        console.log("UpdateItemId = "+itemId);
+        console.log(data);
         commit("setError", null);
         commit("setLoading", true);
 

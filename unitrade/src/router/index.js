@@ -42,7 +42,7 @@ const routes = [
   },
   {
     path: "/posts/create",
-    name: "postsCreate",
+    name: "postCreate",
     component: () => import("@/components/Post/PostCreatePage.vue"),
     meta: {
       forLoggedIn: true,
@@ -54,6 +54,14 @@ const routes = [
     component: () => import("@/components/Post/PostPage.vue"),
     meta: {
       forLoggedIn: false,
+    },
+  },
+  {
+    path: "/posts/:id/edit",
+    name: "postEdit",
+    component: () => import("@/components/Post/PostEditPage.vue"),
+    meta: {
+      forLoggedIn: true,
     },
   },
   {
