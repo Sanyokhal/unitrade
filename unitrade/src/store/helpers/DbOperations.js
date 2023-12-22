@@ -43,14 +43,16 @@ class DbOperations {
         });
     });
   }
-  async deleteItem(id) {
-    try {
-      await deleteDoc(doc(this.dbCollection, id));
-      return true; // Resolve the promise with a value
-    } catch (error) {
-      console.error(error);
-      throw error; // Reject the promise with the caught error
-    }
+  deleteItem(id) {
+    return new Promise((resolve, reject) => {
+      deleteDoc(doc(this.dbCollection, id))
+        .then(() => {
+          resolve(true);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   }
 
   updateItem(itemId, data) {

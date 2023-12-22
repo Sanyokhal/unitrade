@@ -124,7 +124,7 @@
     </div>
     <div class="actions">
       <button id="save" @click="setUser()">Зберегти</button>
-      <button id="cancel" @click="cancel()">Скасувати</button>
+      <button id="cancel" @click="this.edit_state = false">Скасувати</button>
     </div>
   </div>
 </template>
@@ -209,9 +209,6 @@ export default {
       } catch (error) {
         console.error("Error setting document:", error);
       }
-    },
-    cancel() {
-      location.reload();
     },
     createPostBtn() {
       if (

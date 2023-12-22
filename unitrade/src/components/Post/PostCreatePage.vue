@@ -81,9 +81,9 @@ export default {
       }
     },
 
-    async createPost() {
+    createPost() {
       this.formData.dormitory = this.user.dormitory;
-      await this.addItem(this.formData);
+      this.addItem(this.formData);
       this.$router.push('/me');
     },
   },

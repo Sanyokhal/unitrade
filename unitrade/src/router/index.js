@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
 import AuthPage from "@/components/AuthPage.vue";
-import UserProfile from "@/components/UserProfile.vue";
+// import UserProfile from "@/components/UserProfile.vue";
 import Main_Page from "@/components/Main_Page.vue";
 
 import Token from "@/token-usage.js";
@@ -83,18 +83,22 @@ const routes = [
   {
     path: "/me",
     name: "me",
-    component: UserProfile,
+    component: () => import("@/components/UserProfile.vue"),
     meta: {
       forLoggedIn: true,
     },
   },
+  {
+    path: "/about-us",
+    name: "aboutUs",
+    component: ()=>import("@/components/AboutUsPage.vue")
+  }
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-
 router.beforeEach((to, from, next) => {
   const accessToken = Token.getAccessTokenFromCookie();
   const nextRouteIsForLoggedIn = to.meta?.forLoggedIn;

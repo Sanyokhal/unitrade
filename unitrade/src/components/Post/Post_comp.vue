@@ -48,17 +48,16 @@ export default {
       this.$router.push({ name: "post", params: { id: this.post.id } });
     },
     updatePost() {
-      this.$router.push({ name: "postEdit", params: { id: this.post.id } })
+      this.$router.push({ name: "postEdit", params: { id: this.post.id } });
     },
-    async deletePost() {
-      try {
-        console.log("Before deleteItem");
-        await this.deleteItem(this.post.id);
-        console.log("After deleteItem");
-        location.reload();
-      } catch (error) {
-        console.log("Error:", error);
-      }
+    deletePost() {
+      this.deleteItem(this.post.id)
+        .then(() => {
+          location.reload();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };

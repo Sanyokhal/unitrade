@@ -1,6 +1,6 @@
 <template>
   <div class="form-container" v-if="formData">
-    <form @submit="submitForm()" class="form-content">
+    <form class="form-content">
       <h2 class="form-title">Створіть нове оголошення</h2>
       <div class="input-group">
         <input
@@ -29,9 +29,7 @@
         />
       </div>
       <div class="button-group">
-        <button type="submit" class="save-button" @click="updatePost()">
-          Зберегти
-        </button>
+        <button class="save-button" @click="updatePost()">Зберегти</button>
         <button
           type="button"
           class="cancel-button"
@@ -47,44 +45,30 @@
   <script>
 import { mapActions } from "vuex";
 import { firebaseDB } from "@/firebase-config";
-import { doc, setDoc } from "firebase/firestore/lite";
+import {  doc, updateDoc } from "firebase/firestore/lite";
 export default {
   data() {
     return {
       formData: {},
-      image: "",
     };
   },
-  computed: {
-  },
+  computed: {},
   methods: {
     ...mapActions("posts", ["loadListById"]),
-    submitForm() {
-      console.log("Надіслано:", this.formData);
-    },
     encodeImageFileAsURL(event) {
       var file = event.target.files[0];
-
       if (file) {
         var reader = new FileReader();
-
         reader.onloadend = () => {
-          this.image = reader.result;
+          this.formData.img = reader.result;
         };
-
         reader.readAsDataURL(file);
       } else {
         console.error("No file selected.");
       }
     },
-
-    async updatePost() {
-        // TODO: Не працює редагування фотографії. Переписати
-        this.formData.img = this.image;
-      const data = this.formData;
-      delete data.creator;
-      delete data.id;
-      await setDoc(doc(firebaseDB, "posts", this.$route.params.id), data);
+    updatePost() {
+      updateDoc(doc(firebaseDB,"posts", this.$route.params.id), this.formData);
       this.$router.push("/me");
     },
   },

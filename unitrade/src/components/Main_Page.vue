@@ -61,7 +61,7 @@ export default {
       </select>
     </div>
     <div class="spacer"></div>
-    <div class="disclaimer about-us">
+    <div class="disclaimer about-us" @click="this.$router.push('/about-us')">
       <p>Про нас</p>
       <span>Трохи про нас та цей проект</span>
     </div>
