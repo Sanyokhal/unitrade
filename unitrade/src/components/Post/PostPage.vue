@@ -29,12 +29,12 @@
 </template>
 
 <script>
-import Complain from "@/components/Complain.vue";
+// import Complain from "@/components/Complain.vue";
 import { mapActions } from 'vuex';
 
 export default {
   name: "PostPage",
-  components: {Complain},
+  // components: {Complain},
   data() {
     return {
       post_data: {},
