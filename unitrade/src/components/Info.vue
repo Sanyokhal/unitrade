@@ -16,9 +16,19 @@ export default {
       }
     }
   },
+  watch: {
+    selected_dormitory(newValue) {
+      localStorage.setItem("defaultDormitory",newValue)
+    }
+  },
+  created () {
+    if(!localStorage.getItem("defaultDormitory")){
+      localStorage.setItem("defaultDormitory",4)
+    }
+  },
   data() {
     return {
-      selected_dormitory: 1,
+      selected_dormitory: localStorage.getItem("defaultDormitory"),
       dormitory_workers: [
         {
           name: "Кепич Василь Георгійович",

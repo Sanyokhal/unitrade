@@ -1,4 +1,4 @@
-import {firebaseDB} from "@/firebase-config";
+import { firebaseDB } from "@/firebase-config";
 import {
   doc,
   collection,
@@ -54,6 +54,7 @@ class DbOperations {
         });
     });
   }
+
   updateItem(itemId, data) {
     return new Promise((resolve, reject) => {
       const oldDocRef = doc(this.dbCollection, itemId);

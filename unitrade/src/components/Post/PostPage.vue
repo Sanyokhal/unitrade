@@ -29,13 +29,48 @@
 </template>
 
 <script>
+import Complain from "@/components/Complain.vue";
+import { mapActions } from 'vuex';
+
 export default {
-  methods: {
-    report() {
-      // Код для обробки події натискання кнопки "Поскаржитися"
+  name: "PostPage",
+  components: {Complain},
+  data() {
+    return {
+      post_data: {},
+      // user_data: {},
+      complain_status: false,
+      isLoaded: false,
     }
-  }
-}
+  },
+  computed:{
+    // ...mapGetters('posts',['list']),
+    postId() {
+      return this.$route.params.id;
+    },
+  },
+  methods: {
+    ...mapActions("posts", ["loadListById"]),
+    report() {
+      this.complain_status = true;
+    },
+    copyToClipboard(value) {
+      navigator.clipboard.writeText(value)
+      alert("Номер скопійовано")
+    },
+  },
+  created() {
+    this.loadListById(this.$route.params.id)
+      .then((list) => {
+        this.post_data = list[0];
+        this.isLoaded = true;
+      })
+      .catch(() => {
+        console.log("something wrong");
+      });
+    // this.user_data = this.post_data.user_data
+  },
+};
 </script>
 
 <style>
@@ -171,3 +206,4 @@ export default {
 
 /* Решта стилів залишається такою ж, як і раніше */
 </style>
+

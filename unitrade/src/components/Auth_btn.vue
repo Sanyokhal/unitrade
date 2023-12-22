@@ -4,7 +4,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "@/firebase-config";
 import Token from "@/token-usage";
 import { firebaseDB } from "@/firebase-config";
-import { doc, setDoc } from "firebase/firestore/lite";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore/lite";
 // const dbCollection = collection(firebaseDB, "users");
 
 export default {
@@ -27,6 +27,8 @@ export default {
               avatarUrl: user.photoURL,
               fullName: user.displayName,
               email: user.email,
+              role: "student",
+              joinDate: serverTimestamp(),
             });
           }
           //Set token to cookie

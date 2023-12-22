@@ -1,38 +1,66 @@
 <template>
-  <div class="post" @click="openPost()">
-    <img :src="post.img" alt="Фото поста">
+  <!-- TODO: @click="openPost()" ->div.post. Також нормально розташувати font-awesome-icon -->
+  <div class="post">
+    <img :src="post.img" alt="Фото поста" @click="openPost()" />
     <div class="post-data">
       <div class="text">
         <div class="post-name-icon">
           <span class="post-name">{{ post.name }}</span>
-         <img :src="post.creator.avatarUrl" alt="" class="user-profile">
+          <img :src="post.creator.avatarUrl" alt="" class="user-profile" />
         </div>
-        <p class="address"></p>
+        <p class="address">
+          Гуртожиток №{{ post.creator.dormitory }} {{ post.creator.room }}
+        </p>
       </div>
-      <div class="tag">
-        <span>{{post.tag}}</span>
+      <div class="post-bottom">
+        <div class="tag">
+          <span>{{ post.tag }}</span>
+        </div>
+        <div
+          class="buttons"
+          v-if="user.id == post.creatorId || user.role == 'admin'"
+        >
+          <font-awesome-icon :icon="['fas', 'pen']" @click="updatePost()" />
+          <font-awesome-icon :icon="['fas', 'trash']" @click="deletePost()" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "Post_comp",
   props: {
-    post: Object
+    post: Object,
+    userProp: {
+      type: Object,
+    },
   },
   computed: {
-    ...mapGetters('user', ["user"]),
+    ...mapGetters("user", ["user"]),
   },
   methods: {
+    ...mapActions("postsDefaultDB", ["deleteItem"]),
     openPost() {
-      this.$router.push({name: 'post', params: {id: this.post.id}})
-    }
+      this.$router.push({ name: "post", params: { id: this.post.id } });
+    },
+    updatePost() {
+      this.$router.push({ name: "postEdit", params: { id: this.post.id } });
+    },
+    deletePost() {
+      this.deleteItem(this.post.id)
+        .then(() => {
+          location.reload();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -42,13 +70,13 @@ export default {
   width: calc(100% - 20px);
   border-radius: 10px;
   height: 80px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   display: flex;
   gap: 15px;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  transition: all ease-out .3s;
+  transition: all ease-out 0.3s;
   padding: 10px;
 
   img {
@@ -56,7 +84,7 @@ export default {
     min-height: 75%;
     object-fit: contain;
     height: 80px;
-    width: auto;
+    width: 135px;
     max-width: 135px;
     overflow: hidden;
   }
@@ -107,22 +135,31 @@ export default {
         text-align: left;
       }
     }
-
+    .post-bottom {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      justify-content: space-between;
+      flex-direction: row;
+      .buttons {
+        display: flex;
+        gap: 15px;
+      }
+    }
   }
-  .tag{
+  .tag {
     width: 80px;
     display: flex;
     height: 15px;
-    background-color: #72DDF7;
+    background-color: #72ddf7;
     border-radius: 50px;
     line-height: 15px;
     text-align: center;
-    span{
+    span {
       width: 100%;
       font-weight: 400;
       font-size: 10px;
     }
   }
 }
-
 </style>

@@ -74,19 +74,25 @@ function getModuleSettingsObject(collectionTitle) {
         commit("setError", null);
         commit("setLoading", true);
 
-        collectionDB
-          .deleteItem(itemId)
-          .then(() => {
-            dispatch("loadList");
-          })
-          .catch((error) => {
-            commit("setError", error);
-          })
-          .finally(() => {
-            commit("setLoading", false);
-          });
+        return new Promise((resolve, reject) => {
+          collectionDB
+            .deleteItem(itemId)
+            .then(() => {
+              dispatch("loadList");
+              resolve(); // Resolve the Promise on successful deletion
+            })
+            .catch((error) => {
+              commit("setError", error);
+              reject(error); // Reject the Promise on deletion error
+            })
+            .finally(() => {
+              commit("setLoading", false);
+            });
+        });
       },
       updateItem({ commit, dispatch }, { itemId, data }) {
+        console.log("UpdateItemId = " + itemId);
+        console.log(data);
         commit("setError", null);
         commit("setLoading", true);
 
