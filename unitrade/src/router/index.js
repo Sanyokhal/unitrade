@@ -81,6 +81,22 @@ const routes = [
     },
   },
   {
+    path: "/works/:id/edit",
+    name: "workEdit",
+    component: () => import("@/components/Work/WorkEditPage.vue"),
+    meta: {
+      forLoggedIn: true,
+    },
+  },
+  {
+    path: "/works/:id/create",
+    name: "workCreate",
+    component: () => import("@/components/Work/WorkCreatePage.vue"),
+    meta: {
+      forLoggedIn: true,
+    },
+  },
+  {
     path: "/me",
     name: "me",
     component: () => import("@/components/UserProfile.vue"),
