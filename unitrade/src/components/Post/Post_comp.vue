@@ -35,9 +35,6 @@ export default {
   name: "Post_comp",
   props: {
     post: Object,
-    userProp: {
-      type: Object,
-    },
   },
   computed: {
     ...mapGetters("user", ["user"]),

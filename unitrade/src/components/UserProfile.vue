@@ -41,7 +41,7 @@
         </div>
       </div>
     </div>
-    <div class="user-selector">
+    <div class="user-selector" v-if="user.role=='admin'">
       <span>Показати</span>
       <div class="select-group">
         <select v-model="toggle">
@@ -63,7 +63,7 @@
       <Post_comp :post="post" :userProp="user" v-for="post in posts_list" :key="post.id" />
     </div>
     <div class="list" v-else>
-      <Work_comp :work="work" v-for="work in works_list" :key="work.id" />
+      <Work_comp :work="work" :userProp="user" v-for="work in works_list" :key="work.id" />
     </div>
   </div>
   <div class="user-edit" v-else>

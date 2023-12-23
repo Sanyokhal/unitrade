@@ -2,33 +2,44 @@
 Зробити для цього firebase по фільтруванню за категорією -->
 <template>
   <div class="work" @click="openPost()">
-    <img :src="work.img" alt="Фото поста">
+    <img :src="work.img" alt="Фото поста" />
     <div class="post-data">
       <div class="text">
         <p class="post-name">{{ work.name }}</p>
-        <p class="address">
-          Гурт. №4 82/a
-        </p>
+        <p class="address">Гурт. №4 82/a</p>
       </div>
-      <div class="tag">
-        <span>Для всіх</span>
+      <div class="post-bottom">
+        <div class="tag">
+          <span>{{ work.tag }}</span>
+        </div>
+        <div
+          class="buttons"
+          v-if="user.id == work.creatorId || user.role == 'admin'"
+        >
+          <font-awesome-icon :icon="['fas', 'pen']" @click="updatePost()" />
+          <font-awesome-icon :icon="['fas', 'trash']" @click="deletePost()" />
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Work_comp",
   props: {
-    work: Object
+    work: Object,
+  },
+  computed: {
+    ...mapGetters("user", ["user"]),
   },
   methods: {
     openPost() {
-      this.$router.push({name: 'work', params: {id: this.work.id}})
-    }
+      this.$router.push({ name: "work", params: { id: this.work.id } });
+    },
   },
-}
+};
 </script>
 
 <style scoped lang="scss">
@@ -38,13 +49,13 @@ export default {
   width: calc(100% - 20px);
   border-radius: 10px;
   height: 80px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   display: flex;
   gap: 15px;
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  transition: all ease-out .3s;
+  transition: all ease-out 0.3s;
   padding: 10px;
 
   img {
@@ -92,23 +103,33 @@ export default {
         text-align: left;
       }
     }
-
   }
-
-  .tag {
-    width: 80px;
+  .post-bottom {
     display: flex;
-    height: 15px;
-    background-color: #72DDF7;
-    border-radius: 50px;
-    line-height: 15px;
-    text-align: center;
-
-    span {
-      width: 100%;
-      font-weight: 400;
-      font-size: 10px;
+    gap: 25px;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    .buttons {
+      display: flex;
+      gap: 15px;
     }
+  }
+}
+
+.tag {
+  width: 80px;
+  display: flex;
+  height: 15px;
+  background-color: #72ddf7;
+  border-radius: 50px;
+  line-height: 15px;
+  text-align: center;
+
+  span {
+    width: 100%;
+    font-weight: 400;
+    font-size: 10px;
   }
 }
 </style>

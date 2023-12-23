@@ -26,7 +26,7 @@
             ><font-awesome-icon class="icon" :icon="['fas', 'phone']"
           /></a>
         </div>
-        <div style="display: flex">
+        <div style="display: flex" class="down">
           <div class="category">{{ post_data.tag }}</div>
           <button @click="report()" class="report">
             <font-awesome-icon :icon="['far', 'flag']" class="report-icon" />
@@ -91,173 +91,179 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "../../assets/main_colors";
+@import "../../assets/main_colors";
+
+/* Global Styles */
+.icons {
+  display: flex;
+  gap: 10px;
+
+  .icon {
+    color: black;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Component: .report */
 .report {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px; /* Adjusted padding */
+  border: 2px solid $danger-color;
+  border-radius: 5px;
   background: $danger-color;
   color: $bg-secondary;
   transition: box-shadow ease-out 0.3s;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding-left: 10px;
-  padding-right: 10px;
-  height: 20px;
-  border: 2px solid $danger-color;
-  border-radius: 5px;
-  .report-icon{
+
+  .report-icon {
     height: 15px;
     width: 15px;
   }
 }
-.icons {
-  display: flex;
-  gap: 10px;
-}
-.icon {
-  color: black;
-  width: 20px;
-  height: 20px;
-}
+
+/* Component: .mobile-form-container */
 .mobile-form-container {
   background-color: $bg-green;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100vw;
-  height:90vh;
+  height: 90vh;
   margin-top: 10px;
   overflow: hidden;
-  justify-content: space-between;
 }
 
-
+/* Component: .form-container */
+/* Component: .form-container */
 .form-container {
-  background-color:$bg-secondary;
+  background-color: $bg-secondary;
   position: relative;
   max-width: 90%;
   width: 330px;
-  height: 400px;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 50px; /* Додано відступ для центрування форми */
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+/* Component: .photo-container */
 .photo-container {
   position: relative;
   height: 200px;
   overflow: hidden;
   border-radius: 5px;
+
+  .photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
-.photo {
-  width: 90%;
-  height: auto;
-  object-fit: cover;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
+/* Component: .form-content */
 .form-content {
   padding: 20px;
-}
-
-.form-header {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
+  flex-direction: column;
+  justify-content: space-between; /* Adjusted for better alignment */
 
-.form-header h2 {
-  margin: 0;
-}
+  /* Component: .form-header */
+  .form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
 
-.form-header button {
-  padding: 8px 12px;
-  border: none;
-  background-color: #3498db;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
-}
+    h2 {
+      margin: 0;
+    }
 
-.form-content p {
-  margin: 8px 0;
-}
+    button {
+      padding: 8px 12px;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  }
 
-.form-content img {
-  margin-right: 5px;
-}
-.form-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
+  p {
+    margin: 8px 0;
+  }
 
-.header-text {
-  font-family: Montserrat;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: 0em;
-  text-align: left;
-  margin: 0;
-}
+  img {
+    margin-right: 5px;
+  }
 
-.telegram-icon {
-  margin-top: 10px;
-}
+  .header-text {
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin: 0;
+  }
 
-.complain-btn {
-  cursor: pointer;
-  width: 110px;
-  height: 15px;
-  background-color: #3498db;
-  color: white;
-  border-radius: 5px;
-  padding: 8px 12px;
-  text-align: center;
-  margin-top: 10px;
-  float: right; /* Переміщення кнопки вправо */
-}
+  .telegram-icon {
+    margin-top: 10px;
+  }
 
-.category {
-  font-family: Montserrat;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 20px;
-  letter-spacing: 0em;
-  text-align: left;
-  margin-top: 10px;
-}
+  .complain-btn {
+    cursor: pointer;
+    width: 110px;
+    height: 30px; /* Adjusted height for better display */
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    padding: 8px 12px;
+    text-align: center;
+    margin-top: 10px;
+    float: right;
+  }
 
-.name {
-  font-family: Montserrat;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 15px;
-  letter-spacing: 0em;
-  text-align: left;
-  margin: 8px 0;
-}
+  .category {
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-top: 10px;
+  }
 
-.address {
-  font-family: Montserrat;
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 15px;
-  letter-spacing: 0em;
-  text-align: left;
-  margin: 8px 0;
-}
+  .name {
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin: 8px 0;
+  }
 
-/* Решта стилів залишається такою ж, як і раніше */
+  .address {
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin: 8px 0;
+  }
+  .down{
+    display: flex;
+    margin-top: 10px;
+    gap:10px;
+  }
+}
 </style>
 

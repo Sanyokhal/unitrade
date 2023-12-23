@@ -24,7 +24,7 @@
           type="text"
           id="tag"
           v-model="formData.tag"
-          placeholder="Тег"
+          placeholder="Категорія"
           class="input-field"
           required
         />
@@ -33,14 +33,20 @@
         <button type="submit" class="save-button" @click="createPost()">
           Зберегти
         </button>
-        <button type="button" class="cancel-button" @click="this.$router.push('/me')">Скасувати</button>
+        <button
+          type="button"
+          class="cancel-button"
+          @click="this.$router.push('/me')"
+        >
+          Скасувати
+        </button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-import {serverTimestamp} from "firebase/firestore/lite";
+import { serverTimestamp } from "firebase/firestore/lite";
 import Token from "@/token-usage";
 import { mapGetters, mapActions } from "vuex";
 export default {
@@ -84,7 +90,7 @@ export default {
     createPost() {
       this.formData.dormitory = this.user.dormitory;
       this.addItem(this.formData);
-      this.$router.push('/me');
+      this.$router.push("/me");
     },
   },
   async mounted() {
@@ -93,45 +99,95 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import "../../assets/main_colors";
 .form-container {
-  margin-top: 60px;
   display: flex;
-  justify-content: center;
-}
-
-.form-content {
-  font-weight: 500;
-  width: calc(100vw - 30px);
-  background-color: white; /* Білий фон для форми */
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: calc(95vw - 30px);
+  max-width: 600px; /* Set a maximum width for the form */
   border-radius: 15px;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 300px;
-}
+  margin: auto;
+  margin-top: 20px;
+  background-color: #ffffff;
 
-.input-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-}
+  .form-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 
-.input-field {
-  width: 80%;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+    .form-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .input-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+
+      .input-field {
+        padding: 10px;
+        border-radius: 15px;
+        border: none;
+        outline: none;
+        background-color: #d3dfe3;
+        font-size: 12px;
+        font-weight: 500;
+        flex: 1;
+
+        &::placeholder {
+          transition: padding-left ease-out 0.2s, opacity ease-out 0.2s;
+        }
+
+        &:focus-visible::placeholder {
+          padding-left: 20px;
+          opacity: 0;
+          transition: padding-left ease-out 0.2s, opacity ease-out 0.2s;
+        }
+      }
+    }
+
+    .button-group {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+
+      button {
+        border-radius: 15px;
+        padding: 10px 20px;
+        font-size: 12px;
+        font-weight: 600;
+        outline: none;
+      }
+
+      .save-button {
+        background-color: #006d77;
+        color: #ffffff;
+        border: 1px solid #006d77;
+      }
+
+      .cancel-button {
+        background: none;
+        border: 1px solid #5c6669;
+        color: #5c6669;
+      }
+    }
+  }
 }
 
 input[type="file"]::file-selector-button {
   margin-right: 20px;
   border: none;
-  background: $main;
+  background: $dark_blue_main;
   padding: 10px 20px;
   border-radius: 10px;
   color: #fff;
@@ -140,36 +196,6 @@ input[type="file"]::file-selector-button {
 }
 
 input[type="file"]::file-selector-button:hover {
-  background: $main;
-}
-
-.button-group {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin-top: 20px;
-}
-
-.save-button,
-.cancel-button {
-  padding: 5px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.save-button {
-  background-color: $main;
-  color: white;
-  border: none;
-}
-
-.cancel-button {
-  background-color: #ccc;
-  border: none;
-}
-.form-title {
-  font-size: 18px; /* Змінив розмір заголовку */
-  margin-bottom: 10px; /* Додав відступ між заголовком і полями */
-  font-weight: 500;
+  background: $dark_blue_main;
 }
 </style>
