@@ -81,7 +81,10 @@ export default {
     },
   },
   async created() {
-    await this.loadListByDormitory(this.dormitoryNumber)
+    if (!localStorage.getItem("defaultDormitory")) {
+      localStorage.setItem("defaultDormitory", 4);
+    }
+    await this.loadListByDormitory(this.dormitoryNumber);
     this.isLoaded = true;
   },
 };
@@ -143,12 +146,14 @@ export default {
 
   .posts_list {
     gap: 15px;
-    min-height: calc(100vh - 75px - 68px); // $2 це селектор $3 це верхнє меню + 1px (1px height spacer)
+    min-height: calc(
+      100vh - 75px - 68px
+    ); // $2 це селектор $3 це верхнє меню + 1px (1px height spacer)
     padding-top: 20px;
     width: calc(100vw - 30px);
     display: flex;
     flex-direction: column;
-    padding-bottom:60px;
+    padding-bottom: 60px;
   }
 
   .page-selector {
