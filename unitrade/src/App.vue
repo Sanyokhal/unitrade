@@ -120,7 +120,7 @@ input::placeholder, input {
 .spacer {
   margin-top: 5px;
   height: 2px;
-  width: 90vw;
+  width: 100%;
   border-radius: 5px;
   background-color: #B8DEDC;
 }

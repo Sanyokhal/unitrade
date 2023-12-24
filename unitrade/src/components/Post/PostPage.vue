@@ -152,6 +152,7 @@ export default {
 
 /* Component: .form-container */
 .form-container {
+  transition: all ease-out .4s;
   background-color: $bg-secondary;
   position: relative;
   display: flex;
@@ -226,6 +227,13 @@ export default {
       padding: 5px 10px;
       background-color: #72ddf7;
     }
+  }
+}
+@media (min-width: 1000px) {
+  .form-container{
+    width: 50vw;
+    max-width: 50vw;
+    transition: all ease-out .4s;
   }
 }
 </style>
