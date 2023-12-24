@@ -35,6 +35,12 @@ export default {
       }
       document.body.style.overflowY = val;
     }
+    if (!localStorage.getItem("defaultDormitory")) {
+      localStorage.setItem("defaultDormitory", 4);
+    }
+    if (!localStorage.getItem("selectedLanguage")) {
+      localStorage.setItem("selectedLanguage", "ua");
+    }
   },
   // methods: {
   //   changeIsLoggedIn() {

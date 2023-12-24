@@ -15,5 +15,6 @@ export default createStore({
     user,
     usersDefaultDB: firebaseGetModules("users"),
     works,
+    worksDefaultDB: firebaseGetModules("works"),
   },
 });

@@ -81,7 +81,7 @@ export default {
       ></path>
       <path fill="none" d="M0 0h48v48H0z"></path>
     </svg>
-    <span>Авторизуватись</span>
+    <span>{{ $t('auth.authorize') }}</span>
   </div>
 </template>
 

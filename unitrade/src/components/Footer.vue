@@ -16,7 +16,7 @@ export default {
         @click="pushLink('/')"
     >
       <img src="@/assets/svg/home.svg" alt=""/>
-      <span>Головна</span>
+      <span>{{$t('footer.main')}}</span>
     </div>
     <div
         class="footer-element"
@@ -24,7 +24,7 @@ export default {
         @click="pushLink('/posts')"
     >
       <img src="@/assets/svg/browse.svg" alt=""/>
-      <span>Оголошення</span>
+      <span>{{$t('global.advertisement')}}</span>
     </div>
     <div
         class="footer-element"
@@ -32,7 +32,7 @@ export default {
         @click="pushLink('/info')"
     >
       <img src="@/assets/svg/info.svg" alt=""/>
-      <span>Інформація</span>
+      <span>{{$t('footer.information')}}</span>
     </div>
     <div
         class="footer-element"
@@ -40,7 +40,7 @@ export default {
         @click="pushLink('/works')"
     >
       <img src="@/assets/svg/work.svg" alt=""/>
-      <span>Робота</span>
+      <span>{{$t('global.work')}}</span>
     </div>
     <div
         class="footer-element"
@@ -48,7 +48,7 @@ export default {
         @click="pushLink('/me')"
     >
       <img src="@/assets/svg/person.svg" alt=""/>
-      <span>Акаунт</span>
+      <span>{{$t('footer.account')}}</span>
     </div>
   </div>
 </template>

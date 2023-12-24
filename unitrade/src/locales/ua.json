@@ -1,0 +1,75 @@
+{
+    "global":{
+        "dormitory":"Гуртожиток",
+        "room":"Кімната",
+        "advertisement":"Оголошення",
+        "work":"Робота",
+        "save":"Зберегти",
+        "cancel":"Скасувати"
+    },
+    "footer":{
+        "main":"Головна",
+        "information":"Інформація",
+        "account":"Акаунт"
+    },
+    "auth":{
+        "authorize":"Авторизуватись",
+        "oops":"Ой",
+        "text":{
+            "notLogged":"Схоже ви не авторизовані в системі",
+            "functions":"Для доступу до цих функцій, необхідно авторизуватись з корпоративної пошти"
+        }
+    },
+    "main":{
+        "titles":{
+            "greeting":"Вітаю",
+            "search":"Шукати",
+            "aboutUs":"Про нас",
+            "rules":"Правила"
+        },
+        "text":{
+            "greeting":"Увійди в Uni та використовуй всі можливості!",
+            "aboutUs":"Трохи про нас та цей проект",
+            "rules":"Правила користування платформою"
+        }
+    },
+    "profile":{
+        "dateOfJoining":"Дата приєднання",
+        "show":"Показати",
+        "logout":"Вийти",
+        "createAdvertisement":"Створити оголошення",
+        "createWork":"Створити роботу"
+    },
+    "aboutUs":{
+        "titles":{
+            "aboutUs":"Про нас",
+            "developers":"Розробники",
+            "contacts":"Контакти",
+            "rules":"Правила"
+        },
+        "developers":{
+            "oleksandr": "Олександр (2 курс)",
+            "andriy": "Андрій (2 курс)",
+            "viktor": "Віктор (2 курс)",
+            "yaroslav": "Ярослав (2 курс)",
+            "oleksiy": "Олексій (3 курс)",
+            "ihor": "Ігор (3 курс)"
+        },
+        "contacts":{
+            "communication":"Зв'язатись з нами"
+        },
+        "rules":{
+            "title":"Недотримання правил користування платформи призведе до блокування акаунту та видалення оголошень",
+            "1":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "2":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "3":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "4":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "5":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "6":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "7":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "8":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "9":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            "10":"Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        }
+    }
+}

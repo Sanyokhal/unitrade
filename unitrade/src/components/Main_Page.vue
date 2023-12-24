@@ -34,45 +34,40 @@ export default {
       localStorage.setItem("defaultDormitory", newValue);
     },
   },
-  created() {
-    if (!localStorage.getItem("defaultDormitory")) {
-      localStorage.setItem("defaultDormitory", 4);
-    }
-  },
 };
 </script>
 <template>
   <div class="main-page-container">
     <div class="login-notification" v-if="!isLoggedIn">
       <div class="text-part">
-        <h4>Вітаю</h4>
-        <p>Увійди в Uni та використовуй всі можливості!</p>
+        <h4>{{ $t('main.titles.greeting')}}</h4>
+        <p>{{ $t('main.text.greeting')}}</p>
       </div>
       <Auth_btn />
     </div>
     <div class="dormitory-selector" :class="selector_bg">
-      <span>Шукати</span>
+      <span>{{ $t('main.titles.search')}}</span>
       <select v-model="selected_dormitory">
-        <option value="1">Гуртожиток №1</option>
-        <option value="2">Гуртожиток №2</option>
-        <option value="3">Гуртожиток №3</option>
-        <option value="4">Гуртожиток №4</option>
-        <option value="5">Гуртожиток №5</option>
+        <option value="1">{{ $t('global.dormitory')}} №1</option>
+        <option value="2">{{ $t('global.dormitory')}} №2</option>
+        <option value="3">{{ $t('global.dormitory')}} №3</option>
+        <option value="4">{{ $t('global.dormitory')}} №4</option>
+        <option value="5">{{ $t('global.dormitory')}} №5</option>
       </select>
     </div>
     <div class="spacer"></div>
     <div class="disclaimer about-us" @click="this.$router.push('/about-us')">
-      <p>Про нас</p>
-      <span>Трохи про нас та цей проект</span>
+      <p>{{ $t('main.titles.aboutUs')}}</p>
+      <span>{{ $t('main.text.aboutUs')}}</span>
     </div>
     <div class="disclaimer rules">
-      <p>Правила</p>
-      <span>Правила користування платформою</span>
+      <p>{{ $t('main.titles.rules')}}</p>
+      <span>{{ $t('main.text.rules')}}</span>
     </div>
-    <div class="disclaimer guide">
+    <!-- <div class="disclaimer guide">
       <p>Посібник</p>
       <span>Невеликий посібник по платформі</span>
-    </div>
+    </div> -->
     <div class="space"></div>
   </div>
 </template>
@@ -111,14 +106,14 @@ export default {
   );
 }
 
-.guide {
-  background: rgb(241, 185, 165);
-  background: linear-gradient(
-    120deg,
-    rgba(241, 185, 165, 1) 0%,
-    rgba(226, 149, 120, 1) 100%
-  );
-}
+// .guide {
+//   background: rgb(241, 185, 165);
+//   background: linear-gradient(
+//     120deg,
+//     rgba(241, 185, 165, 1) 0%,
+//     rgba(226, 149, 120, 1) 100%
+//   );
+// }
 
 .dorm-1 {
   background: url("../assets/dormitory_img/dormitory-1.jpg");

@@ -1,9 +1,9 @@
 <template>
   <div class="page">
     <div class="alert">
-      <h3>Ой <span class="material-symbols-outlined">sentiment_sad</span></h3>
-      <p>Схоже ви не авторизовані в системі</p>
-      <p>Для доступу до цих функцій, необхідно авторизуватись з корпоративної пошти</p>
+      <h3>{{ $t('auth.oops') }} <span class="material-symbols-outlined">sentiment_sad</span></h3>
+      <p>{{ $t('auth.text.notLogged') }}</p>
+      <p>{{ $t('auth.text.functions') }}</p>
       <Auth_btn/>
     </div>
   </div>

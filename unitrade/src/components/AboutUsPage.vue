@@ -7,67 +7,55 @@ export default {
 <template>
   <div class="about">
     <div id="about-us">
-      <h2>Про нас</h2>
-      <p>Lorem ipsum dolor sit ametю.</p>
-      <h3>Розробники</h3>
+      <h2>{{ $t('aboutUs.titles.developers') }}</h2>
       <div class="images">
         <div class="img">
           <img src="../assets/dev_images/sasha.jpg" alt="">
-          <span>Олександр (2 курс)</span>
+          <span>{{ $t('aboutUs.developers.oleksandr') }}</span>
         </div>
         <div class="img">
           <img src="../assets/dev_images/andrij.jpg" alt="">
-          <span>Андрій (2 курс)</span>
+          <span>{{ $t('aboutUs.developers.andriy') }}</span>
         </div>
         <div class="img">
           <img src="../assets/dev_images/viktor.jpg" alt="">
-          <span>Віктор (2 курс)</span>
+          <span>{{ $t('aboutUs.developers.viktor') }}</span>
         </div>
         <div class="img">
           <img src="../assets/dev_images/jarik.jpg" alt="">
-          <span>Ярослав (2 курс)</span>
+          <span>{{ $t('aboutUs.developers.yaroslav') }}</span>
         </div>
         <div class="img">
           <img src="../assets/dev_images/lioha.jpg" alt="">
-          <span>Олексій (3 курс)</span>
+          <span>{{ $t('aboutUs.developers.oleksiy') }}</span>
         </div>
         <div class="img">
           <img src="../assets/dev_images/ihor.jpg" alt="">
-          <span>Ігор (3 курс)</span>
+          <span>{{ $t('aboutUs.developers.ihor') }}</span>
         </div>
       </div>
     </div>
     <div id="contacts">
-      <h2>Контакти</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <h2>{{ $t('aboutUs.titles.contacts') }}</h2>
       <div class="contacts-list">
-        <h3>Зв'язатись з нами</h3>
+        <h3>{{ $t('aboutUs.contacts.communication') }}</h3>
         <a href="#">Google Forms</a>
         <a href="#">Gmail</a>
         <a href="#">Telegram</a>
       </div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </div>
     <div id="rules">
-      <h2>Правила</h2>
+      <h2>{{ $t('aboutUs.titles.rules') }}</h2>
       <h4>
         <font-awesome-icon icon="exclamation" beat class="exclamation-danger-start"/>
-        Недотримання правил користування платформи призведе до блокування акаунту та видалення оголошень
+        {{ $t('aboutUs.rules.title') }}
         <font-awesome-icon icon="exclamation" beat class="exclamation-danger-end"/>
       </h4>
       <ul>
-        <li><b>1. </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-        <li><b>2. </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-        <li><b>3. </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-        <li><b>4. </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-        <li><b>5. </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-        <li><b>6. </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-        <li><b>7. </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-        <li><b>8. </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-        <li><b>9. </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
-        <li><b>10. </b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</li>
+        <li><b>1. </b>{{ $t('aboutUs.rules.1') }}</li>
+        <li><b>2. </b>{{ $t('aboutUs.rules.2') }}</li>
+        <li><b>3. </b>{{ $t('aboutUs.rules.3') }}</li>
       </ul>
-      <h4>Для оскарження блокування заповніть <a href="#">Google Forms</a></h4>
     </div>
   </div>
 </template>

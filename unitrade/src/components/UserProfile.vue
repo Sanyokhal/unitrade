@@ -11,10 +11,10 @@
         <div class="data">
           <p id="fullname">{{ user.fullName }}</p>
           <p id="dormitory">
-            Гуртожиток №{{ user.dormitory }}, Кімната {{ user.room }}
+            {{$t('global.dormitory')}} №{{ user.dormitory }}, {{$t('global.room')}} {{ user.room }}
           </p>
           <p id="creationdate" v-if="formatJoinDate">
-            Дата приєднання: {{ formatJoinDate }}
+            {{$t('profile.dateOfJoining')}}: {{ formatJoinDate }}
           </p>
         </div>
       </div>
@@ -42,20 +42,20 @@
       </div>
     </div>
     <div class="user-selector" v-if="user.role=='admin'">
-      <span>Показати</span>
+      <span>{{ $t('profile.show') }}</span>
       <div class="select-group">
         <select v-model="toggle">
-          <option value="post">Оголошення</option>
-          <option value="work">Робота</option>
+          <option value="post">{{ $t('global.advertisement') }}</option>
+          <option value="work">{{ $t('global.work') }}</option>
         </select>
         <img src="@/assets/svg/browse.svg" alt="" v-if="toggle === 'post'" />
         <img src="@/assets/svg/work.svg" alt="" v-else />
       </div>
     </div>
     <div class="user-actions">
-      <button id="exit" @click="signOutMethod()">Вийти</button>
+      <button id="exit" @click="signOutMethod()">{{ $t('profile.logout') }}</button>
       <button id="create-post" @click="createPostBtn()">
-        Створити оголошення
+        {{$t('profile.createAdvertisement')}}
       </button>
     </div>
     <div class="spacer"></div>
@@ -74,7 +74,7 @@
       <div class="data">
         <p id="fullname">{{ user.fullName }}</p>
         <p id="creationdate" v-if="formatJoinDate">
-          Дата приєднання: {{ formatJoinDate }}
+          {{ $t('profile.dateOfJoining') }}: {{ formatJoinDate }}
         </p>
       </div>
     </div>
@@ -123,8 +123,8 @@
       </div>
     </div>
     <div class="actions">
-      <button id="save" @click="setUser()">Зберегти</button>
-      <button id="cancel" @click="this.edit_state = false">Скасувати</button>
+      <button id="save" @click="setUser()">{{ $t('global.save') }}</button>
+      <button id="cancel" @click="this.edit_state = false">{{ $t('global.cancel') }}</button>
     </div>
   </div>
 </template>

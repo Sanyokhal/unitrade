@@ -1,42 +1,53 @@
 <template>
   <header>
     <div class="header-content">
-      <img src="@/assets/svg/logo_orange.svg" alt="">
-      <input type="text" placeholder="Пошук">
+      <img src="@/assets/svg/logo_orange.svg" alt="" />
+      <select
+        class="language-select"
+        v-model="selectedLanguage"
+        @change="changeLanguage"
+      >
+        <option value="ua">UA</option>
+        <option value="en">EN</option>
+      </select>
     </div>
     <div class="spacer"></div>
   </header>
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   data() {
     return {
-      value1: '',
-      dormitoryNumber: 1,
+      value1: "",
       toggle: "advertisement",
+      selectedLanguage: localStorage.getItem("selectedLanguage"),
     };
   },
-  computed: {
-    ...mapGetters('user', ["user"]),
+  mounted() {
+    this.$i18n.locale = localStorage.getItem("selectedLanguage"),
+    this.selectedLanguage = localStorage.getItem("selectedLanguage")
   },
-  watch: {
-    dormitoryNumber() {
-      console.log(this.dormitoryNumber);
+  computed: {
+    ...mapGetters("user", ["user"]),
+  },
+  methods: {
+    changeLanguage() {
+      this.$i18n.locale = this.selectedLanguage;
+      localStorage.setItem("selectedLanguage", this.selectedLanguage);
     },
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "@/assets/main_colors.scss";
 
 body {
   background-color: $bg-secondary;
 }
-
 header {
   display: flex;
   flex-direction: column;
@@ -52,7 +63,18 @@ header {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
+    .language-select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-color: #b8dedc;
+      color: #000000; /* Adjust text color as needed */
+      padding: 10px;
+      border: 2px solid #b8dedc;
+      border-radius: 5px;
+      outline: none;
+      cursor: pointer;
+    }
     img {
       height: 35px;
       width: auto;
@@ -60,7 +82,7 @@ header {
 
     input {
       border: none;
-      background-color: #FFFFFF;
+      background-color: #ffffff;
       width: 50vw;
       height: 30px;
       padding-left: 20px;
@@ -72,7 +94,7 @@ header {
     input:focus-visible::placeholder {
       padding-left: 20px;
       opacity: 0;
-      transition: all ease-out .3s;
+      transition: all ease-out 0.3s;
     }
 
     input:focus-visible {
@@ -81,10 +103,9 @@ header {
 
     input::placeholder {
       color: #000000;
-      transition: padding-left ease-out .3s, opacity ease-out .3s;
+      transition: padding-left ease-out 0.3s, opacity ease-out 0.3s;
       font-weight: 500;
     }
   }
 }
-
 </style>
