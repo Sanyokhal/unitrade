@@ -24,6 +24,8 @@ export default {
       <li><b>1. </b>{{ $t("rules.1") }}</li>
       <li><b>2. </b>{{ $t("rules.2") }}</li>
       <li><b>3. </b>{{ $t("rules.3") }}</li>
+      <li><b>4. </b>{{ $t("rules.4") }}</li>
+      <li><b>5. </b>{{ $t("rules.5") }}</li>
     </ul>
   </div>
 </template>

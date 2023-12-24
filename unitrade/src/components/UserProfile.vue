@@ -48,6 +48,7 @@
         <select v-model="toggle">
           <option value="posts">{{ $t("global.advertisement") }}</option>
           <option value="works">{{ $t("global.work") }}</option>
+          <option value="info">{{ $t("global.info") }}</option>
         </select>
         <img src="@/assets/svg/browse.svg" alt="" v-if="toggle == 'posts'" />
         <img src="@/assets/svg/work.svg" alt="" v-else />
@@ -64,8 +65,11 @@
       >
         {{ $t("profile.createAdvertisement") }}
       </button>
-      <button id="create-work" v-else @click="createBtn(toggle)">
+      <button id="create-work" v-else-if="toggle=='works'" @click="createBtn(toggle)">
         {{ $t("profile.createWork") }}
+      </button>
+      <button id="create-info" v-else @click="createBtn(toggle)">
+        {{ $t("profile.createInfo") }}
       </button>
     </div>
     <div class="spacer"></div>
@@ -77,12 +81,20 @@
         :key="post.id"
       />
     </div>
-    <div class="list" v-else>
+    <div class="list" v-else-if="toggle == 'works'">
       <Work_comp
         :work="work"
         :userProp="user"
         v-for="work in works_list"
         :key="work.id"
+      />
+    </div>
+    <div class="list" v-else>
+      <info-component
+        :attention="attention"
+        :user="user"
+        v-for="attention in attentionList"
+        :key="attention.title"
       />
     </div>
   </div>
@@ -158,35 +170,42 @@ import { signOut } from "firebase/auth";
 import Token from "@/token-usage.js";
 import Post_comp from "@/components/Post/Post_comp.vue";
 import Work_comp from "@/components/Work/Work_comp.vue";
+import InfoComponent from "@/components/Info/InfoComponent.vue";
 
 import { firebaseDB } from "@/firebase-config";
 import { doc, setDoc } from "firebase/firestore/lite";
 
 export default {
-  components: { Work_comp, Post_comp },
+  components: { Work_comp, Post_comp, InfoComponent },
   async mounted() {
-    await this.loadUser();
-    await this.loadWorks();
-    await this.loadPosts(this.user.id);
-    this.posts_list = this.posts;
-    this.works_list = this.works;
+    try {
+      const user = await this.loadUser();
+
+      const posts = await this.loadPosts(user.id);
+      this.posts_list = posts;
+
+      if (user.role == "admin") {
+        const works = await this.loadWorks();
+        this.works_list = works;
+
+        this.attentionList = await this.loadInfo()
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
   },
+
   data() {
     return {
       toggle: "posts",
       posts_list: [],
       works_list: [],
+      attentionList: [],
       edit_state: false,
     };
   },
   computed: {
     ...mapGetters("user", ["user"]),
-    ...mapGetters("worksDefaultDB", {
-      works: "getItemsList",
-    }),
-    ...mapGetters("posts", {
-      posts: "list",
-    }),
     formatJoinDate() {
       if (this.user && this.user.joinDate) {
         return new Date(this.user.joinDate.toMillis()).toLocaleDateString();
@@ -203,6 +222,9 @@ export default {
       loadPosts: "loadListByCreator",
     }),
     ...mapActions("user", ["loadUser"]),
+    ...mapActions("information", {
+      loadInfo: "fetchList",
+    }),
     openPost(id) {
       this.$router.push({ name: "post", params: { id: id } });
     },

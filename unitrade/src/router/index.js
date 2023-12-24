@@ -27,9 +27,25 @@ const routes = [
   {
     path: "/info",
     name: "info",
-    component: () => import("@/components/Info.vue"),
+    component: () => import("@/components/Info/Info.vue"),
     meta: {
       forLoggedIn: false,
+    },
+  },
+  {
+    path: "/info/create",
+    name: "infoCreate",
+    component: () => import("@/components/Info/InfoCreate.vue"),
+    meta: {
+      forLoggedIn: true,
+    },
+  },
+  {
+    path: "/info/:id/edit",
+    name: "infoEdit",
+    component: () => import("@/components/Info/InfoEdit.vue"),
+    meta: {
+      forLoggedIn: true,
     },
   },
   {
@@ -108,11 +124,17 @@ const routes = [
     path: "/about-us",
     name: "aboutUs",
     component: () => import("@/components/additionalInfo/AboutUsPage.vue"),
+    meta: {
+      forLoggedIn: false,
+    },
   },
   {
     path: "/rules",
     name: "rules",
     component: () => import("@/components/additionalInfo/RulesPage.vue"),
+    meta: {
+      forLoggedIn: false,
+    },
   },
 ];
 

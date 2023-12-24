@@ -10,8 +10,9 @@ export default createStore({
   namespaced: true,
   modules: {
     information,
-    postsDefaultDB: firebaseGetModules("posts"),
+    informationDefaultDB: firebaseGetModules("information"),
     posts,
+    postsDefaultDB: firebaseGetModules("posts"),
     user,
     usersDefaultDB: firebaseGetModules("users"),
     works,

@@ -1,9 +1,13 @@
 <script>
-import {mapActions} from "vuex";
-import data from '../dormitory_data.json'
+import { mapActions } from "vuex";
+import data from "../../dormitory_data.json";
+import InfoComponent from "./InfoComponent.vue";
 
 export default {
   name: "Info",
+  components: {
+    InfoComponent,
+  },
   computed: {
     selector_bg() {
       if (this.selected_dormitory == 1) {
@@ -22,8 +26,17 @@ export default {
   watch: {
     selected_dormitory(newValue) {
       localStorage.setItem("defaultDormitory", newValue);
-      let dorm = data.filter((dorm) => parseInt(this.selected_dormitory) === dorm.dormitory_num)[0]
+      let dorm = data.filter(
+        (dorm) => parseInt(this.selected_dormitory) === dorm.dormitory_num
+      )[0];
       this.dormitory_data = dorm.workers;
+      this.loadListByDormitory(this.selected_dormitory)
+        .then((list) => {
+          this.attentionList = list;
+        })
+        .catch(() => {
+          console.log("some error");
+        });
     },
   },
   methods: {
@@ -34,13 +47,17 @@ export default {
       localStorage.setItem("defaultDormitory", 4);
     }
     this.loadListByDormitory(this.selected_dormitory)
-        .then((list) => {
-          this.attentionList = list;
-        })
-        .catch(() => {
-          console.log("some error");
-        });
-    let dorm = data.filter((dorm) => parseInt(localStorage.getItem("defaultDormitory")) === dorm.dormitory_num)[0]
+      .then((list) => {
+        this.attentionList = list;
+      })
+      .catch(() => {
+        console.log("some error");
+      });
+    let dorm = data.filter(
+      (dorm) =>
+        parseInt(localStorage.getItem("defaultDormitory")) ===
+        dorm.dormitory_num
+    )[0];
     this.dormitory_data = dorm.workers;
   },
   data() {
@@ -52,8 +69,8 @@ export default {
   },
 };
 </script>
-<!--TODO Переробити так, щоб дані витягувались з бази данних і рендерились через v-for-->
-<!--TODO * в майбутньому це буде в адмін панелі -->
+
+
 <template>
   <div class="info-page">
     <div class="about-page">
@@ -72,30 +89,18 @@ export default {
     </div>
 
     <div class="alert-holder">
-      <div
-          class="custom-alert"
-          v-for="attention in attentionList"
-          :key="attention.id"
-      >
-        <div class="left-part">
-          <h4>
-            {{ attention.title }}
-            <span>{{
-                new Date(attention.creationDate.toMillis()).toLocaleDateString()
-              }}</span>
-          </h4>
-          <p>{{ attention.content }}</p>
-        </div>
-        <div class="right-part">
-          <font-awesome-icon
-              icon="exclamation"
-              beat
-              class="exclamation-danger-end"
-          />
-        </div>
-      </div>
+      <info-component
+        :attention="attention"
+        v-for="attention in attentionList"
+        :key="attention.title"
+      ></info-component>
     </div>
     <div class="posts-spacer"></div>
+    <div class="data">
+      <h4>Директор студмістечка</h4>
+      <p>КЕПИЧ Василь Георгієвич</p>
+      <p>0953769613 (з 8.00 по 17.00 в робочі дні)</p>
+    </div>
     <div class="data" v-for="worker in dormitory_data" :key="worker.id">
       <h4>{{ worker.position }}</h4>
       <p>{{ worker.fullName }}</p>
@@ -103,6 +108,7 @@ export default {
     </div>
   </div>
 </template>
+
 
 <style scoped lang="scss">
 .alert-holder {
@@ -137,66 +143,25 @@ export default {
     font-size: 10px;
   }
 }
-.custom-alert {
-  border-radius: 10px;
-  width: calc(100vw - 50px);
-  display: flex;
-  flex-direction: row;
-  padding: 10px;
-  background-color: #ffddd2;
-  justify-content: space-between;
-
-  .left-part {
-    text-align: left;
-    flex: 1;
-
-    h4 {
-      margin-bottom: 10px;
-      font-size: 14px;
-      display: flex;
-      justify-content: space-between;
-
-      span {
-        font-size: 11px;
-      }
-    }
-
-    p {
-      font-size: 10px;
-    }
-  }
-
-  .right-part {
-    width: 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    span {
-      font-size: 32px;
-    }
-  }
-}
 
 .dorm-1 {
-  background: url("../assets/dormitory_img/dormitory-1.jpg");
+  background: url("../../assets/dormitory_img/dormitory-1.jpg");
 }
 
 .dorm-2 {
-  background: url("../assets/dormitory_img/dormitory-2.jpg");
+  background: url("../../assets/dormitory_img/dormitory-2.jpg");
 }
 
 .dorm-3 {
-  background: url("../assets/dormitory_img/dormitory-3.jpg");
+  background: url("../../assets/dormitory_img/dormitory-3.jpg");
 }
 
 .dorm-4 {
-  background: url("../assets/dormitory_img/dormitory-4.jpg");
+  background: url("../../assets/dormitory_img/dormitory-4.jpg");
 }
 
 .dorm-5 {
-  background: url("../assets/dormitory_img/dormitory-5.jpg");
+  background: url("../../assets/dormitory_img/dormitory-5.jpg");
 }
 
 .dormitory-selector {

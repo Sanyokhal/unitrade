@@ -6,7 +6,8 @@
         "work": "Робота",
         "save": "Зберегти",
         "cancel": "Скасувати",
-        "select":"Вибрати"
+        "select":"Вибрати",
+        "info":"Інформація"
     },
     "footer": {
         "main": "Головна",
@@ -39,7 +40,8 @@
         "show": "Показати",
         "logout": "Вийти",
         "createAdvertisement": "Створити оголошення",
-        "createWork": "Створити роботу"
+        "createWork": "Створити роботу",
+        "createInfo": "Створити інформацію"
     },
     "aboutUs": {
         "titles": {
@@ -62,22 +64,19 @@
     },
     "rules": {
         "title": "Недотримання правил користування платформи призведе до блокування акаунту та видалення оголошень",
-        "1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "4": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "5": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "6": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "7": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "8": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "9": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "10": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "1": "Заборонені матеріали: Будь ласка, не публікуйте образливий, непристойний чи нелегальний вміст.",
+        "2": "Точність та достовірність: Публікуйте лише достовірну інформацію в оголошеннях.",
+        "3": "Реклама та спам: Заборонено розміщення небажаних комерційних повідомлень, реклами чи спаму.",
+        "4": "Відповідальність за власний контент: Користувачі несуть особисту відповідальність за те, що вони публікують.",
+        "5": "Обов'язок вказання реальних даних: При створенні облікового запису необхідно надавати правдиву та достовірну інформацію про себе. Облікові записи з фейковою інформацією можуть бути заблоковані. Ваша приватність важлива для нас, і дані будуть використані відповідно до політики конфіденційності."
     },
     "info":{
         "about":{
             "title":"Інформація",
             "text":"На данній сторінці ви зможете переглянути дані та події пов'язані з вибраним гуртожитком"
-        }
+        },
+        "edit":"Редагувати інформацію",
+        "create":"Створити інформацію"
     },
     "work":{
         "salary":"Заробітня плата",
@@ -94,6 +93,8 @@
         "salary": "Заробітня плата",
         "description":"Опис",
         "submit":"Зберегти",
-        "cancel":"Скасувати"
+        "cancel":"Скасувати",
+        "title":"Назва",
+        "content":"Опис"
     }
 }

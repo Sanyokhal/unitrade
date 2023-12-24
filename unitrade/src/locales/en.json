@@ -6,7 +6,8 @@
         "work": "Work",
         "save": "Save",
         "cancel": "Cancel",
-        "select":"Select"
+        "select": "Select",
+        "info": "Information"
     },
     "footer": {
         "main": "Main",
@@ -39,7 +40,8 @@
         "show": "Show",
         "logout": "Log out",
         "createAdvertisement": "Create advertisement",
-        "createWork": "Create work"
+        "createWork": "Create work",
+        "createInfo": "Create information"
     },
     "aboutUs": {
         "titles": {
@@ -62,38 +64,37 @@
     },
     "rules": {
         "title": "Failure to comply with the rules of use of the platform will lead to account blocking and removal of ads",
-        "1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "4": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "5": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "6": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "7": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "8": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "9": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-        "10": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "1": "Prohibited materials: Please do not post offensive, obscene, or illegal content.",
+        "2": "Accuracy and reliability: Only publish accurate information in your classifieds.",
+        "3": "Advertising and spam: Posting unsolicited commercial messages, advertisements, or spam is prohibited.",
+        "4": "Responsibility for your own content: Users are solely responsible for what they publish.",
+        "5": "The obligation to provide real data: When creating an account, you must provide true and accurate information about yourself. Accounts with fake information may be blocked. Your privacy is important to us and the data will be used in accordance with the privacy policy."
     },
-    "info":{
-        "about":{
-            "title":"Information",
-            "text":"On this page you can view data and events related to the selected dormitory"
-        }
+    "info": {
+        "about": {
+            "title": "Information",
+            "text": "On this page you can view data and events related to the selected dormitory"
+        },
+        "edit": "Edit information",
+        "create": "Create information"
     },
-    "work":{
-        "salary":"Salary",
-        "create":"Create new work",
-        "edit":"Edit work"
+    "work": {
+        "salary": "Salary",
+        "create": "Create new work",
+        "edit": "Edit work"
     },
-    "post":{
-        "create":"Create new advertisement",
-        "edit":"Edit advertisement"
+    "post": {
+        "create": "Create new advertisement",
+        "edit": "Edit advertisement"
     },
-    "form":{
-        "name":"Title",
+    "form": {
+        "name": "Title",
         "tag": "Category",
         "salary": "Salary",
-        "description":"Description",
-        "submit":"Submit",
-        "cancel":"Cancel"
+        "description": "Description",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "title": "Title",
+        "content": "Description"
     }
 }

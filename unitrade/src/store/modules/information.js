@@ -16,6 +16,23 @@ export default {
     },
   },
   actions: {
+    async fetchList({ commit }) {
+      try {
+        const querySnapshot = await getDocs(dbCollection);
+        const list = querySnapshot.docs.map((doc) => {
+
+          return {
+            id: doc.id,
+            ...doc.data(),
+          };
+        });
+        commit("setList", list);
+        return list; // Опціонально, можна повертати дані для подальшого використання
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
     async loadListByDormitory({ commit }, dormitory) {
       try {
         const querySnapshot = await getDocs(dbCollection);
@@ -30,6 +47,26 @@ export default {
           });
         commit("setList", list);
         return list; // Опціонально, можна повертати дані для подальшого використання
+      } catch (error) {
+        console.error(error);
+        throw error;
+      }
+    },
+    async loadListById({ commit }, postId) {
+      try {
+        const querySnapshot = await getDocs(dbCollection);
+
+        const list = querySnapshot.docs
+          .filter((doc) => doc.id == postId)
+          .map((doc) => {
+
+            return {
+              id: doc.id,
+              ...doc.data(),
+            };
+          });
+        commit("setList", list);
+        return list; // Optionally, you can return the data for further use
       } catch (error) {
         console.error(error);
         throw error;

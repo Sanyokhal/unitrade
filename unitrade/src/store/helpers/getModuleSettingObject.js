@@ -43,10 +43,11 @@ function getModuleSettingsObject(collectionTitle) {
       loadList({ commit }) {
         commit("setError", null);
         commit("setLoading", true);
-        collectionDB
+        return collectionDB
           .loadItemsList()
           .then((list) => {
             commit("setItemsList", list);
+            return list;
           })
           .catch((error) => {
             commit("setError", error);
