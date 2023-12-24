@@ -78,5 +78,22 @@
             "title":"Information",
             "text":"On this page you can view data and events related to the selected dormitory"
         }
+    },
+    "work":{
+        "salary":"Salary",
+        "create":"Create new work",
+        "edit":"Edit work"
+    },
+    "post":{
+        "create":"Create new advertisement",
+        "edit":"Edit advertisement"
+    },
+    "form":{
+        "name":"Title",
+        "tag": "Category",
+        "salary": "Salary",
+        "description":"Description",
+        "submit":"Submit",
+        "cancel":"Cancel"
     }
 }

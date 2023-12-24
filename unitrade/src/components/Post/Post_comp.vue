@@ -8,7 +8,7 @@
           <img :src="post.creator.avatarUrl" alt="" class="user-profile" />
         </div>
         <p class="address">
-          Гуртожиток №{{ post.creator.dormitory }} {{ post.creator.room }}
+          {{$t('global.dormitory')}} №{{ post.dormitory }} {{ post.creator.room }}
         </p>
       </div>
       <div class="post-bottom">

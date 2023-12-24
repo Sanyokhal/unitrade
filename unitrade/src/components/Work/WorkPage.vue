@@ -7,7 +7,7 @@
       <div class="form-content">
         <p class="header-text">{{ work_data.name }}</p>
         <p class="description">{{ work_data.description }}</p>
-        <p class="payment">Заробітня плата: <b>{{ work_data.salary }}₴</b></p>
+        <p class="payment">{{$t('work.salary')}}: <b>{{ work_data.salary }}₴</b></p>
         <div style="display: flex" class="down">
           <div class="category">{{ work_data.tag }}</div>
           <button @click="report()" class="report">

@@ -8,7 +8,7 @@
         <p class="header-text">{{ post_data.name }}</p>
         <p class="name">{{ post_data.creator.fullName }}</p>
         <p class="address">
-          Гурт. {{ post_data.dormitory }} {{ post_data.creator.room }}
+          {{ $t('global.dormitory') }}: {{ post_data.dormitory }} {{ post_data.creator.room }}
         </p>
         <div class="icons">
           <a :href="post_data.creator.instagram"

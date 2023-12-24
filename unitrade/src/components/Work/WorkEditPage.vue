@@ -1,7 +1,7 @@
 <template>
   <div class="form-container" v-if="formData">
     <form class="form-content">
-      <h2 class="form-title">Редагувати роботу</h2>
+      <h2 class="form-title">{{$t('work.edit')}}</h2>
       <div class="input-group">
         <input
           type="file"
@@ -15,7 +15,7 @@
           type="text"
           id="title"
           v-model="formData.name"
-          placeholder="Назва"
+          :placeholder="$t('form.name')"
           class="input-field"
           required
         />
@@ -23,7 +23,7 @@
           type="text"
           id="tag"
           v-model="formData.tag"
-          placeholder="Категорія"
+          :placeholder="$t('form.tag')"
           class="input-field"
           required
         />
@@ -31,28 +31,28 @@
           type="text"
           id="salary"
           v-model="formData.salary"
-          placeholder="Заробітня плата"
+          :placeholder="$t('form.salary')"
           class="input-field"
           required
         />
         <textarea
           style="resize: none"
           v-model="formData.description"
-          placeholder="Опис"
+          :placeholder="$t('form.description')"
           class="input-field"
           required
         ></textarea>
       </div>
       <div class="button-group">
         <button type="submit" class="save-button" @click="updateWork()">
-          Зберегти
+          {{$t('form.submit')}}
         </button>
         <button
           type="button"
           class="cancel-button"
           @click="this.$router.push('/me')"
         >
-          Скасувати
+          {{$t('form.cancel')}}
         </button>
       </div>
     </form>
