@@ -6,8 +6,6 @@ import Main_Page from "@/components/Main_Page.vue";
 
 import Token from "@/token-usage.js";
 
-// TODO:Зробити захист роутів
-
 const routes = [
   {
     path: "/",

@@ -4,16 +4,8 @@
     <div class="works_list">
       <Work_comp :work="work" v-for="work in getItemsList" :key="work.id"/>
     </div>
-    <!--    <div class="page-selector">-->
-    <!-- <font-awesome-icon icon="arrow-left" :class="{'hidden-page':page_index == 0}" @click="subPage()"
-                       class="page-toggle"/>
-    <span>{{ page_index + 1 }}</span>
-    <font-awesome-icon icon="arrow-right" :class="{'hidden-page':!has_next_page}" @click="addPage()"
-                       class="page-toggle"/> -->
-    <!--    </div>-->
   </div>
 </template>
-<!--TODO Зробити min-height для списку-->
 <script>
 import debounce from "lodash.debounce";
 import {mapGetters, mapActions} from "vuex";
@@ -24,8 +16,6 @@ export default {
   components: {Work_comp},
   computed: {
     ...mapGetters('worksDefaultDB', ['getItemsList']),
-    // worksList(){ return this.list.slice(this.page_index*10,(this.page_index+1)*10)},
-    // has_next_page(){ return this.list.slice((this.page_index+1)*10,(this.page_index+2)*10).length!=0},
   },
   methods: {
     ...mapActions("worksDefaultDB", ["loadList"]),

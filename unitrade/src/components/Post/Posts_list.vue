@@ -1,4 +1,3 @@
-<!-- TODO Зробити для цього firebase по фільтруванню за категорією -->
 <template>
   <div class="container">
     <div class="menu">
@@ -16,7 +15,6 @@
     </div>
   </div>
 </template>
-<!--TODO Зробити min-height для списку-->
 
 <script>
 import Post_comp from "@/components/Post/Post_comp.vue";
