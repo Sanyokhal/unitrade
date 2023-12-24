@@ -1,5 +1,7 @@
 <script>
-import { mapActions } from "vuex";
+import {mapActions} from "vuex";
+import data from '../dormitory_data.json'
+
 export default {
   name: "Info",
   computed: {
@@ -20,6 +22,8 @@ export default {
   watch: {
     selected_dormitory(newValue) {
       localStorage.setItem("defaultDormitory", newValue);
+      let dorm = data.filter((dorm) => parseInt(this.selected_dormitory) === dorm.dormitory_num)[0]
+      this.dormitory_data = dorm.workers;
     },
   },
   methods: {
@@ -30,44 +34,20 @@ export default {
       localStorage.setItem("defaultDormitory", 4);
     }
     this.loadListByDormitory(this.selected_dormitory)
-      .then((list) => {
-        this.attentionList = list;
-      })
-      .catch(() => {
-        console.log("some error");
-      });
+        .then((list) => {
+          this.attentionList = list;
+        })
+        .catch(() => {
+          console.log("some error");
+        });
+    let dorm = data.filter((dorm) => parseInt(localStorage.getItem("defaultDormitory")) === dorm.dormitory_num)[0]
+    this.dormitory_data = dorm.workers;
   },
   data() {
     return {
+      dormitory_data: [],
       attentionList: [],
       selected_dormitory: localStorage.getItem("defaultDormitory"),
-      dormitory_workers: [
-        {
-          name: "Кепич Василь Георгійович",
-          phone: "+3803122643467",
-          position: "Директор студмістечка",
-        },
-        {
-          name: "НЕКАЧАЙЛО Валерій Вікторович",
-          phone: "+3803122643467",
-          position: "Заступник директора студмістечка",
-        },
-        {
-          name: "БУРДЮХ Іван Іванович",
-          phone: "+3803122643467",
-          position: "Заступник директора по експлуатації",
-        },
-        {
-          name: "БІЛЕЙ Світлана Петрівна",
-          phone: "+3803122643467",
-          position: "Комендант",
-        },
-        {
-          name: "ТАНЦЮРА Галина Григорівна",
-          phone: "+3803122643467",
-          position: "Хтось",
-        },
-      ],
     };
   },
 };
@@ -90,38 +70,48 @@ export default {
         <option value="5">{{ $t("global.dormitory") }} №5</option>
       </select>
     </div>
-    <div
-      class="custom-alert"
-      v-for="attention in attentionList"
-      :key="attention.id"
-    >
-      <div class="left-part">
-        <h4>
-          {{ attention.title }}
-          <span>{{
-            new Date(attention.creationDate.toMillis()).toLocaleDateString()
-          }}</span>
-        </h4>
-        <p>{{ attention.content }}</p>
-      </div>
-      <div class="right-part">
-        <font-awesome-icon
-          icon="exclamation"
-          beat
-          class="exclamation-danger-end"
-        />
+    <div class="alert-holder">
+
+      <div
+          class="custom-alert"
+          v-for="attention in attentionList"
+          :key="attention.id"
+      >
+        <div class="left-part">
+          <h4>
+            {{ attention.title }}
+            <span>{{
+                new Date(attention.creationDate.toMillis()).toLocaleDateString()
+              }}</span>
+          </h4>
+          <p>{{ attention.content }}</p>
+        </div>
+        <div class="right-part">
+          <font-awesome-icon
+              icon="exclamation"
+              beat
+              class="exclamation-danger-end"
+          />
+        </div>
       </div>
     </div>
     <div class="posts-spacer"></div>
-    <div class="data" v-for="worker in dormitory_workers" :key="worker.id">
+    <div class="data" v-for="worker in dormitory_data" :key="worker.id">
       <h4>{{ worker.position }}</h4>
-      <p>{{ worker.name }}</p>
-      <p>{{ worker.phone }}</p>
+      <p>{{ worker.fullName }}</p>
+      <p>{{ worker.num }}</p>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
+.alert-holder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
 .posts-spacer {
   width: calc(100vw - 30px);
   height: 1px;
@@ -155,15 +145,18 @@ export default {
   flex-direction: row;
   padding: 10px;
   background-color: #ffddd2;
+  justify-content: space-between;
 
   .left-part {
     text-align: left;
+    flex: 1;
 
     h4 {
       margin-bottom: 10px;
       font-size: 14px;
       display: flex;
       justify-content: space-between;
+
       span {
         font-size: 11px;
       }
@@ -175,6 +168,7 @@ export default {
   }
 
   .right-part {
+    width: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
