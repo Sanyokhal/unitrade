@@ -1,33 +1,45 @@
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "Info",
   computed: {
     selector_bg() {
       if (this.selected_dormitory == 1) {
-        return "dorm-1"
+        return "dorm-1";
       } else if (this.selected_dormitory == 2) {
-        return "dorm-2"
+        return "dorm-2";
       } else if (this.selected_dormitory == 3) {
-        return "dorm-3"
+        return "dorm-3";
       } else if (this.selected_dormitory == 4) {
-        return "dorm-4"
+        return "dorm-4";
       } else {
-        return "dorm-5"
+        return "dorm-5";
       }
-    }
+    },
   },
   watch: {
     selected_dormitory(newValue) {
-      localStorage.setItem("defaultDormitory",newValue)
-    }
+      localStorage.setItem("defaultDormitory", newValue);
+    },
   },
-  created () {
-    if(!localStorage.getItem("defaultDormitory")){
-      localStorage.setItem("defaultDormitory",4)
+  methods: {
+    ...mapActions("information", ["loadListByDormitory"]),
+  },
+  created() {
+    if (!localStorage.getItem("defaultDormitory")) {
+      localStorage.setItem("defaultDormitory", 4);
     }
+    this.loadListByDormitory(this.selected_dormitory)
+      .then((list) => {
+        this.attentionList = list;
+      })
+      .catch(() => {
+        console.log("some error");
+      });
   },
   data() {
     return {
+      attentionList: [],
       selected_dormitory: localStorage.getItem("defaultDormitory"),
       dormitory_workers: [
         {
@@ -54,37 +66,50 @@ export default {
           name: "ТАНЦЮРА Галина Григорівна",
           phone: "+3803122643467",
           position: "Хтось",
-        }
-      ]
-    }
-  }
-}
+        },
+      ],
+    };
+  },
+};
 </script>
 <!--TODO Переробити так, щоб дані витягувались з бази данних і рендерились через v-for-->
 <!--TODO * в майбутньому це буде в адмін панелі -->
 <template>
   <div class="info-page">
     <div class="about-page">
-      <h4>{{ $t('info.about.title') }}</h4>
-      <p>{{ $t('info.about.text') }}</p>
+      <h4>{{ $t("info.about.title") }}</h4>
+      <p>{{ $t("info.about.text") }}</p>
     </div>
     <div class="dormitory-selector" :class="selector_bg">
-      <span>{{$t('global.select')}}</span>
+      <span>{{ $t("global.select") }}</span>
       <select v-model="selected_dormitory">
-        <option value="1">{{$t('global.dormitory')}} №1</option>
-        <option value="2">{{$t('global.dormitory')}} №2</option>
-        <option value="3">{{$t('global.dormitory')}} №3</option>
-        <option value="4">{{$t('global.dormitory')}} №4</option>
-        <option value="5">{{$t('global.dormitory')}} №5</option>
+        <option value="1">{{ $t("global.dormitory") }} №1</option>
+        <option value="2">{{ $t("global.dormitory") }} №2</option>
+        <option value="3">{{ $t("global.dormitory") }} №3</option>
+        <option value="4">{{ $t("global.dormitory") }} №4</option>
+        <option value="5">{{ $t("global.dormitory") }} №5</option>
       </select>
     </div>
-    <div class="custom-alert">
+    <div
+      class="custom-alert"
+      v-for="attention in attentionList"
+      :key="attention.id"
+    >
       <div class="left-part">
-        <h4>Увага</h4>
-        <p>Через ремонтні роботи над системою водопостачання, вода в гуртожитку відсутня</p>
+        <h4>
+          {{ attention.title }}
+          <span>{{
+            new Date(attention.creationDate.toMillis()).toLocaleDateString()
+          }}</span>
+        </h4>
+        <p>{{ attention.content }}</p>
       </div>
       <div class="right-part">
-        <span class="material-symbols-outlined">exclamation</span>
+        <font-awesome-icon
+          icon="exclamation"
+          beat
+          class="exclamation-danger-end"
+        />
       </div>
     </div>
     <div class="posts-spacer"></div>
@@ -110,7 +135,7 @@ export default {
   width: calc(100vw - 50px);
   padding: 10px;
   border-radius: 10px;
-  background-color: #F6EAE6;
+  background-color: #f6eae6;
 
   h4 {
     margin-bottom: 5px;
@@ -129,7 +154,7 @@ export default {
   display: flex;
   flex-direction: row;
   padding: 10px;
-  background-color: #FFDDD2;
+  background-color: #ffddd2;
 
   .left-part {
     text-align: left;
@@ -137,6 +162,11 @@ export default {
     h4 {
       margin-bottom: 10px;
       font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      span {
+        font-size: 11px;
+      }
     }
 
     p {
@@ -157,23 +187,23 @@ export default {
 }
 
 .dorm-1 {
-  background: url('../assets/dormitory_img/dormitory-1.jpg');
+  background: url("../assets/dormitory_img/dormitory-1.jpg");
 }
 
 .dorm-2 {
-  background: url('../assets/dormitory_img/dormitory-2.jpg');
+  background: url("../assets/dormitory_img/dormitory-2.jpg");
 }
 
 .dorm-3 {
-  background: url('../assets/dormitory_img/dormitory-3.jpg');
+  background: url("../assets/dormitory_img/dormitory-3.jpg");
 }
 
 .dorm-4 {
-  background: url('../assets/dormitory_img/dormitory-4.jpg');
+  background: url("../assets/dormitory_img/dormitory-4.jpg");
 }
 
 .dorm-5 {
-  background: url('../assets/dormitory_img/dormitory-5.jpg');
+  background: url("../assets/dormitory_img/dormitory-5.jpg");
 }
 
 .dormitory-selector {
@@ -184,7 +214,7 @@ export default {
   //height: calc(90vw / 130 * 100);
   //min-height: calc(90vw / 130 * 100);
   border-radius: 15px;
-  transition: background ease-out .3s;
+  transition: background ease-out 0.3s;
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -195,7 +225,7 @@ export default {
     font-size: 14px;
     margin-top: 15px;
     margin-left: 15px;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 
   select {
@@ -205,7 +235,7 @@ export default {
     font-size: 10px;
     outline: none;
     border: none;
-    color: #FFFFFF;
+    color: #ffffff;
     margin-left: 15px;
   }
 
@@ -220,7 +250,7 @@ export default {
   width: 100vw;
   margin-bottom: 15px;
   margin-top: 10px;
-  background-color: #B8DEDC;
+  background-color: #b8dedc;
   min-height: calc(100vh - 67px);
   display: flex;
   flex-direction: column;
@@ -229,7 +259,7 @@ export default {
   .about-page {
     margin-top: 15px;
     border-radius: 10px;
-    background-color: #F6EAE6;
+    background-color: #f6eae6;
     padding: 10px;
     text-align: left;
     width: calc(100vw - 50px);
