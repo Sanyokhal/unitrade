@@ -1,252 +1,226 @@
-<script>
-import { mapActions, mapGetters } from "vuex";
-
-export default {
-  name: "WorkPage",
-  data() {
-    return {
-      work_data: {},
-
-    };
-  },
-  computed: {
-    ...mapGetters('works',['getItemById']),
-    workId() {
-      return this.$route.params.id;
-    },
-  },
-  methods: {
-    ...mapActions("works", ["loadList"]),
-    report() {
-      alert(`На допис з Id ${this.workId} поскаржено`);
-    },
-    copyToClipboard(value) {
-      navigator.clipboard.writeText(value);
-      alert("Номер скопійовано");
-    },
-  },
-  async created() {
-    await this.loadList()
-    this.work_data = this.getItemById(this.workId)
-  },
-};
-</script>
-
 <template>
-  <div class="post-wrapper">
-    <div class="upper-part">
-      <div class="img-section">
-        <img :src="work_data.img" alt="" />
+  <div class="mobile-form-container" >
+    <div class="form-container">
+      <div class="photo-container">
+        <img src="https://showdream.org/uploads/posts/2023-04/medium/1681668390_morgan-frmen-vimagaye-zaboroniti-termn-afroamerikanec.jpg" alt="Photo" class="photo" />
       </div>
-      <div class="seller-data">
-        <div class="post-data">
-          <p class="post-creation-time">
-            Опубліковано : {{ work_data.creationDate }}
-          </p>
-          <h2 class="post-title">{{ work_data.name }}</h2>
-          <h2 class="post-price">{{ work_data.salary }} грн</h2>
+      <div class="form-content">
+        <div class="form-header">
+          <h2 class="header-text">"work_data.name"</h2>
+        </div>
+        <p class="name">" work_data.creator.fullName "</p>
+        <p class="address">
+           " Опис і тут буде довгий текст "
+        </p>
+        <div class="icons">
+          <a 
+            ><font-awesome-icon class="icon" :icon="['fab', 'instagram']"
+          /></a>
+          <a 
+            ><font-awesome-icon class="icon" :icon="['fab', 'telegram']"
+          /></a>
+          <a @click="copyToClipboard(work_data.creator.email)"
+            ><font-awesome-icon class="icon" :icon="['far', 'envelope']"
+          /></a>
+          <a @click="copyToClipboard(work_data.creator.phone)"
+            ><font-awesome-icon class="icon" :icon="['fas', 'phone']"
+          /></a>
+        </div>
+        <div style="display: flex" class="down">
+          <div class="category">" work_data.tag "</div>
+          <button @click="report()" class="report">
+            <font-awesome-icon :icon="['far', 'flag']" class="report-icon" />
+            <span>Поскаржитись</span>
+          </button>
         </div>
       </div>
-    </div>
-    <div class="lower-part">
-      <h3>Опис</h3>
-      <p class="description">{{ work_data.description }}</p>
-      <button @click="report()" class="report">
-        <font-awesome-icon :icon="['far', 'flag']" />
-        <span>Поскаржитись</span>
-      </button>
+      <Complain
+        @close="complain_status = false"
+        v-if="complain_status"
+        :work_id="work_data.id"
+        :work_img="work_data.img_url"
+        :work_title="work_data.name"
+        :work_author="work_data.creator"
+      />
     </div>
   </div>
 </template>
-<!--TODO Переробити сторінку роботи-->
+
+<script></script>
+
 <style scoped lang="scss">
 @import "../../assets/main_colors";
+@import "../../assets/main_colors";
 
-.post-wrapper {
-  max-height: calc(100vh - 120px);
-  height: calc(100vh - 120px);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-top: 30px;
-  width: 80vw;
-  margin-left: 10vw;
-  background-color: $bg-secondary;
+/* Global Styles */
+.icons {
+  display: flex;
+  gap: 10px;
+
+  .icon {
+    color: black;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* Component: .report */
+.report {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px; /* Adjusted padding */
+  border: 2px solid $danger-color;
+  border-radius: 5px;
+  background: $danger-color;
+  color: $bg-secondary;
+  transition: box-shadow ease-out 0.3s;
+
+  .report-icon {
+    height: 15px;
+    width: 15px;
+  }
+}
+
+/* Component: .mobile-form-container */
+.mobile-form-container {
+  background-color: $bg-green;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 90vh;
+  margin-top: 10px;
+  overflow: hidden;
+}
 
-  .upper-part {
-    max-width: 100%;
-    width: 90%;
-    padding-left: 5%;
-    padding-right: 5%;
+/* Component: .form-container */
+/* Component: .form-container */
+.form-container {
+  background-color: $bg-secondary;
+  position: relative;
+  max-width: 90%;
+  width: 330px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Component: .photo-container */
+.photo-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 5px;
+
+  .photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Component: .form-content */
+.form-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Adjusted for better alignment */
+
+  /* Component: .form-header */
+  .form-header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    height: 60%;
+    align-items: center;
+    margin-bottom: 15px;
 
-    .img-section {
-      width: 70%;
-      margin-top: 20px;
-      display: flex;
-      flex-direction: row;
-      gap: 20px;
-      align-items: center;
-      justify-content: center;
-
-      .img-toggle {
-        height: 30px;
-      }
-
-      .img-toggle:hover {
-        cursor: pointer;
-      }
-
-      img {
-        height: 80%;
-        max-width: 80%;
-        max-height: 80%;
-      }
+    h2 {
+      margin: 0;
     }
 
-    .seller-data {
-      margin-top: 20px;
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      width: 30%;
-
-      .post-data {
-        display: flex;
-        flex-direction: column;
-        text-align: start;
-        width: 100%;
-
-        .post-title {
-          margin-bottom: 20px;
-          font-weight: 600;
-        }
-
-        .post-creation-time {
-          font-weight: 500;
-          font-size: 14px;
-          margin-bottom: 5px;
-        }
-
-        .post-price {
-          font-weight: 500;
-        }
-      }
-
-      .social-links {
-        background: $main;
-        width: 70%;
-        margin-top: 10px;
-        padding: 20px 0px 20px 0px;
-        align-items: center;
-        justify-content: center;
-        border-radius: $default-border-radius;
-        display: flex;
-        flex-direction: column;
-
-        span {
-          font-size: 18px;
-          font-weight: bold;
-          margin-bottom: 15px;
-        }
-
-        a {
-          font-size: 16px;
-          font-weight: bold;
-          color: #2c3e50;
-          line-height: 25px;
-          text-decoration: none;
-          transition: all ease-out 0.3s;
-          border-bottom: 2px solid $main;
-        }
-
-        a:hover {
-          transition: all ease-out 0.3s;
-          border-bottom: 2px solid $border-default;
-          font-size: 18px;
-        }
-
-        a:last-child:hover {
-          cursor: pointer;
-        }
-      }
+    button {
+      padding: 8px 12px;
+      border: none;
+      background-color: #3498db;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
     }
   }
 
-  .lower-part {
-    max-width: 100%;
-    padding: 10px;
+  p {
+    margin: 8px 0;
+    width:80%
+  }
+
+  img {
+    margin-right: 5px;
+  }
+
+  .header-text {
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin: 0;
+  }
+
+  .telegram-icon {
+    margin-top: 10px;
+  }
+
+  .complain-btn {
+    cursor: pointer;
+    width: 110px;
+    height: 30px; /* Adjusted height for better display */
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    padding: 8px 12px;
+    text-align: center;
+    margin-top: 10px;
+    float: right;
+  }
+
+  .category {
+    font-family: Montserrat;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-top: 10px;
+  }
+
+  .name {
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin: 8px 0;
+  }
+
+  .address {
+    font-family: Montserrat;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin: 8px 0;
+  }
+  .down {
     display: flex;
-    height: 40%;
-    justify-content: space-between;
-    flex-direction: column;
-    align-items: start;
-
-    .post-tag {
-      margin-left: 20px;
-      height: 30px;
-      background-color: $main;
-      border-radius: $default-border-radius;
-      line-height: 30px;
-      padding: 0px 20px 0px 20px;
-
-      span {
-        font-weight: 500;
-      }
-    }
-
-    h3 {
-      margin-left: 20px;
-    }
-
-    .description {
-      font-size: 18px;
-      font-weight: 500;
-      text-align: start;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    .report {
-      background: $danger-color;
-      color: $bg-secondary;
-      transition: box-shadow ease-out 0.3s;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-      padding-left: 10px;
-      padding-right: 10px;
-      margin-bottom: 20px;
-      height: 40px;
-      margin-left: 20px;
-      line-height: 40px;
-      border: 2px solid $danger-color;
-      border-radius: 5px;
-
-      .fa-flag {
-        height: 15px;
-      }
-
-      span {
-        font-size: 14px;
-        font-weight: bold;
-        font-family: "Montserrat", sans-serif;
-      }
-    }
-
-    .report:hover {
-      transition: box-shadow ease-out 0.3s;
-      cursor: pointer;
-      box-shadow: 0px 0px 10px $danger-shadow;
-    }
+    margin-top: 10px;
+    gap: 10px;
   }
 }
 </style>
