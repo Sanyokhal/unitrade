@@ -33,12 +33,12 @@ export default {
   name: "Works_list",
   components: {Work_comp},
   computed: {
-    ...mapGetters('works', ['getItemsList']),
+    ...mapGetters('worksDefaultDB', ['getItemsList']),
     // worksList(){ return this.list.slice(this.page_index*10,(this.page_index+1)*10)},
     // has_next_page(){ return this.list.slice((this.page_index+1)*10,(this.page_index+2)*10).length!=0},
   },
   methods: {
-    ...mapActions("works", ["loadList"]),
+    ...mapActions("worksDefaultDB", ["loadList"]),
     fetch() {
       alert("Симуляція fetch запиту");
     },
@@ -72,11 +72,8 @@ export default {
     this.debouncedFetch = debounce(() => {
       this.fetch();
     }, 500)
-    this.works_list = this.getItemsList;
+    this.loadList()
   },
-  created() {
-    this.loadList();
-  }
 }
 </script>
 

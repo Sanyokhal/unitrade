@@ -11,10 +11,11 @@
         <div class="data">
           <p id="fullname">{{ user.fullName }}</p>
           <p id="dormitory">
-            {{$t('global.dormitory')}} №{{ user.dormitory }}, {{$t('global.room')}} {{ user.room }}
+            {{ $t("global.dormitory") }} №{{ user.dormitory }},
+            {{ $t("global.room") }} {{ user.room }}
           </p>
           <p id="creationdate" v-if="formatJoinDate">
-            {{$t('profile.dateOfJoining')}}: {{ formatJoinDate }}
+            {{ $t("profile.dateOfJoining") }}: {{ formatJoinDate }}
           </p>
         </div>
       </div>
@@ -41,29 +42,48 @@
         </div>
       </div>
     </div>
-    <div class="user-selector" v-if="user.role=='admin'">
-      <span>{{ $t('profile.show') }}</span>
+    <div class="user-selector" v-if="user.role == 'admin'">
+      <span>{{ $t("profile.show") }}</span>
       <div class="select-group">
         <select v-model="toggle">
-          <option value="post">{{ $t('global.advertisement') }}</option>
-          <option value="work">{{ $t('global.work') }}</option>
+          <option value="posts">{{ $t("global.advertisement") }}</option>
+          <option value="works">{{ $t("global.work") }}</option>
         </select>
-        <img src="@/assets/svg/browse.svg" alt="" v-if="toggle === 'post'" />
+        <img src="@/assets/svg/browse.svg" alt="" v-if="toggle == 'posts'" />
         <img src="@/assets/svg/work.svg" alt="" v-else />
       </div>
     </div>
     <div class="user-actions">
-      <button id="exit" @click="signOutMethod()">{{ $t('profile.logout') }}</button>
-      <button id="create-post" @click="createPostBtn()">
-        {{$t('profile.createAdvertisement')}}
+      <button id="exit" @click="signOutMethod()">
+        {{ $t("profile.logout") }}
+      </button>
+      <button
+        id="create-post"
+        v-if="toggle == 'posts'"
+        @click="createBtn(toggle)"
+      >
+        {{ $t("profile.createAdvertisement") }}
+      </button>
+      <button id="create-work" v-else @click="createBtn(toggle)">
+        {{ $t("profile.createWork") }}
       </button>
     </div>
     <div class="spacer"></div>
-    <div class="list" v-if="toggle === 'post'">
-      <Post_comp :post="post" :userProp="user" v-for="post in posts_list" :key="post.id" />
+    <div class="list" v-if="toggle == 'posts'">
+      <Post_comp
+        :post="post"
+        :userProp="user"
+        v-for="post in posts_list"
+        :key="post.id"
+      />
     </div>
     <div class="list" v-else>
-      <Work_comp :work="work" :userProp="user" v-for="work in works_list" :key="work.id" />
+      <Work_comp
+        :work="work"
+        :userProp="user"
+        v-for="work in works_list"
+        :key="work.id"
+      />
     </div>
   </div>
   <div class="user-edit" v-else>
@@ -74,7 +94,7 @@
       <div class="data">
         <p id="fullname">{{ user.fullName }}</p>
         <p id="creationdate" v-if="formatJoinDate">
-          {{ $t('profile.dateOfJoining') }}: {{ formatJoinDate }}
+          {{ $t("profile.dateOfJoining") }}: {{ formatJoinDate }}
         </p>
       </div>
     </div>
@@ -123,12 +143,13 @@
       </div>
     </div>
     <div class="actions">
-      <button id="save" @click="setUser()">{{ $t('global.save') }}</button>
-      <button id="cancel" @click="this.edit_state = false">{{ $t('global.cancel') }}</button>
+      <button id="save" @click="setUser()">{{ $t("global.save") }}</button>
+      <button id="cancel" @click="this.edit_state = false">
+        {{ $t("global.cancel") }}
+      </button>
     </div>
   </div>
 </template>
-<!--TODO Переробити сторінку PROFILE-->
 
 <script>
 import { mapActions, mapGetters } from "vuex";
@@ -152,7 +173,7 @@ export default {
   },
   data() {
     return {
-      toggle: "post",
+      toggle: "posts",
       posts_list: [],
       works_list: [],
       edit_state: false,
@@ -160,7 +181,7 @@ export default {
   },
   computed: {
     ...mapGetters("user", ["user"]),
-    ...mapGetters("works", {
+    ...mapGetters("worksDefaultDB", {
       works: "getItemsList",
     }),
     ...mapGetters("posts", {
@@ -175,7 +196,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions("works", {
+    ...mapActions("worksDefaultDB", {
       loadWorks: "loadList",
     }),
     ...mapActions("posts", {
@@ -210,7 +231,7 @@ export default {
         console.error("Error setting document:", error);
       }
     },
-    createPostBtn() {
+    createBtn(type) {
       if (
         this.user.dormitory &&
         this.user.instagram &&
@@ -218,7 +239,7 @@ export default {
         this.user.room &&
         this.user.telegram
       ) {
-        this.$router.push("posts/create");
+        this.$router.push(`${type}/create`);
       } else {
         alert("Редагуйте дані свого профілю, додавши інформацію");
       }
@@ -571,7 +592,7 @@ export default {
     flex: 1 1 auto;
     flex-direction: column;
     gap: 15px;
-    padding-bottom:60px;
+    padding-bottom: 60px;
   }
 
   .user-selector {

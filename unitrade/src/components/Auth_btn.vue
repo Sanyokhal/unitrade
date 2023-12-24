@@ -37,9 +37,12 @@ export default {
             new Date().getTime() + 3 * 60 * 60 * 1000 // 3 hours in milliseconds
           );
 
-          if (this.$route.query.redirect) {
+          if (this.$route.query.redirect!="/me") {
             this.$router.push(this.$route.query.redirect);
-          } else {
+          } else if(this.$route.query.redirect=="/me"){
+            this.$router.push(this.$route.query.redirect)
+          }else
+            {
             location.reload();
           }
         })

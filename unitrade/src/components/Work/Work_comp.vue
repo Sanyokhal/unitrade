@@ -1,8 +1,8 @@
 <!-- TODO: підключити до firebase.
 Зробити для цього firebase по фільтруванню за категорією -->
 <template>
-  <div class="work" @click="openPost()">
-    <img :src="work.img" alt="Фото поста" />
+  <div class="work">
+    <img :src="work.img" alt="Фото поста" @click="openPost()" />
     <div class="post-data">
       <div class="text">
         <p class="post-name">{{ work.name }}</p>
@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions} from "vuex";
 export default {
   name: "Work_comp",
   props: {
@@ -35,8 +35,21 @@ export default {
     ...mapGetters("user", ["user"]),
   },
   methods: {
+    ...mapActions("worksDefaultDB", ["deleteItem"]),
+    updatePost(){
+      this.$router.push({ name: "workEdit", params: { id: this.work.id } })
+    },
     openPost() {
       this.$router.push({ name: "work", params: { id: this.work.id } });
+    },
+    deletePost() {
+      this.deleteItem(this.work.id)
+        .then(() => {
+          location.reload();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };

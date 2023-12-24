@@ -6,6 +6,8 @@ import Main_Page from "@/components/Main_Page.vue";
 
 import Token from "@/token-usage.js";
 
+// TODO:Зробити захист роутів
+
 const routes = [
   {
     path: "/",
@@ -89,7 +91,7 @@ const routes = [
     },
   },
   {
-    path: "/works/:id/create",
+    path: "/works/create",
     name: "workCreate",
     component: () => import("@/components/Work/WorkCreatePage.vue"),
     meta: {
@@ -107,8 +109,8 @@ const routes = [
   {
     path: "/about-us",
     name: "aboutUs",
-    component: ()=>import("@/components/AboutUsPage.vue")
-  }
+    component: () => import("@/components/AboutUsPage.vue"),
+  },
 ];
 
 const router = createRouter({

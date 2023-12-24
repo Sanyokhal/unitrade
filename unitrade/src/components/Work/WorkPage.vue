@@ -1,18 +1,16 @@
 <template>
-  <div class="mobile-form-container" >
+  <div class="mobile-form-container" v-if="work_data">
     <div class="form-container">
       <div class="photo-container">
-        <img src="https://showdream.org/uploads/posts/2023-04/medium/1681668390_morgan-frmen-vimagaye-zaboroniti-termn-afroamerikanec.jpg" alt="Photo" class="photo" />
+        <img :src="work_data.img" alt="Photo" class="photo" />
       </div>
       <div class="form-content">
         <div class="form-header">
-          <h2 class="header-text">"work_data.name"</h2>
+          <h2 class="header-text">{{ work_data.name }}</h2>
         </div>
-        <p class="name">" work_data.creator.fullName "</p>
-        <p class="address">
-           " Опис і тут буде довгий текст "
-        </p>
-        <div class="icons">
+        <p class="address">{{ work_data.description }}</p>
+        <p class="address">Заробітня плата: {{ work_data.salary }}</p>
+        <!-- <div class="icons">
           <a 
             ><font-awesome-icon class="icon" :icon="['fab', 'instagram']"
           /></a>
@@ -25,28 +23,56 @@
           <a @click="copyToClipboard(work_data.creator.phone)"
             ><font-awesome-icon class="icon" :icon="['fas', 'phone']"
           /></a>
-        </div>
+        </div> -->
         <div style="display: flex" class="down">
-          <div class="category">" work_data.tag "</div>
+          <div class="category">{{ work_data.tag }}</div>
           <button @click="report()" class="report">
             <font-awesome-icon :icon="['far', 'flag']" class="report-icon" />
             <span>Поскаржитись</span>
           </button>
         </div>
       </div>
-      <Complain
-        @close="complain_status = false"
-        v-if="complain_status"
-        :work_id="work_data.id"
-        :work_img="work_data.img_url"
-        :work_title="work_data.name"
-        :work_author="work_data.creator"
-      />
     </div>
   </div>
 </template>
 
-<script></script>
+<script>
+import { mapActions } from "vuex";
+
+export default {
+  name: "WorkPage",
+  data() {
+    return {
+      work_data: {},
+    };
+  },
+  computed: {
+    workId() {
+      return this.$route.params.id;
+    },
+  },
+  methods: {
+    ...mapActions("works", ["loadListById"]),
+    report() {
+      alert(`На допис з Id ${this.workId} поскаржено`);
+    },
+    copyToClipboard(value) {
+      navigator.clipboard.writeText(value);
+      alert("Номер скопійовано");
+    },
+  },
+  async created() {
+    this.loadListById(this.$route.params.id)
+      .then((list) => {
+        this.work_data = list[0];
+        this.isLoaded = true;
+      })
+      .catch(() => {
+        console.log("something wrong");
+      });
+  },
+};
+</script>
 
 <style scoped lang="scss">
 @import "../../assets/main_colors";
@@ -154,7 +180,7 @@
 
   p {
     margin: 8px 0;
-    width:80%
+    width: 80%;
   }
 
   img {
