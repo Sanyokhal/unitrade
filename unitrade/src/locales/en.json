@@ -1,53 +1,54 @@
 {
-    "global":{
-        "dormitory":"Dormitory",
-        "room":"Room",
-        "advertisement":"Advertisement",
-        "work":"Work",
-        "save":"Save",
-        "cancel":"Cancel"
+    "global": {
+        "dormitory": "Dormitory",
+        "room": "Room",
+        "advertisement": "Advertisement",
+        "work": "Work",
+        "save": "Save",
+        "cancel": "Cancel",
+        "select":"Select"
     },
-    "footer":{
-        "main":"Main",
-        "information":"Information",
-        "account":"Account"
+    "footer": {
+        "main": "Main",
+        "information": "Information",
+        "account": "Account"
     },
-    "auth":{
-        "authorize":"Log in",
-        "oops":"Oops",
-        "text":{
-            "notLogged":"It looks like you are not logged in",
-            "functions":"To access these functions, you need to log in from your corporate email"
+    "auth": {
+        "authorize": "Log in",
+        "oops": "Oops",
+        "text": {
+            "notLogged": "It looks like you are not logged in",
+            "functions": "To access these functions, you need to log in from your corporate email"
         }
     },
-    "main":{
-        "titles":{
-            "greeting":"Greeting",
-            "search":"Search",
-            "aboutUs":"About Us",
-            "rules":"Rules"
+    "main": {
+        "titles": {
+            "greeting": "Greeting",
+            "search": "Search",
+            "aboutUs": "About Us",
+            "rules": "Rules"
         },
-        "text":{
-            "greeting":"Log in to Uni and use all the opportunities!",
-            "aboutUs":"A little bit about us and this project",
-            "rules":"Rules for using the platform"
+        "text": {
+            "greeting": "Log in to Uni and use all the opportunities!",
+            "aboutUs": "A little bit about us and this project",
+            "rules": "Rules for using the platform"
         }
     },
-    "profile":{
-        "dateOfJoining":"Date of joining",
-        "show":"Show",
-        "logout":"Log out",
-        "createAdvertisement":"Create advertisement",
-        "createWork":"Create work"
+    "profile": {
+        "dateOfJoining": "Date of joining",
+        "show": "Show",
+        "logout": "Log out",
+        "createAdvertisement": "Create advertisement",
+        "createWork": "Create work"
     },
-    "aboutUs":{
-        "titles":{
-            "aboutUs":"About Us",
-            "developers":"Developers",
-            "contacts":"Contacts",
-            "rules":"Rules"
+    "aboutUs": {
+        "titles": {
+            "aboutUs": "About Us",
+            "developers": "Developers",
+            "contacts": "Contacts",
+            "rules": "Rules"
         },
-        "developers":{
+        "developers": {
             "oleksandr": "Oleksandr (2 course)",
             "andriy": "Andriy (2 course)",
             "viktor": "Viktor (2 course)",
@@ -55,22 +56,27 @@
             "oleksiy": "Oleksiy (3 course)",
             "ihor": "Ihor (3 course)"
         },
-        "contacts":{
-            "communication":"Communicate with us"
-        },
-        "rules":{
-            "title":"Failure to comply with the rules of use of the platform will lead to account blocking and removal of ads",
-            "1":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "2":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "3":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "4":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "5":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "6":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "7":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "8":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "9":"Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-            "10":"Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+        "contacts": {
+            "communication": "Communicate with us"
         }
-
+    },
+    "rules": {
+        "title": "Failure to comply with the rules of use of the platform will lead to account blocking and removal of ads",
+        "1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "2": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "3": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "4": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "5": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "6": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "7": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "8": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "9": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+        "10": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    },
+    "info":{
+        "about":{
+            "title":"Information",
+            "text":"On this page you can view data and events related to the selected dormitory"
+        }
     }
 }

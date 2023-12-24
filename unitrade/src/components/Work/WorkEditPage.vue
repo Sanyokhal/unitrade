@@ -1,7 +1,7 @@
 <template>
   <div class="form-container" v-if="formData">
     <form class="form-content">
-      <h2 class="form-title">Створіть нову роботу</h2>
+      <h2 class="form-title">Редагувати роботу</h2>
       <div class="input-group">
         <input
           type="file"
@@ -60,7 +60,7 @@
 </template>
     
 <script>
-import { mapActions } from "vuex";
+import { mapActions} from "vuex";
 import { firebaseDB } from "@/firebase-config";
 import { doc, updateDoc } from "firebase/firestore/lite";
 export default {
@@ -69,8 +69,10 @@ export default {
       formData: {},
     };
   },
-  computed: {},
+  computed: {
+  },
   methods: {
+    ...mapActions("user", ["loadUser"]),
     ...mapActions("works", ["loadListById"]),
     encodeImageFileAsURL(event) {
       var file = event.target.files[0];
@@ -92,7 +94,14 @@ export default {
   created() {
     this.loadListById(this.$route.params.id)
       .then((list) => {
-        this.formData = list[0];
+        this.loadUser().then((user) => {
+          if (user.role == "admin") {
+            this.formData = list[0];
+          } else{
+            alert("Ви не маєте доступу до цих функцій");
+            this.$router.push('/me');
+          }
+        });
       })
       .catch(() => {
         console.log("something wrong");

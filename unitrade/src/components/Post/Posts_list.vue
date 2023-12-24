@@ -3,19 +3,11 @@
   <div class="container">
     <div class="menu">
       <select v-model="dormitoryNumber">
-        <option value="1">Гуртожиток №1</option>
-        <option value="2">Гуртожиток №2</option>
-        <option value="3">Гуртожиток №3</option>
-        <option value="4">Гуртожиток №4</option>
-        <option value="5">Гуртожиток №5</option>
-      </select>
-      <select>
-        <option value="" disabled selected>Категорія</option>
-        <option value="1">Рандомна №1</option>
-        <option value="2">Рандомна №2</option>
-        <option value="3">Рандомна №3</option>
-        <option value="4">Рандомна №4</option>
-        <option value="5">Рандомна №5</option>
+        <option value="1">{{$t('global.dormitory')}} №1</option>
+        <option value="2">{{$t('global.dormitory')}} №2</option>
+        <option value="3">{{$t('global.dormitory')}} №3</option>
+        <option value="4">{{$t('global.dormitory')}} №4</option>
+        <option value="5">{{$t('global.dormitory')}} №5</option>
       </select>
     </div>
     <div class="posts-spacer"></div>

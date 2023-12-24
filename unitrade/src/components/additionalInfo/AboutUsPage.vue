@@ -44,19 +44,6 @@ export default {
         <a href="#">Telegram</a>
       </div>
     </div>
-    <div id="rules">
-      <h2>{{ $t('aboutUs.titles.rules') }}</h2>
-      <h4>
-        <font-awesome-icon icon="exclamation" beat class="exclamation-danger-start"/>
-        {{ $t('aboutUs.rules.title') }}
-        <font-awesome-icon icon="exclamation" beat class="exclamation-danger-end"/>
-      </h4>
-      <ul>
-        <li><b>1. </b>{{ $t('aboutUs.rules.1') }}</li>
-        <li><b>2. </b>{{ $t('aboutUs.rules.2') }}</li>
-        <li><b>3. </b>{{ $t('aboutUs.rules.3') }}</li>
-      </ul>
-    </div>
   </div>
 </template>
 

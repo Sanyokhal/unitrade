@@ -111,6 +111,11 @@ const routes = [
     name: "aboutUs",
     component: () => import("@/components/additionalInfo/AboutUsPage.vue"),
   },
+  {
+    path: "/rules",
+    name: "rules",
+    component: () => import("@/components/additionalInfo/RulesPage.vue"),
+  },
 ];
 
 const router = createRouter({

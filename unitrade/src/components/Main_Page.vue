@@ -60,18 +60,13 @@ export default {
       <p>{{ $t('main.titles.aboutUs')}}</p>
       <span>{{ $t('main.text.aboutUs')}}</span>
     </div>
-    <div class="disclaimer rules">
+    <div class="disclaimer rules" @click="this.$router.push('/rules')">
       <p>{{ $t('main.titles.rules')}}</p>
       <span>{{ $t('main.text.rules')}}</span>
     </div>
-    <!-- <div class="disclaimer guide">
-      <p>Посібник</p>
-      <span>Невеликий посібник по платформі</span>
-    </div> -->
     <div class="space"></div>
   </div>
 </template>
-<!--TODO Добавити розділ "Про нас", "Правила", "Зв'язок з розробниками"-->
 <style scoped lang="scss">
 .disclaimer {
   text-align: left;

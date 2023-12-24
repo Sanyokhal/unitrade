@@ -1,12 +1,9 @@
-<!-- TODO: підключити до firebase.
-Зробити для цього firebase по фільтруванню за категорією -->
 <template>
-  <div class="work">
-    <img :src="work.img" alt="Фото поста" @click="openPost()" />
+  <div class="work" @click="openWork()">
+    <img :src="work.img" alt="Фото поста" />
     <div class="post-data">
       <div class="text">
         <p class="post-name">{{ work.name }}</p>
-        <p class="address">Гурт. №4 82/a</p>
       </div>
       <div class="post-bottom">
         <div class="tag">
@@ -14,10 +11,16 @@
         </div>
         <div
           class="buttons"
-          v-if="user.id == work.creatorId || user.role == 'admin'"
+          v-if="user.role == 'admin'"
         >
-          <font-awesome-icon :icon="['fas', 'pen']" @click="updatePost()" />
-          <font-awesome-icon :icon="['fas', 'trash']" @click="deletePost()" />
+          <font-awesome-icon
+            :icon="['fas', 'pen']"
+            @click.stop="updateWork()"
+          />
+          <font-awesome-icon
+            :icon="['fas', 'trash']"
+            @click.stop="deleteWork()"
+          />
         </div>
       </div>
     </div>
@@ -25,7 +28,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions} from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Work_comp",
   props: {
@@ -36,20 +39,22 @@ export default {
   },
   methods: {
     ...mapActions("worksDefaultDB", ["deleteItem"]),
-    updatePost(){
-      this.$router.push({ name: "workEdit", params: { id: this.work.id } })
+    updateWork() {
+      this.$router.push({ name: "workEdit", params: { id: this.work.id } });
     },
-    openPost() {
+    openWork() {
       this.$router.push({ name: "work", params: { id: this.work.id } });
     },
-    deletePost() {
-      this.deleteItem(this.work.id)
-        .then(() => {
-          location.reload();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    deleteWork() {
+      if (confirm("Видалити оголошення ?")) {
+        this.deleteItem(this.work.id)
+          .then(() => {
+            location.reload();
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
     },
   },
 };
@@ -76,7 +81,7 @@ export default {
     min-height: 75%;
     object-fit: contain;
     height: 80px;
-    width: auto;
+    width: 135px;
     max-width: 135px;
     overflow: hidden;
   }

@@ -1,15 +1,5 @@
 <template>
   <div class="container">
-    <div class="menu">
-      <select>
-        <option value="" disabled selected>Категорія</option>
-        <option value="1">Рандомна №1</option>
-        <option value="2">Рандомна №2</option>
-        <option value="3">Рандомна №3</option>
-        <option value="4">Рандомна №4</option>
-        <option value="5">Рандомна №5</option>
-      </select>
-    </div>
     <div class="works-spacer"></div>
     <div class="works_list">
       <Work_comp :work="work" v-for="work in getItemsList" :key="work.id"/>

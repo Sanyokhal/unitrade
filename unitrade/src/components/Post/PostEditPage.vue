@@ -54,6 +54,7 @@ export default {
   },
   computed: {},
   methods: {
+    ...mapActions("user", ["loadUser"]),
     ...mapActions("posts", ["loadListById"]),
     encodeImageFileAsURL(event) {
       var file = event.target.files[0];
@@ -75,7 +76,14 @@ export default {
   created() {
     this.loadListById(this.$route.params.id)
       .then((list) => {
-        this.formData = list[0];
+        this.loadUser().then((user) => {
+          if (user.role == "admin" || user.id == list[0].creatorId) {
+            this.formData = list[0];
+          } else {
+            alert("Ви не маєте доступу до цих функцій");
+            this.$router.push("/me");
+          }
+        });
       })
       .catch(() => {
         console.log("something wrong");

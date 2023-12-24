@@ -65,17 +65,17 @@ export default {
 <template>
   <div class="info-page">
     <div class="about-page">
-      <h4>Інформація</h4>
-      <p>На данній сторінці ви зможете переглянути дані та події пов'язані з вибраним гуртожитком</p>
+      <h4>{{ $t('info.about.title') }}</h4>
+      <p>{{ $t('info.about.text') }}</p>
     </div>
     <div class="dormitory-selector" :class="selector_bg">
-      <span>Вибрати</span>
+      <span>{{$t('global.select')}}</span>
       <select v-model="selected_dormitory">
-        <option value="1">Гуртожиток №1</option>
-        <option value="2">Гуртожиток №2</option>
-        <option value="3">Гуртожиток №3</option>
-        <option value="4">Гуртожиток №4</option>
-        <option value="5">Гуртожиток №5</option>
+        <option value="1">{{$t('global.dormitory')}} №1</option>
+        <option value="2">{{$t('global.dormitory')}} №2</option>
+        <option value="3">{{$t('global.dormitory')}} №3</option>
+        <option value="4">{{$t('global.dormitory')}} №4</option>
+        <option value="5">{{$t('global.dormitory')}} №5</option>
       </select>
     </div>
     <div class="custom-alert">
