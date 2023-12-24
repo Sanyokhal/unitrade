@@ -10,27 +10,27 @@ export default {
       <h2>{{ $t('aboutUs.titles.developers') }}</h2>
       <div class="images">
         <div class="img">
-          <img src="../assets/dev_images/sasha.jpg" alt="">
+          <img src="../../assets/dev_images/sasha.jpg" alt="">
           <span>{{ $t('aboutUs.developers.oleksandr') }}</span>
         </div>
         <div class="img">
-          <img src="../assets/dev_images/andrij.jpg" alt="">
+          <img src="../../assets/dev_images/andrij.jpg" alt="">
           <span>{{ $t('aboutUs.developers.andriy') }}</span>
         </div>
         <div class="img">
-          <img src="../assets/dev_images/viktor.jpg" alt="">
+          <img src="../../assets/dev_images/viktor.jpg" alt="">
           <span>{{ $t('aboutUs.developers.viktor') }}</span>
         </div>
         <div class="img">
-          <img src="../assets/dev_images/jarik.jpg" alt="">
+          <img src="../../assets/dev_images/jarik.jpg" alt="">
           <span>{{ $t('aboutUs.developers.yaroslav') }}</span>
         </div>
         <div class="img">
-          <img src="../assets/dev_images/lioha.jpg" alt="">
+          <img src="../../assets/dev_images/lioha.jpg" alt="">
           <span>{{ $t('aboutUs.developers.oleksiy') }}</span>
         </div>
         <div class="img">
-          <img src="../assets/dev_images/ihor.jpg" alt="">
+          <img src="../../assets/dev_images/ihor.jpg" alt="">
           <span>{{ $t('aboutUs.developers.ihor') }}</span>
         </div>
       </div>
@@ -61,8 +61,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-@import '@/assets/main_colors';
-
+@import '../../assets/main_colors';
 
 .about {
     padding-bottom: 60px;

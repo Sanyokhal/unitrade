@@ -2,32 +2,16 @@
   <div class="mobile-form-container" v-if="work_data">
     <div class="form-container">
       <div class="photo-container">
-        <img :src="work_data.img" alt="Photo" class="photo" />
+        <img :src="work_data.img" alt="Photo" class="photo"/>
       </div>
       <div class="form-content">
-        <div class="form-header">
-          <h2 class="header-text">{{ work_data.name }}</h2>
-        </div>
-        <p class="address">{{ work_data.description }}</p>
-        <p class="address">Заробітня плата: {{ work_data.salary }}</p>
-        <!-- <div class="icons">
-          <a 
-            ><font-awesome-icon class="icon" :icon="['fab', 'instagram']"
-          /></a>
-          <a 
-            ><font-awesome-icon class="icon" :icon="['fab', 'telegram']"
-          /></a>
-          <a @click="copyToClipboard(work_data.creator.email)"
-            ><font-awesome-icon class="icon" :icon="['far', 'envelope']"
-          /></a>
-          <a @click="copyToClipboard(work_data.creator.phone)"
-            ><font-awesome-icon class="icon" :icon="['fas', 'phone']"
-          /></a>
-        </div> -->
+        <p class="header-text">{{ work_data.name }}</p>
+        <p class="description">{{ work_data.description }}</p>
+        <p class="payment">Заробітня плата: <b>{{ work_data.salary }}₴</b></p>
         <div style="display: flex" class="down">
           <div class="category">{{ work_data.tag }}</div>
           <button @click="report()" class="report">
-            <font-awesome-icon :icon="['far', 'flag']" class="report-icon" />
+            <font-awesome-icon :icon="['far', 'flag']" class="report-icon"/>
             <span>Поскаржитись</span>
           </button>
         </div>
@@ -37,7 +21,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import {mapActions} from "vuex";
 
 export default {
   name: "WorkPage",
@@ -63,13 +47,13 @@ export default {
   },
   async created() {
     this.loadListById(this.$route.params.id)
-      .then((list) => {
-        this.work_data = list[0];
-        this.isLoaded = true;
-      })
-      .catch(() => {
-        console.log("something wrong");
-      });
+        .then((list) => {
+          this.work_data = list[0];
+          this.isLoaded = true;
+        })
+        .catch(() => {
+          console.log("something wrong");
+        });
   },
 };
 </script>
@@ -77,18 +61,6 @@ export default {
 <style scoped lang="scss">
 @import "../../assets/main_colors";
 @import "../../assets/main_colors";
-
-/* Global Styles */
-.icons {
-  display: flex;
-  gap: 10px;
-
-  .icon {
-    color: black;
-    width: 20px;
-    height: 20px;
-  }
-}
 
 /* Component: .report */
 .report {
@@ -114,32 +86,38 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   width: 100vw;
-  height: 90vh;
+  max-width: 100vw;
+  min-height: calc(100vh - 68px - 50px);
   margin-top: 10px;
   overflow: hidden;
 }
 
 /* Component: .form-container */
-/* Component: .form-container */
 .form-container {
+  margin-top: 10px;
+  margin-bottom: 60px;
   background-color: $bg-secondary;
   position: relative;
-  max-width: 90%;
-  width: 330px;
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: calc(90% - 30px);
+  padding: 15px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Component: .photo-container */
 .photo-container {
   position: relative;
   height: 200px;
+  max-height: 200px;
+  max-width: 100%;
   overflow: hidden;
   border-radius: 5px;
 
@@ -152,101 +130,48 @@ export default {
 
 /* Component: .form-content */
 .form-content {
-  padding: 20px;
+  text-align: left;
+  width: 100%;
+  gap: 8px;
   display: flex;
   flex-direction: column;
   justify-content: space-between; /* Adjusted for better alignment */
 
-  /* Component: .form-header */
-  .form-header {
+  .header-text {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .payment, .description {
+    font-size: 12px;
+  }
+
+  .down {
+    width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
 
-    h2 {
-      margin: 0;
-    }
-
-    button {
-      padding: 8px 12px;
-      border: none;
+    .complain-btn {
+      cursor: pointer;
+      width: 110px;
+      height: 30px; /* Adjusted height for better display */
       background-color: #3498db;
       color: white;
       border-radius: 5px;
-      cursor: pointer;
+      padding: 8px 12px;
+      text-align: center;
+      margin-top: 10px;
+      float: right;
     }
-  }
 
-  p {
-    margin: 8px 0;
-    width: 80%;
-  }
-
-  img {
-    margin-right: 5px;
-  }
-
-  .header-text {
-    font-family: Montserrat;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin: 0;
-  }
-
-  .telegram-icon {
-    margin-top: 10px;
-  }
-
-  .complain-btn {
-    cursor: pointer;
-    width: 110px;
-    height: 30px; /* Adjusted height for better display */
-    background-color: #3498db;
-    color: white;
-    border-radius: 5px;
-    padding: 8px 12px;
-    text-align: center;
-    margin-top: 10px;
-    float: right;
-  }
-
-  .category {
-    font-family: Montserrat;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin-top: 10px;
-  }
-
-  .name {
-    font-family: Montserrat;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 15px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin: 8px 0;
-  }
-
-  .address {
-    font-family: Montserrat;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 15px;
-    letter-spacing: 0em;
-    text-align: left;
-    margin: 8px 0;
-  }
-  .down {
-    display: flex;
-    margin-top: 10px;
-    gap: 10px;
+    .category {
+      border-radius: 50px;
+      font-size: 12px;
+      padding: 5px 10px;
+      background-color: #72ddf7;
+    }
   }
 }
 </style>

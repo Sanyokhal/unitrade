@@ -1,12 +1,12 @@
 <template>
   <!-- TODO: @click="openPost()" ->div.post. Також нормально розташувати font-awesome-icon -->
-  <div class="post">
-    <img :src="post.img" alt="Фото поста" @click="openPost()" />
+  <div class="post" @click="openPost()">
+    <img :src="post.img" alt="Фото поста"/>
     <div class="post-data">
       <div class="text">
         <div class="post-name-icon">
           <span class="post-name">{{ post.name }}</span>
-          <img :src="post.creator.avatarUrl" alt="" class="user-profile" />
+          <img :src="post.creator.avatarUrl" alt="" class="user-profile"/>
         </div>
         <p class="address">
           Гуртожиток №{{ post.creator.dormitory }} {{ post.creator.room }}
@@ -17,11 +17,11 @@
           <span>{{ post.tag }}</span>
         </div>
         <div
-          class="buttons"
-          v-if="user.id == post.creatorId || user.role == 'admin'"
+            class="buttons"
+            v-if="user.id == post.creatorId || user.role == 'admin'"
         >
-          <font-awesome-icon :icon="['fas', 'pen']" @click="updatePost()" />
-          <font-awesome-icon :icon="['fas', 'trash']" @click="deletePost()" />
+          <font-awesome-icon :icon="['fas', 'pen']" @click.stop="updatePost()"/>
+          <font-awesome-icon :icon="['fas', 'trash']" @click.stop="deletePost()"/>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import {mapActions, mapGetters} from "vuex";
 
 export default {
   name: "Post_comp",
@@ -42,19 +42,21 @@ export default {
   methods: {
     ...mapActions("postsDefaultDB", ["deleteItem"]),
     openPost() {
-      this.$router.push({ name: "post", params: { id: this.post.id } });
+      this.$router.push({name: "post", params: {id: this.post.id}});
     },
     updatePost() {
-      this.$router.push({ name: "postEdit", params: { id: this.post.id } });
+      this.$router.push({name: "postEdit", params: {id: this.post.id}});
     },
     deletePost() {
-      this.deleteItem(this.post.id)
-        .then(() => {
-          location.reload();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      if (confirm("Видалити оголошення ?")) {
+        this.deleteItem(this.post.id)
+            .then(() => {
+              location.reload();
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+      }
     },
   },
 };
@@ -132,18 +134,21 @@ export default {
         text-align: left;
       }
     }
+
     .post-bottom {
       display: flex;
       gap: 25px;
       align-items: center;
       justify-content: space-between;
       flex-direction: row;
+
       .buttons {
         display: flex;
         gap: 15px;
       }
     }
   }
+
   .tag {
     width: 80px;
     display: flex;
@@ -152,6 +157,7 @@ export default {
     border-radius: 50px;
     line-height: 15px;
     text-align: center;
+
     span {
       width: 100%;
       font-weight: 400;
