@@ -108,7 +108,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: calc(90vw - 30px);
+  width: calc(100% - 30px);
   border-radius: 15px;
   padding: 15px;
   background-color: #ffffff;
@@ -170,6 +170,7 @@ export default {
 
 .main-page-container {
   width: 90vw;
+  transition: all ease-out .4s;
   margin-left: 5vw;
   display: flex;
   flex-direction: column;
@@ -203,7 +204,7 @@ export default {
   }
 
   .dormitory-selector {
-    width: 90vw;
+    width: 100%;
     background-size: cover;
     margin-top: 15px;
     aspect-ratio: 1.3/1;
@@ -242,5 +243,20 @@ export default {
 
 .space {
   padding-bottom: 60px;
+}
+
+@media (min-width: 1000px) {
+  .main-page-container{
+    width: 60vw;
+    max-width: 60vw;
+    margin-left: 20vw;
+    transition: all ease-out .4s;
+    .dormitory-selector{
+      aspect-ratio: 1/.5;
+    }
+    .iframe-container{
+      aspect-ratio: 1/.5;
+    }
+  }
 }
 </style>
