@@ -152,8 +152,8 @@ export default {
     padding-top: 20px;
     width: calc(100vw - 30px);
     display: flex;
-    flex-direction: column;
     padding-bottom: 60px;
+    flex-direction: column;
   }
 
   .page-selector {
