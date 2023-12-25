@@ -1,57 +1,53 @@
 <script>
 export default {
-  name: "About"
-}
+  name: "About",
+  methods: {
+    goToUrl(url) {
+      window.location = url;
+    }
+  },
+};
 </script>
 
 <template>
   <div class="about">
     <div id="about-us">
-      <h2>{{ $t('aboutUs.titles.developers') }}</h2>
+      <h2>{{ $t("aboutUs.titles.developers") }}</h2>
       <div class="images">
-        <div class="img">
-          <img src="../../assets/dev_images/sasha.jpg" alt="">
-          <span>{{ $t('aboutUs.developers.oleksandr') }}</span>
+        <div class="img" @click="goToUrl('https://www.instagram.com/just_sanyok_hal/')">
+          <img src="../../assets/dev_images/sasha.jpg" alt="" />
+          <span>{{ $t("aboutUs.developers.oleksandr") }}</span>
+        </div>
+        <div class="img" @click="goToUrl('https://www.instagram.com/cuprumav/')">
+          <img src="../../assets/dev_images/andrij.jpg" alt="" />
+          <span>{{ $t("aboutUs.developers.andriy") }}</span>
+        </div>
+        <div class="img" @click="goToUrl('https://t.me/start_play')">
+          <img src="../../assets/dev_images/viktor.jpg" alt="" />
+          <span>{{ $t("aboutUs.developers.viktor") }}</span>
         </div>
         <div class="img">
-          <img src="../../assets/dev_images/andrij.jpg" alt="">
-          <span>{{ $t('aboutUs.developers.andriy') }}</span>
+          <img src="../../assets/dev_images/jarik.jpg" alt="" />
+          <span>{{ $t("aboutUs.developers.yaroslav") }}</span>
         </div>
         <div class="img">
-          <img src="../../assets/dev_images/viktor.jpg" alt="">
-          <span>{{ $t('aboutUs.developers.viktor') }}</span>
+          <img src="../../assets/dev_images/lioha.jpg" alt="" />
+          <span>{{ $t("aboutUs.developers.oleksiy") }}</span>
         </div>
         <div class="img">
-          <img src="../../assets/dev_images/jarik.jpg" alt="">
-          <span>{{ $t('aboutUs.developers.yaroslav') }}</span>
+          <img src="../../assets/dev_images/ihor.jpg" alt="" />
+          <span>{{ $t("aboutUs.developers.ihor") }}</span>
         </div>
-        <div class="img">
-          <img src="../../assets/dev_images/lioha.jpg" alt="">
-          <span>{{ $t('aboutUs.developers.oleksiy') }}</span>
-        </div>
-        <div class="img">
-          <img src="../../assets/dev_images/ihor.jpg" alt="">
-          <span>{{ $t('aboutUs.developers.ihor') }}</span>
-        </div>
-      </div>
-    </div>
-    <div id="contacts">
-      <h2>{{ $t('aboutUs.titles.contacts') }}</h2>
-      <div class="contacts-list">
-        <h3>{{ $t('aboutUs.contacts.communication') }}</h3>
-        <a href="#">Google Forms</a>
-        <a href="#">Gmail</a>
-        <a href="#">Telegram</a>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped lang="scss">
-@import '../../assets/main_colors';
+@import "../../assets/main_colors";
 
 .about {
-    padding-bottom: 60px;
+  padding-bottom: 60px;
   width: 90vw;
   margin: 20px auto;
 
@@ -77,17 +73,17 @@ export default {
       grid-gap: 20px;
       display: grid;
       justify-content: space-evenly;
-      grid-template-columns:repeat(auto-fit, 30%);
-      grid-template-rows:repeat(auto-fit, auto);
+      grid-template-columns: repeat(auto-fit, 30%);
+      grid-template-rows: repeat(auto-fit, auto);
 
       img {
         width: 100%;
         border-radius: 50%;
-        transition: box-shadow ease .3s;
+        transition: box-shadow ease 0.3s;
       }
 
       span {
-        transition: font-weight ease .3s;
+        transition: font-weight ease 0.3s;
         font-size: 12px;
       }
       .img:hover {
@@ -113,11 +109,11 @@ export default {
         font-weight: 400;
         text-decoration: none;
         color: $text-main;
-        transition: all ease .2s;
+        transition: all ease 0.2s;
       }
 
       a:hover {
-        transition: all ease .2s;
+        transition: all ease 0.2s;
         font-weight: bold;
         text-decoration: underline;
       }

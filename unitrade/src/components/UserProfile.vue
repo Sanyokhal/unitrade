@@ -55,7 +55,8 @@
           <option value="info">{{ $t("global.info") }}</option>
         </select>
         <img src="@/assets/svg/browse.svg" alt="" v-if="toggle == 'posts'"/>
-        <img src="@/assets/svg/work.svg" alt="" v-else/>
+        <img src="@/assets/svg/work.svg" alt="" v-else-if="toggle == 'works'"/>
+        <img src="@/assets/svg/info.svg" alt="" v-else/>
       </div>
     </div>
     <div class="user-actions">
@@ -184,6 +185,9 @@ export default {
   async mounted() {
     try {
       const user = await this.loadUser();
+      if(!user){
+        location.reload();
+      }
 
       const posts = await this.loadPosts(user.id);
       this.posts_list = posts;
