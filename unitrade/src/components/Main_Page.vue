@@ -93,6 +93,10 @@ export default {
   border-radius: 15px;
   padding: 15px;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   p {
     font-weight: 500;
     font-size: 12px;
@@ -115,7 +119,7 @@ export default {
   aspect-ratio: 1.3/1;
 
   iframe {
-    box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .5);
     height: 100%;
     width: 100%;
   }
@@ -232,6 +236,9 @@ export default {
       border: none;
       color: #ffffff;
       margin-left: 15px;
+      &:hover{
+        cursor: pointer;
+      }
     }
 
     option {
@@ -246,15 +253,17 @@ export default {
 }
 
 @media (min-width: 1000px) {
-  .main-page-container{
+  .main-page-container {
     width: 60vw;
     max-width: 60vw;
     margin-left: 20vw;
     transition: all ease-out .4s;
-    .dormitory-selector{
+
+    .dormitory-selector {
       aspect-ratio: 1/.5;
     }
-    .iframe-container{
+
+    .iframe-container {
       aspect-ratio: 1/.5;
     }
   }
