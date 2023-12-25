@@ -1,12 +1,12 @@
 <template>
   <div class="form-container">
-    <form class="form-content" @submit="submitForm()" >
-      <h2 class="form-title">{{ $t('work.create') }}</h2>
+    <form class="form-content" @submit="submitForm()">
+      <h2 class="form-title">{{ $t("work.create") }}</h2>
       <div class="input-group">
         <input
           type="file"
           id="photo"
-          @change="encodeImageFileAsURL"
+          @change="checkFileSize"
           accept="image/*"
           class="input-field"
           required
@@ -45,14 +45,14 @@
       </div>
       <div class="button-group">
         <button type="submit" class="save-button" @click="createWork()">
-          {{ $t('form.submit') }}
+          {{ $t("form.submit") }}
         </button>
         <button
           type="button"
           class="cancel-button"
           @click="this.$router.push('/me')"
         >
-          {{$t('form.cancel')}}
+          {{ $t("form.cancel") }}
         </button>
       </div>
     </form>
@@ -80,10 +80,27 @@ export default {
     ...mapGetters("user", ["user"]),
   },
   methods: {
-    ...mapActions("works", ["addItem"]),
+    ...mapActions("worksDefaultDB", ["addItem"]),
     ...mapActions("user", ["loadUser"]),
     submitForm() {
       console.log("Надіслано:", this.formData);
+    },
+    checkFileSize(event) {
+      const input = event.target;
+      const file = input.files[0]; // Assuming only one file is selected
+
+      if (file) {
+        const fileSizeInKB = file.size / 1024; // Convert bytes to kilobytes
+
+        if (fileSizeInKB > 600) {
+          alert("Фотографія має бути менше 600KB");
+          // Optionally clear the file input
+          input.value = "";
+        } else {
+          // Handle the valid file (e.g., call your encoding function)
+          this.encodeImageFileAsURL(event);
+        }
+      }
     },
     encodeImageFileAsURL(event) {
       var file = event.target.files[0];

@@ -2,86 +2,59 @@
   <div class="mobile-form-container" v-if="post_data">
     <div class="form-container">
       <div class="photo-container">
-        <img :src="post_data.img" alt="Photo" class="photo"/>
+        <img :src="post_data.img" alt="Photo" class="photo" />
       </div>
       <div class="form-content">
         <p class="header-text">{{ post_data.name }}</p>
         <p class="name">{{ post_data.creator.fullName }}</p>
         <p class="address">
-          {{ $t('global.dormitory') }}: {{ post_data.dormitory }} {{ post_data.creator.room }}
+          {{ $t("global.dormitory") }}: {{ post_data.dormitory }}
+          {{ post_data.creator.room }}
         </p>
         <div class="icons">
-          <a :href="post_data.creator.instagram"
-          >
-            <font-awesome-icon class="icon" :icon="['fab', 'instagram']"
-            />
+          <a :href="post_data.creator.instagram">
+            <font-awesome-icon class="icon" :icon="['fab', 'instagram']" />
           </a>
-          <a :href="post_data.creator.telegram"
-          >
-            <font-awesome-icon class="icon" :icon="['fab', 'telegram']"
-            />
+          <a :href="post_data.creator.telegram">
+            <font-awesome-icon class="icon" :icon="['fab', 'telegram']" />
           </a>
-          <a @click="copyToClipboard(post_data.creator.email, 'email')"
-          >
-            <font-awesome-icon class="icon" :icon="['far', 'envelope']"
-            />
+          <a @click="copyToClipboard(post_data.creator.email, 'email')">
+            <font-awesome-icon class="icon" :icon="['far', 'envelope']" />
           </a>
-          <a @click="copyToClipboard(post_data.creator.phone, 'phone')"
-          >
-            <font-awesome-icon class="icon" :icon="['fas', 'phone']"
-            />
+          <a @click="copyToClipboard(post_data.creator.phone, 'phone')">
+            <font-awesome-icon class="icon" :icon="['fas', 'phone']" />
           </a>
         </div>
         <div style="display: flex" class="down">
           <div class="category">{{ post_data.tag }}</div>
-          <button @click="report()" class="report">
-            <font-awesome-icon :icon="['far', 'flag']" class="report-icon"/>
-            <span>Поскаржитись</span>
-          </button>
         </div>
       </div>
-      <Complain
-          @close="complain_status = false"
-          v-if="complain_status"
-          :post_id="post_data.id"
-          :post_img="post_data.img_url"
-          :post_title="post_data.name"
-          :post_author="post_data.creator"
-      />
     </div>
   </div>
 </template>
 
 <script>
-import Complain from "@/components/Complain.vue";
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "PostPage",
-  components: {Complain},
   data() {
     return {
       post_data: false,
-      // user_data: {},
-      complain_status: false,
       isLoaded: false,
     };
   },
   computed: {
-    // ...mapGetters('posts',['list']),
     postId() {
       return this.$route.params.id;
     },
   },
   methods: {
     ...mapActions("posts", ["loadListById"]),
-    report() {
-      this.complain_status = true;
-    },
     copyToClipboard(value, type) {
       let text = "Номер скопійовано";
-      if (type == 'email') {
-        text = "Пошту скопійовано"
+      if (type == "email") {
+        text = "Пошту скопійовано";
       }
       navigator.clipboard.writeText(value);
       alert(text);
@@ -89,20 +62,19 @@ export default {
   },
   created() {
     this.loadListById(this.$route.params.id)
-        .then((list) => {
-          this.post_data = list[0];
-          this.isLoaded = true;
-        })
-        .catch(() => {
-          console.log("something wrong");
-        });
+      .then((list) => {
+        this.post_data = list[0];
+        this.isLoaded = true;
+      })
+      .catch(() => {
+        console.log("something wrong");
+      });
     // this.user_data = this.post_data.user_data
   },
 };
 </script>
 
 <style scoped lang="scss">
-@import "../../assets/main_colors";
 @import "../../assets/main_colors";
 
 /* Global Styles */
@@ -115,24 +87,6 @@ export default {
     color: black;
     width: 20px;
     height: 20px;
-  }
-}
-
-/* Component: .report */
-.report {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 5px; /* Adjusted padding */
-  border: 2px solid $danger-color;
-  border-radius: 5px;
-  background: $danger-color;
-  color: $bg-secondary;
-  transition: box-shadow ease-out 0.3s;
-
-  .report-icon {
-    height: 15px;
-    width: 15px;
   }
 }
 
@@ -152,7 +106,7 @@ export default {
 
 /* Component: .form-container */
 .form-container {
-  transition: all ease-out .4s;
+  transition: all ease-out 0.4s;
   background-color: $bg-secondary;
   position: relative;
   display: flex;
@@ -197,7 +151,8 @@ export default {
     font-weight: 500;
   }
 
-  .name, .address {
+  .name,
+  .address {
     font-size: 12px;
   }
 
@@ -230,10 +185,10 @@ export default {
   }
 }
 @media (min-width: 1000px) {
-  .form-container{
+  .form-container {
     width: 50vw;
     max-width: 50vw;
-    transition: all ease-out .4s;
+    transition: all ease-out 0.4s;
   }
 }
 </style>

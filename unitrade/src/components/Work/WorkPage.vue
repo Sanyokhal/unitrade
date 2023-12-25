@@ -2,18 +2,16 @@
   <div class="mobile-form-container" v-if="work_data">
     <div class="form-container">
       <div class="photo-container">
-        <img :src="work_data.img" alt="Photo" class="photo"/>
+        <img :src="work_data.img" alt="Photo" class="photo" />
       </div>
       <div class="form-content">
         <p class="header-text">{{ work_data.name }}</p>
         <p class="description">{{ work_data.description }}</p>
-        <p class="payment">{{$t('work.salary')}}: <b>{{ work_data.salary }}₴</b></p>
+        <p class="payment">
+          {{ $t("work.salary") }}: <b>{{ work_data.salary }}₴</b>
+        </p>
         <div style="display: flex" class="down">
           <div class="category">{{ work_data.tag }}</div>
-          <button @click="report()" class="report">
-            <font-awesome-icon :icon="['far', 'flag']" class="report-icon"/>
-            <span>Поскаржитись</span>
-          </button>
         </div>
       </div>
     </div>
@@ -21,7 +19,7 @@
 </template>
 
 <script>
-import {mapActions} from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   name: "WorkPage",
@@ -47,39 +45,19 @@ export default {
   },
   async created() {
     this.loadListById(this.$route.params.id)
-        .then((list) => {
-          this.work_data = list[0];
-          this.isLoaded = true;
-        })
-        .catch(() => {
-          console.log("something wrong");
-        });
+      .then((list) => {
+        this.work_data = list[0];
+        this.isLoaded = true;
+      })
+      .catch(() => {
+        console.log("something wrong");
+      });
   },
 };
 </script>
 
 <style scoped lang="scss">
 @import "../../assets/main_colors";
-@import "../../assets/main_colors";
-
-/* Component: .report */
-.report {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 5px; /* Adjusted padding */
-  border: 2px solid $danger-color;
-  border-radius: 5px;
-  background: $danger-color;
-  color: $bg-secondary;
-  transition: box-shadow ease-out 0.3s;
-
-  .report-icon {
-    height: 15px;
-    width: 15px;
-  }
-}
-
 /* Component: .mobile-form-container */
 .mobile-form-container {
   background-color: $bg-green;
@@ -97,7 +75,7 @@ export default {
 /* Component: .form-container */
 .form-container {
   margin-top: 10px;
-  transition: all ease-out .4s;
+  transition: all ease-out 0.4s;
   margin-bottom: 60px;
   background-color: $bg-secondary;
   position: relative;
@@ -143,7 +121,8 @@ export default {
     font-weight: 500;
   }
 
-  .payment, .description {
+  .payment,
+  .description {
     font-size: 12px;
   }
 
@@ -176,10 +155,10 @@ export default {
   }
 }
 @media (min-width: 1000px) {
-  .form-container{
+  .form-container {
     width: 50vw;
     max-width: 50vw;
-    transition: all ease-out .4s;
+    transition: all ease-out 0.4s;
   }
 }
 </style>

@@ -6,7 +6,7 @@
       <div class="input-group">
         <input
           type="file"
-          @change="encodeImageFileAsURL"
+          @change="checkFileSize"
           id="photo"
           accept="image/*"
           class="input-field"
@@ -70,6 +70,23 @@ export default {
     ...mapActions("user", ["loadUser"]),
     submitForm() {
       console.log("Надіслано:", this.formData);
+    },
+    checkFileSize(event) {
+      const input = event.target;
+      const file = input.files[0]; // Assuming only one file is selected
+
+      if (file) {
+        const fileSizeInKB = file.size / 1024; // Convert bytes to kilobytes
+
+        if (fileSizeInKB > 600) {
+          alert("Фотографія має бути менше 600KB");
+          // Optionally clear the file input
+          input.value = "";
+        } else {
+          // Handle the valid file (e.g., call your encoding function)
+          this.encodeImageFileAsURL(event);
+        }
+      }
     },
     encodeImageFileAsURL(event) {
       var file = event.target.files[0];
