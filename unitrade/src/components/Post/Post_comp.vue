@@ -81,6 +81,9 @@ export default {
   flex-direction: row;
   transition: all ease-out 0.3s;
   padding: 10px;
+  &:hover{
+    cursor: pointer;
+  }
 
   img {
     max-height: 80px;

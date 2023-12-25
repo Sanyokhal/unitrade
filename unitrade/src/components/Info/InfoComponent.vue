@@ -62,7 +62,7 @@ export default {
 @import "../../assets/main_colors";
 .custom-alert {
   border-radius: 10px;
-  width: calc(100vw - 50px);
+  width: calc(100% - 20px);
   display: flex;
   flex-direction: row;
   padding: 10px;
@@ -103,6 +103,7 @@ export default {
 }
 .buttons {
   display: flex;
+  flex-direction: column;
   gap: 15px;
 }
 </style>
