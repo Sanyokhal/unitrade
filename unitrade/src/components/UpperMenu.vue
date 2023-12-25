@@ -79,33 +79,6 @@ header {
       height: 35px;
       width: auto;
     }
-
-    input {
-      border: none;
-      background-color: #ffffff;
-      width: 50vw;
-      height: 30px;
-      padding-left: 20px;
-      font-size: 11px;
-      border-radius: 40px;
-      color: #000000;
-    }
-
-    input:focus-visible::placeholder {
-      padding-left: 20px;
-      opacity: 0;
-      transition: all ease-out 0.3s;
-    }
-
-    input:focus-visible {
-      outline: none;
-    }
-
-    input::placeholder {
-      color: #000000;
-      transition: padding-left ease-out 0.3s, opacity ease-out 0.3s;
-      font-weight: 500;
-    }
   }
 }
 </style>

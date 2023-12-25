@@ -142,16 +142,6 @@ export default {
           rgba(241, 185, 165, 1) 100%
   );
 }
-
-// .guide {
-//   background: rgb(241, 185, 165);
-//   background: linear-gradient(
-//     120deg,
-//     rgba(241, 185, 165, 1) 0%,
-//     rgba(226, 149, 120, 1) 100%
-//   );
-// }
-
 .dorm-1 {
   background: url("../assets/dormitory_img/dormitory-1.jpg");
 }
